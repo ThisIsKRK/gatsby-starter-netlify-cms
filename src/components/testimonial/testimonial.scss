@@ -1,0 +1,131 @@
+
+
+@media screen and (min-width: 768px) {
+  .testimonialcard {
+    background: #f0f0f0;
+  }
+  .testimonialcard {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px;
+    p.comments {
+      text-align: left;
+      margin: 0;
+    }
+    p.author {
+      text-align: left;
+      padding-top: 5px;
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    p.designation {
+      text-align: left;
+      padding-top: 5px;
+      margin: 0;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .testimonial-image .roundimage {
+     width:90px;
+      border-radius: 50%;
+    }
+    
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .testimonialcard {
+    background: #f0f0f0;
+  }
+  .testimonialcard {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 5px;
+    p.comments {
+      text-align: center;
+      margin: 0;
+      min-height: 80px;
+    }
+    p.author {
+      text-align: center;
+      padding-top: 5px;
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    p.designation {
+      text-align: center;
+      padding-top: 5px;
+      margin: 0;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .roundimage {
+     width:80px;
+      border-radius: 50%;
+    }
+    
+  }
+  .testimonialcard {
+    min-height: 200px;
+  }
+  .testimonialcard img
+  {
+    border-radius:50%;
+  }
+  .mobile-text-center 
+  {
+    text-align: center;
+  }
+  .carousel-indicators
+  {
+    bottom: -45px;
+  }
+}
+/*
+.arpitaa .userImage
+{
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background-image: url(./testimonial.jpg);
+  background-position: 0 0;
+  display: inline-block;
+  margin: 0 auto;
+}
+.vinay .userImage
+{
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background-image: url(./testimonial.jpg);
+  background-position: -90px -90px;
+   display: inline-block;
+  margin: 0 auto;
+}
+.deviprasad .userImage
+{
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background-image: url(./testimonial.jpg);
+  background-position:   -0px -90px;
+  display: inline-block;
+  margin: 0 auto;
+}
+.balesh .userImage
+{
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background-image: url(./testimonial.jpg);
+  background-position: -90px 0px;
+  display: inline-block;
+  margin: 0 auto;
+}
+*/

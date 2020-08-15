@@ -1,13 +1,14 @@
-import React from 'react'
-import Layout from '../components/Layout'
+import React from "react"
+import Layout from "../components/layout"
 
-const NotFoundPage = () => (
-  <Layout>
-    <div>
-      <h1>NOT FOUND</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </div>
-  </Layout>
-)
+import "../styles/style.scss"
 
-export default NotFoundPage
+export default function ErrorPage() {
+  return (
+    <Layout>
+      <h1 className="text-center padding-60">GoFloaters</h1>
+      <h2 className="text-center"> Page Not Found</h2>
+      <br></br>
+    </Layout>
+  )
+}

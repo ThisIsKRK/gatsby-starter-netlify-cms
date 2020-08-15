@@ -1,0 +1,91 @@
+
+.padding-60
+{
+    padding:60px 10px 10px;
+}
+
+@media (min-width: 768px) {
+    .filterbar
+{
+    font-family: "Open Sans", sans-serif;
+
+ ul {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    border-radius: 15px;
+}
+li{
+    display: inline;
+    background: #4f9fc8;
+    padding: 0px;
+    border-radius: 15px ;
+}
+
+ul li:nth-child(1) a {
+    border-radius: 15px 0 0 15px;
+}
+ul li:nth-child(5) a {
+    border-radius: 0px 15px 15px 0;
+}
+li a {
+    cursor: pointer;
+    color: #fff;
+    background: #4f9fc8;
+    padding: 5px 20px;
+}
+li a:hover,li a.active
+{
+    color: #fff;
+    background: #5fd0df;
+    
+}
+
+}
+}
+@media (max-width: 768px) {
+.filterbar
+{
+    font-family: "Open Sans", sans-serif;
+
+ ul {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    border-radius: 15px;
+    width: 100%;
+}
+li{
+  display: block;
+  width: 100%;
+  margin: 10px;
+  
+}
+
+li a {
+    cursor: pointer;
+    display: block;
+    color: #fff;
+    width: 100%;
+    background: #4f9fc8;
+    border-radius: 16px;
+    padding: 5px 20px;
+    
+
+}
+li a:hover,li a.active
+{
+    color: #fff;
+    background: #5fd0df;
+    
+}
+}
+}
+.padding-20
+{
+    padding: 10px;
+}

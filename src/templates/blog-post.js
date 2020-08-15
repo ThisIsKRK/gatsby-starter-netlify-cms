@@ -1,102 +1,147 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { kebabCase } from 'lodash'
-import { Helmet } from 'react-helmet'
-import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import React from "react"
+import { Link, graphql } from "gatsby"
+import Layout from "../components/Layout"
+import { Helmet } from "react-helmet"
+import { kebabCase } from "lodash"
+class BlogPostTemplate extends React.Component {
+  render() {
+    const post = this.props.data.markdownRemark
+    const siteTitle = this.props.data.site.siteMetadata.title
+    const { previous, next } = this.props.pageContext
+    const tags = post.frontmatter.tags
 
-export const BlogPostTemplate = ({
-  content,
-  contentComponent,
-  description,
-  tags,
-  title,
-  helmet,
-}) => {
-  const PostContent = contentComponent || Content
+    return (
+      <Layout location={this.props.location} title={siteTitle}>
+        <Helmet>
+          <title>{post.frontmatter.title}</title>
+          <meta
+            name="description"
+            content={post.frontmatter.description}
+          ></meta>
+          <meta property="og:title" content={post.frontmatter.title} />
+          <meta
+            property="og:description"
+            content={post.frontmatter.description}
+          />
+          <meta
+            property="og:image"
+            content={post.frontmatter.featuredImage.publicURL}
+          />
+          <meta property="og:image:width" content="1280" />
+          <meta property="og:image:height" content="628" />
+        </Helmet>
 
-  return (
-    <section className="section">
-      {helmet || ''}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map((tag) => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h1>{post.frontmatter.title}</h1>
+              <p>
+                {" "}
+                {post.frontmatter.date} |{" "}
+                <a
+                  className="authorlinks"
+                  href={post.frontmatter.authorURL}
+                  target="_blank"
+                  rel="nofollow"
+                >
+                  {post.frontmatter.author}
+                </a>
+              </p>
+              <img
+                src={post.frontmatter.featuredImage.publicURL}
+                alt={post.frontmatter.title}
+              ></img>
+              <div
+                className="blogContent"
+                dangerouslySetInnerHTML={{ __html: post.html }}
+              />
+              <hr />
+              <h5>
+                Category:{" "}
+                <b>
+                  {" "}
+                  <Link
+                    to={`/blog/category/${kebabCase(
+                      post.frontmatter.category
+                    )}/`}
+                  >
+                    {post.frontmatter.category}
+                  </Link>
+                </b>
+              </h5>
+              {tags && tags.length ? (
+                <div style={{ marginTop: `1rem` }}>
+                  <ul className="taglist">
+                    <h5>
+                      Tags:{" "}
+                      {tags.map(tag => (
+                        <li key={tag + `tag`}>
+                          <Link to={`/blog/tags/${kebabCase(tag)}/`}>
+                            {tag}
+                          </Link>
+                        </li>
+                      ))}
+                    </h5>
+                  </ul>
+                </div>
+              ) : null}
+              <ul
+                style={{
+                  display: `flex`,
+                  flexWrap: `wrap`,
+                  justifyContent: `space-between`,
+                  listStyle: `none`,
+                  padding: 0,
+                }}
+              >
+                <li>
+                  {next && (
+                    <Link to={"/blog" + next.fields.slug} rel="next">
+                      ← {next.frontmatter.title}
+                    </Link>
+                  )}
+                </li>
+                <li>
+                  {previous && (
+                    <Link to={"/blog" + previous.fields.slug} rel="prev">
+                      {previous.frontmatter.title} →
+                    </Link>
+                  )}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  )
+      </Layout>
+    )
+  }
 }
 
-BlogPostTemplate.propTypes = {
-  content: PropTypes.node.isRequired,
-  contentComponent: PropTypes.func,
-  description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.object,
-}
-
-const BlogPost = ({ data }) => {
-  const { markdownRemark: post } = data
-
-  return (
-    <Layout>
-      <BlogPostTemplate
-        content={post.html}
-        contentComponent={HTMLContent}
-        description={post.frontmatter.description}
-        helmet={
-          <Helmet titleTemplate="%s | Blog">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
-          </Helmet>
-        }
-        tags={post.frontmatter.tags}
-        title={post.frontmatter.title}
-      />
-    </Layout>
-  )
-}
-
-BlogPost.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.object,
-  }),
-}
-
-export default BlogPost
+export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+  query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      excerpt(pruneLength: 160)
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
         title
-        description
+        date(formatString: "MMMM DD, YYYY")
+        author
         tags
+        category
+        description
+        authorURL
+        featuredImage {
+          relativeDirectory
+          publicURL
+        }
       }
     }
   }

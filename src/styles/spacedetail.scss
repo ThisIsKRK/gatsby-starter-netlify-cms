@@ -1,0 +1,154 @@
+.carousel-item img
+{
+    border-radius: 16px;
+}
+.roundCircle
+{
+    width: 200px;
+    height: 200px;
+    background: rgba(37,169,212,0.35);
+    border-radius: 50%;
+    border:2px solid #25a9d4;
+}
+
+.spaceDetailContainer h4
+{
+    color: #25a9d4;
+    font-size:18px !important;
+}
+.spaceDetailContainer tr.active {
+    background: #d9d9d9;
+}
+.spaceDetailContainer p
+{
+   
+    font-size: 14px;
+    color: #303030;
+    margin-bottom: 0;
+    
+}
+.amenities-box
+{
+    display: inline;
+}
+.amenities
+{
+    width: 90px;
+    height: 120px;
+    font-size: 14px;
+    display: inline-block;
+    border: 1px solid #d3d3d3;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 40px;
+    vertical-align: middle;
+    line-height: normal;
+ img {
+    width: 32px;
+    height: 32px;
+    margin-top:12px;
+    margin-bottom: 5px;
+}
+p
+{
+    font-size: 14px;
+    color: #303030;
+    height: 50px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5px;
+
+}
+}
+.addressBar
+{
+padding:10px 15px;
+a
+{
+    color:#25a9d4;
+    text-decoration: none;
+    font-weight: bold;
+}
+}
+.PriceTag
+{
+    text-align: center;
+    display: inline-block;
+    margin: 2px;
+}
+.PriceTag p
+{
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #d5d5d5;
+    padding: 9px;
+    line-height: 1;
+    display: inline-block;
+    border-radius: 16px;
+}
+.priceCloumn
+{
+    text-align: center;
+}
+.spaceButton
+{
+    text-align: center;
+    a
+    {
+        
+        color:#fff;
+        background-color: #dc7846;
+        border-radius: 16px;
+        text-decoration: none;
+        padding: 15px 30px;
+    }
+}
+@media (min-width: 768px) {
+.SpaceSuitedFor {
+    width: 48%;
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #d3d3d3;
+    margin: 5px;
+    border-radius: 17px;
+    text-align: center;
+}
+.spaceDetailContainer h1
+{
+    font-size: 36px !important;
+    margin: 0;
+    font-weight: bold;
+}
+
+}
+@media (max-width: 768px) {
+    .SpaceSuitedFor {
+        width: 100%;
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #d3d3d3;
+        margin: 10px;
+        border-radius: 17px;
+        text-align: center;
+    }
+    .spaceDetailContainer h1
+{
+    font-size: 32px !important;
+    margin: 0;
+    font-weight: bold;
+}
+.spaceDetailContainer .carousel-indicators {
+    bottom: -15px;
+}
+    }
+    .SpaceSize
+    {
+        margin-top: 10px;
+        padding:5px 15px;
+        border-bottom: 1px solid #dc7846;
+    }
+    table
+    {
+        font-size: 14px;
+    }

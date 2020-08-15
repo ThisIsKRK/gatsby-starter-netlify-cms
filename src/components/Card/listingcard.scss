@@ -1,0 +1,76 @@
+.listingCardPadding
+{
+    padding: 15px 5px !important;
+    a
+    {
+        text-decoration: none;
+        color:#303030;
+    }
+}
+.listingCard
+{
+    box-shadow: 0px 3px 8px #00000029;
+    border-radius: 15px;
+    margin: 5px;
+}
+.listingCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  }
+.listingDetail
+{
+    min-height: 172px;
+    padding: 15px;
+    h1
+    {
+        font-size:20px;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+    p
+    {
+        margin-bottom: 2px;
+    }
+    p.spaceaddress
+    {
+        font-size: 14px;
+    }
+}
+.aligner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.listingimages
+{
+    height: 200px;
+    border-radius: 15px !important;
+    width: 100%;
+
+}
+.viewButton
+{
+    background-color: #DB7845 !important;
+    color:#fff !important;
+    padding:5px 20px;
+    text-decoration: none;
+    border-radius: 15px;
+   
+}
+.viewButton:hover{
+    text-decoration: none;
+    background-color: #4F9FC8 !important;
+    color:#fff !important;
+}
+.minheight
+{
+    min-height:70px;
+}
+.distance
+{
+    font-size: 14px;
+}
+.star
+{
+    color:#DB7845
+}

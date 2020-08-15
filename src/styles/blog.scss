@@ -1,0 +1,29 @@
+a, a:hover
+{
+    text-decoration: none !important;
+    box-shadow: none;
+}
+.BlogCard
+{
+    margin-bottom: 20px;
+    border-bottom: 1px solid #AAAAAA;
+}
+.BlogTitle
+{
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #303030;
+    letter-spacing: 0;
+    min-height: 60px;
+    padding-bottom: 0;
+}
+.BlogDate
+{
+    color:#454545;
+    padding-bottom: 5px;
+    margin: 0;
+}
+.BlogDesc
+{
+    color:#303030;
+}

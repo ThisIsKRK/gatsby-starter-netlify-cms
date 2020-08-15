@@ -1,77 +1,95 @@
+/**
+ * Configure your Gatsby site with this file.
+ *
+ * See: https://www.gatsbyjs.org/docs/gatsby-config/
+ */
+
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Netlify CMS Starter',
-    description:
-      'This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.',
+    title: `GoFloaters`,
+    author: {
+      name: `GoFloaters`,
+      summary: `GoFloaters is a platform that helps you find workspaces that can be booked instantly.`,
+    },
+    description: `GoFloaters is a platform that helps you find workspaces that can be booked instantly.`,
+    siteUrl: `https://gofloaters.com/`,
+    social: {
+      twitter: `gofloaters`,
+    },
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sass",
     {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/static/img`,
-        name: 'uploads',
+        path: `${__dirname}/src/content/event`,
+        name: `event`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
+        path: `${__dirname}/src/content/blog`,
+        name: `blog`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/img`,
-        name: 'images',
+        path: `${__dirname}/src/content/assets`,
+        name: `assets`,
       },
     },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
+            resolve: `gatsby-remark-images`,
             options: {
-              name: 'uploads',
+              maxWidth: 900,
             },
           },
           {
-            resolve: 'gatsby-remark-images',
+            resolve: `gatsby-remark-responsive-iframe`,
             options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 2048,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            options: {
-              destinationDir: 'static',
+              wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
         ],
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
+        id: "GTM-58JZWQT",
+        includeInDevelopment: false,
+        defaultDataLayer: function () {
+          return {
+            pageType: window.pageType,
+          }
+        },
       },
     },
     {
-      resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
+      resolve: "gatsby-plugin-preconnect",
       options: {
-        develop: true, // Activates purging in npm run develop
-        purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
+        domains: [
+          "https://salesiq.zoho.com",
+          "https://css.zohostatic.com",
+          "https://js.zohostatic.com",
+          "https://vts.zohopublic.com",
+        ],
       },
-    }, // must be after other CSS plugins
-    'gatsby-plugin-netlify', // make sure to keep it last in the array
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://gofloaters.com`,
+      },
+    },
   ],
 }

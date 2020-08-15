@@ -1,0 +1,33 @@
+
+@media (min-width: 768px) {
+    .partnercard
+{
+    text-decoration: none;
+    img
+    {
+         height:90px;
+         width:auto;
+        padding: 10px;
+    }
+    :hover{
+        text-decoration: none;
+    }
+
+}
+}
+@media (max-width: 768px) {
+    .partnercard
+{
+    text-decoration: none;
+    img
+    {
+        height:85px;
+        width:auto;
+        padding: 10px;
+    }
+    :hover{
+        text-decoration: none;
+    }
+
+}
+}
