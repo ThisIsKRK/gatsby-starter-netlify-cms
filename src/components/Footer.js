@@ -1,14 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 import logo from "../img/logo.png"
-import facebook from "../img/facebook.png"
-import linkedin from "../img/linkedin.png"
-import youtube from "../img/youtube.png"
-import instagram from "../img/instagram.png"
-import twitter from "../img/twitter.png"
-import GooglePlay from "../img/google-play-gofloaters-download.png"
-import AppleStore from "../img/gofloater-apple-store.png"
 
+import PrivacyBar from "../components/privacyBar"
 const Footer = () => {
   return (
     <footer>
@@ -16,12 +10,16 @@ const Footer = () => {
         <div className="row">
           <div className="col-md-12 text-center">
             <br></br>
-            <img src={logo} width="230" alt="GoFloaters"></img>
+            <img
+              src="https://assets.gofloaters.com/logo.png"
+              width="230"
+              alt="GoFloaters"
+            ></img>
             <br />
             <br />
             <p style={{ fontSize: 19 }}>
-              <b>GoFloaters</b> is a platform that helps you find workspaces
-              that can be booked instantly.
+              <b>GoFloaters</b> is a platform that helps you find work and
+              meeting spaces that can be booked instantly.
             </p>
             <br></br>
             <br></br> <br></br>
@@ -66,6 +64,17 @@ const Footer = () => {
               <li>
                 <Link to="/privacy-policy/"> Privacy Policy </Link>
               </li>
+              <li>
+                <a href="https://virtualoffice.gofloaters.com/" target="_blank">
+                  Virtual Offices
+                </a>
+              </li>
+              <li>
+                <Link to="/teams/" className="teamLinksNav">
+                  {" "}
+                  For Teams <span>New</span>
+                </Link>
+              </li>
             </ul>
             <ul className="links DesktopOnly">
               <li>
@@ -86,6 +95,11 @@ const Footer = () => {
 
               <li>
                 <Link to="/suggest-space/"> Suggest A Space </Link>
+              </li>
+              <li>
+                <a href="https://virtualoffice.gofloaters.com/" target="_blank">
+                  Virtual Offices
+                </a>
               </li>
             </ul>
           </div>
@@ -110,6 +124,12 @@ const Footer = () => {
               <li>
                 <Link to="/privacy-policy/"> Privacy Policy </Link>
               </li>
+              <li>
+                <Link to="/teams/" className="teamLinksNav">
+                  {" "}
+                  For Teams <span>New</span>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="col-md-1"></div>
@@ -117,22 +137,28 @@ const Footer = () => {
             <b style={{ fontSize: 18 }}>Cities</b>
             <ul className="links MobileOnly">
               <li>
-                <Link to="/bengaluru"> Bengaluru </Link>
+                <Link to="/bangalore/"> Bangalore </Link>
               </li>
               <li>
-                <Link to="/chennai"> Chennai </Link>
+                <Link to="/chennai/"> Chennai </Link>
               </li>
               <li>
-                <Link to="/coimbatore"> Coimbatore </Link>
+                <Link to="/coimbatore/"> Coimbatore </Link>
               </li>
               <li>
-                <Link to="/hyderabad"> Hyderabad </Link>
+                <Link to="/hyderabad/"> Hyderabad </Link>
               </li>
               <li>
-                <Link to="/pune"> Pune </Link>
+                <Link to="/pune/"> Pune </Link>
               </li>
               <li>
-                <Link to="/mumbai"> Mumbai </Link>
+                <Link to="/ghaziabad/"> Gaziabad </Link>
+              </li>
+              <li>
+                <Link to="/faridabad/"> Faridabad </Link>
+              </li>
+              <li>
+                <Link to="/mumbai/"> Mumbai </Link>
               </li>
               <li>
                 <Link to="/gurugram"> Gurugram </Link>
@@ -141,27 +167,54 @@ const Footer = () => {
                 <Link to="/noida"> Noida </Link>
               </li>
               <li>
-                <Link to="/new-delhi"> New Delhi </Link>
+                <Link to="/new-delhi/"> New Delhi </Link>
               </li>
               <li>
-                <Link to="/kochi"> Kochi </Link>
+                <Link to="/kochi/"> Kochi </Link>
+              </li>
+              <li>
+                <Link to="/ahmedabad/"> Ahmedabad </Link>
+              </li>
+              <li>
+                <Link to="/indore/"> Indore </Link>
+              </li>
+              <li>
+                <Link to="/kolkata/"> Kolkata </Link>
+              </li>
+              <li>
+                <Link to="/madurai/"> Madurai </Link>
+              </li>
+              <li>
+                <Link to="/trichy/"> Trichy </Link>
               </li>
             </ul>
             <ul className="links DesktopOnly">
               <li>
-                <Link to="/bengaluru"> Bengaluru </Link>
+                <Link to="/bangalore/"> Bangalore </Link>
               </li>
               <li>
-                <Link to="/chennai"> Chennai </Link>
+                <Link to="/chennai/"> Chennai </Link>
               </li>
               <li>
-                <Link to="/coimbatore"> Coimbatore </Link>
+                <Link to="/coimbatore/"> Coimbatore </Link>
               </li>
               <li>
-                <Link to="/hyderabad"> Hyderabad </Link>
+                <Link to="/hyderabad/"> Hyderabad </Link>
               </li>
               <li>
-                <Link to="/pune"> Pune </Link>
+                <Link to="/pune/"> Pune </Link>
+              </li>
+              <li>
+                <Link to="/ghaziabad/"> Gaziabad </Link>
+              </li>
+              <li>
+                <Link to="/ahmedabad/"> Ahmedabad </Link>
+              </li>
+              <li>
+                <Link to="/kolkata/"> Kolkata </Link>
+              </li>
+              <li>
+                <Link to="/faridabad/"> Faridabad </Link>
               </li>
             </ul>
           </div>
@@ -183,6 +236,17 @@ const Footer = () => {
               <li>
                 <Link to="/kochi"> Kochi </Link>
               </li>
+
+              <li>
+                <Link to="/indore/"> Indore </Link>
+              </li>
+
+              <li>
+                <Link to="/madurai/"> Madurai </Link>
+              </li>
+              <li>
+                <Link to="/trichy"> Trichy </Link>
+              </li>
             </ul>
           </div>
           <div className="col-md-3">
@@ -199,7 +263,7 @@ const Footer = () => {
                   support@gofloaters.com
                 </a>
               </li>
-              <li>Phone: +91-7338730800</li>
+              {/* <li>Phone: +91-7338730800</li> */}
             </ul>
             <ul className="sociallinks">
               <li>
@@ -209,7 +273,7 @@ const Footer = () => {
                   rel="noreferrer"
                 >
                   <img
-                    src={facebook}
+                    src="https://assets.gofloaters.com/facebook.png"
                     width="30"
                     alt="GoFloaters Facebook"
                   ></img>
@@ -222,7 +286,7 @@ const Footer = () => {
                   rel="noreferrer"
                 >
                   <img
-                    src={instagram}
+                    src="https://assets.gofloaters.com/instagram.png"
                     width="30"
                     alt="GoFloaters Instagram"
                   ></img>
@@ -235,7 +299,7 @@ const Footer = () => {
                   rel="noreferrer"
                 >
                   <img
-                    src={linkedin}
+                    src="https://assets.gofloaters.com/linkedin.png"
                     width="30"
                     alt="GoFloaters linkedin"
                   ></img>
@@ -247,7 +311,11 @@ const Footer = () => {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <img src={twitter} width="30" alt="GoFloaters Twitter"></img>
+                  <img
+                    src="https://assets.gofloaters.com/twitter.png"
+                    width="30"
+                    alt="GoFloaters Twitter"
+                  ></img>
                 </a>
               </li>
               <li>
@@ -256,7 +324,11 @@ const Footer = () => {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <img src={youtube} width="30" alt="GoFloaters YouTube"></img>
+                  <img
+                    src="https://assets.gofloaters.com/youtube.png"
+                    width="30"
+                    alt="GoFloaters YouTube"
+                  ></img>
                 </a>
               </li>
             </ul>
@@ -271,7 +343,7 @@ const Footer = () => {
                 rel="noreferrer"
               >
                 <img
-                  src={GooglePlay}
+                  src="https://assets.gofloaters.com/google-play-gofloaters-download.png"
                   width="150"
                   alt="GoFloaters Google Play Store"
                 />{" "}
@@ -283,7 +355,7 @@ const Footer = () => {
                 target="_blank"
               >
                 <img
-                  src={AppleStore}
+                  src="https://assets.gofloaters.com/gofloater-apple-store.png"
                   width="150"
                   alt="GoFloaters Apple Store"
                   target="_blank"
@@ -296,6 +368,7 @@ const Footer = () => {
       <div className="copyright">
         <p>&copy; 2020 GoFloaters</p>
       </div>
+      <PrivacyBar />
     </footer>
   )
 }

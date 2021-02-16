@@ -13,19 +13,37 @@
     border-radius: 15px;
     margin: 5px;
 }
-.listingCard:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-  }
+.verfiedBadge
+{
+    width: 100%;
+}
+.verifiedSpace {
+    font-size: 11px;
+    background: rgba(79,159,200,.4);
+    border-radius: 5px;
+    padding: 3px;
+}
+.verifiedSpace span {
+    white-space: break-spaces;
+    font-size: 11px;
+    display: inline;
+    text-align: left;
+    position: absolute;
+    vertical-align: middle;
+}
 .listingDetail
 {
     min-height: 172px;
     padding: 15px;
-    h1
+    h2
     {
-        font-size:20px;
+        font-size: 18px;
         margin-bottom: 2px;
         font-weight: bold;
+       line-height: 1.2;
+       white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     p
     {
@@ -36,6 +54,7 @@
         font-size: 14px;
     }
 }
+
 .aligner {
     display: flex;
     align-items: center;
@@ -48,20 +67,8 @@
     width: 100%;
 
 }
-.viewButton
-{
-    background-color: #DB7845 !important;
-    color:#fff !important;
-    padding:5px 20px;
-    text-decoration: none;
-    border-radius: 15px;
-   
-}
-.viewButton:hover{
-    text-decoration: none;
-    background-color: #4F9FC8 !important;
-    color:#fff !important;
-}
+
+
 .minheight
 {
     min-height:70px;
@@ -74,3 +81,85 @@
 {
     color:#DB7845
 }
+.verifiedSpace
+{
+    font-size: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #8bb8f361;
+    border-radius: 25px;
+    padding: 7px 15px 5px 10px;
+}
+.verifiedSpaceNew
+{
+    font-size: 14px;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: .4fr 1.6fr;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #8bb8f361;
+    border-radius: 25px;
+    padding: 7px 15px 5px 10px;
+    p
+    {
+        padding: 0 0 0 5px;
+        margin: 0;
+        text-align: left;
+    }
+}
+
+.spaceDisplayName p
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+/* Sweep To Right */
+
+.viewButton
+{
+    background-color: #DB7845 !important;
+    color:#fff !important;
+    padding:5px 20px;
+    text-decoration: none;
+    border-radius: 15px;
+   
+}
+.viewButton {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    border-radius: 15px;
+  }
+  
+  .viewButton:hover, .viewButton:focus, .viewButton:active {
+    color: white;
+    border-radius: 15px;
+    background: #4F9FC8 !important;
+  }
+ 
+  .clickable {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;     
+    z-index: 1;
+  }

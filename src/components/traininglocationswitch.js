@@ -7,7 +7,7 @@ const TrainingLocationSwitch = props => {
       case "Chennai":
         return navigate("/training-rooms-in-chennai/")
       case "Bengaluru":
-        return navigate("/training-rooms-in-bengaluru/")
+        return navigate("/training-rooms-in-bangalore/")
       case "Coimbatore":
         return navigate("/training-rooms-in-coimbatore/")
       case "Hyderabad":
@@ -31,7 +31,7 @@ const TrainingLocationSwitch = props => {
       case "Ahmedabad":
         return navigate("/training-rooms-in-ahmedabad/")
       default:
-        return navigate("/training-rooms-in-bengaluru/")
+        return navigate("/training-rooms-in-bangalore/")
     }
   }
 
@@ -52,7 +52,7 @@ const TrainingLocationSwitch = props => {
         <li>
           <Link
             className={city === "Bengaluru" ? "active" : ""}
-            to="/training-rooms-in-bengaluru/"
+            to="/training-rooms-in-bangalore/"
           >
             Bengaluru
           </Link>

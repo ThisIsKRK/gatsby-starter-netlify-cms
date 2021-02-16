@@ -7,7 +7,7 @@ const WorkSpaceLocationSwitch = props => {
       case "Chennai":
         return navigate("/coworking-spaces-in-chennai/")
       case "Bengaluru":
-        return navigate("/coworking-spaces-in-bengaluru/")
+        return navigate("/coworking-spaces-in-bangalore/")
       case "Coimbatore":
         return navigate("/coworking-spaces-in-coimbatore/")
       case "Hyderabad":
@@ -31,7 +31,7 @@ const WorkSpaceLocationSwitch = props => {
       case "Ahmedabad":
         return navigate("/coworking-spaces-in-ahmedabad/")
       default:
-        return navigate("/coworking-spaces-in-bengaluru/")
+        return navigate("/coworking-spaces-in-bangalore/")
     }
   }
 
@@ -52,7 +52,7 @@ const WorkSpaceLocationSwitch = props => {
         <li>
           <Link
             className={city === "Bengaluru" ? "active" : ""}
-            to="/coworking-spaces-in-bengaluru/"
+            to="/coworking-spaces-in-bangalore/"
           >
             Bengaluru
           </Link>

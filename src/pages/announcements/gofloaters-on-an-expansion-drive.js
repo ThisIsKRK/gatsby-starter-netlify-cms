@@ -4,12 +4,17 @@ import { Helmet } from "react-helmet"
 import awslogo from "../../img/partner/aws-logo.png"
 import HeaderBanner from "../../components/headerbanner.js"
 import { Link } from "gatsby"
+import SEOHeader from "../../components/seo-header"
+import SocialImage from "../../img/socialimage/homepage.jpg"
 const announcementtwo = () => {
   return (
     <div>
-      <Helmet>
-        <title>GOFLOATERS ON AN EXPANSION DRIVE</title>
-      </Helmet>
+      <SEOHeader
+        title="GOFLOATERS ON AN EXPANSION DRIVE"
+        description="Launches Day Pass Model for Work-cafes & Offices Spaces"
+        socialURL="https://assets.gofloaters.com/socialimage/coworking-spaces-in-bengaluru.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
         <HeaderBanner>
           <h1>GOFLOATERS ON AN EXPANSION DRIVE</h1>

@@ -4,10 +4,7 @@ import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import HeaderBanner from "../components/headerbanner"
 import ContactForm from "../components/ContactForm"
-import Knowledge from "../img/knowledge-sharing.png"
-import PartnerBenfits from "../img/partner-benefits.png"
-import HybirdRemote from "../img/hybrid-remote-working.png"
-import DiscountedOffers from "../img/discounted-offers.png"
+
 import GoFloatersCommunityAssistance from "../components/gofloaterscap"
 const ContactPage = () => {
   return (
@@ -47,7 +44,11 @@ const ContactPage = () => {
               <h2 className="text-center">GoSeeK Webinars</h2>
             </div>
             <div className="col-md-3 text-center">
-              <img src={Knowledge} alt="GoFloaters" width="200" />
+              <img
+                src="https://assets.gofloaters.com/knowledge-sharing.png"
+                alt="GoFloaters"
+                width="200"
+              />
             </div>
             <div className="col-md-9">
               <p>
@@ -69,7 +70,11 @@ const ContactPage = () => {
               <h2 className="text-center">Community Partner Offers</h2>
             </div>
             <div className="col-md-3 text-center">
-              <img src={PartnerBenfits} alt="GoFloaters" width="200" />
+              <img
+                src="https://assets.gofloaters.com/partner-benefits.png"
+                alt="GoFloaters"
+                width="200"
+              />
             </div>
             <div className="col-md-9">
               <p>
@@ -82,7 +87,7 @@ const ContactPage = () => {
                 events.
                 <br></br>
                 <br></br>
-                <Link to="/our-community-partners" className="claimnowButton">
+                <Link to="/our-community-perks" className="claimnowButton">
                   Claim Benefits
                 </Link>
               </p>
@@ -92,7 +97,11 @@ const ContactPage = () => {
               <h2 className="text-center">WorkPods</h2>
             </div>
             <div className="col-md-3 text-center">
-              <img src={HybirdRemote} alt="GoFloaters" width="200" />
+              <img
+                src="https://assets.gofloaters.com/hybrid-remote-working.png"
+                alt="GoFloaters"
+                width="200"
+              />
             </div>
             <div className="col-md-9">
               <p>
@@ -117,7 +126,11 @@ const ContactPage = () => {
               <h2 className="text-center">Discounted Shared Office</h2>
             </div>
             <div className="col-md-3 text-center">
-              <img src={DiscountedOffers} alt="GoFloaters" width="200" />
+              <img
+                src="https://assets.gofloaters.com/discounted-offers.png"
+                alt="GoFloaters"
+                width="200"
+              />
             </div>
             <div className="col-md-9">
               <p>
@@ -130,7 +143,7 @@ const ContactPage = () => {
                 on office rent for 3 months post lockdown (for eligible
                 startups*). <br></br>
                 <br></br>
-                <Link to="/our-community-partners" className="claimnowButton">
+                <Link to="/our-community-perks" className="claimnowButton">
                   Claim Benefits
                 </Link>
               </p>

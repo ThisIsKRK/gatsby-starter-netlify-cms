@@ -9,26 +9,31 @@ const Listing = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
   const [Loader, SetLoader] = useState("load")
   var spaceType = "officeSpace"
-  if (props.spacetype === "undefined" || props.spacetype === "") {
-    spaceType = "officeSpace"
+  if (
+    props.spacetype === "undefined" ||
+    props.spacetype === "" ||
+    props.spacetype === "officeSpace"
+  ) {
+    spaceType = "dailyofficeSpace"
   }
-  if (props.spacetype === "officeSpace") {
-    spaceType = "Office Spaces"
+  if (
+    props.spacetype === "dailyofficeSpace" ||
+    props.spacetype === "monthlyofficeSpace" ||
+    props.spacetype === "officeSpace"
+  ) {
+    var searchspace = "officeSpace"
+  } else {
+    var searchspace = "meetingSpace"
   }
-  if (props.spacetype === "workCafe") {
-    spaceType = "Work Cafes"
-  }
+
   if (props.spacetype === "meetingSpace") {
     spaceType = "Meeting Spaces"
   }
-  if (props.spacetype === "eventSpace") {
-    spaceType = "Event Spaces"
-  }
-  if (props.spacetype === "trainingRoom") {
-    spaceType = "Training Spaces"
-  }
+
   function FacilityList(facility) {
-    facility = facility.toString()
+    if (typeof facility !== "undefined") {
+      facility = facility.toString()
+    }
     //facility = facility.replace("Television", "Projector")
     return facility
   }
@@ -179,20 +184,26 @@ const Listing = props => {
     }
     return slug
   }
-
+  function spaceImages(photos) {
+    var spaceImages = "https://placeholder.com/600"
+    if (photos) {
+      spaceImages = photos[0].replace(
+        "https://firebasestorage.googleapis.com/v0/b/gofloaters.appspot.com/o",
+        "https://cdn.app.gofloaters.com"
+      )
+    }
+    return spaceImages
+  }
   const fetchDetails = async () => {
     const response = await Axios.get(
-      `https://gofloaters.firebaseapp.com/spaces/nearby?lat=${props.lat}&lng=${props.lng}&spaceSubType=${props.spacetype}`,
+      `https://gofloaters.web.app/spaces/nearby?lat=${props.lat}&lng=${props.lng}&spaceSubType=${searchspace}`,
       {}
     )
     let responsevalue = Object.values(response.data)
     const details = responsevalue
     const allList = details.map(detail => ({
       spaceId: detail.spaceId,
-      spaceImage: detail.photos[0].replace(
-        "https://firebasestorage.googleapis.com/v0/b/gofloaters.appspot.com/o",
-        "https://cdn.app.gofloaters.com"
-      ),
+      spaceImage: spaceImages(detail.photos),
       spaceTitle: detail.spaceDisplayName,
       spaceGFName: detail.gofloatersSpaceName,
       spaceType: detail.spaceType,
@@ -207,8 +218,10 @@ const Listing = props => {
       officeSpaceType: detail.officeSpaceType,
       spaceDisplayName: detail.spaceDisplayName,
       Distance: detail.distance,
+      OriginalName: detail.originalName,
       DistanceRound: Math.round(detail.distance),
       Rating: getAvgRating(detail.feedback),
+      hasCovidSafeBadge: detail.hasCovidSafeBadge,
       slug: Slug(
         detail.spaceDisplayName,
         detail.gofloatersSpaceName,
@@ -605,7 +618,7 @@ const Listing = props => {
     audioquery = " "
   }
 
-  const OfficeSpace = () => {
+  const DOfficeSpace = () => {
     useEffect(() => {
       setspaceSize(document.querySelectorAll(".listingCardPadding").length)
     })
@@ -615,17 +628,128 @@ const Listing = props => {
           <div className="padding-20"></div>
           <div>
             {" "}
-            <b>Filter:</b>
             <ul className="search OfficeFilter">
               <li>
                 <a
-                  className={"CheckBox " + DailyPassFilter}
-                  onClick={DailyPassCheck}
+                  className={"CheckBox " + MetroNearByFilter}
+                  onClick={MetroNearByCheck}
                 >
-                  Daily Pass{" "}
+                  Near Metro{" "}
                   <i className="fa fa-times-circle" aria-hidden="true"></i>
                 </a>
               </li>
+              <li>
+                <a
+                  className={"CheckBox " + privateCabinFilter}
+                  onClick={privateCabinCheck}
+                >
+                  Private Cabin{" "}
+                  <i className="fa fa-times-circle" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  className={"CheckBox " + openDeskFilter}
+                  onClick={openDeskCheck}
+                >
+                  Desk <i className="fa fa-times-circle" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  className={"CheckBox " + TwentyFourFilter}
+                  onClick={TwentyFourCheck}
+                >
+                  24x7 <i className="fa fa-times-circle" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="col-md-12">
+          <br />
+        </div>
+        <div className="padding-20"></div>
+        <div className="col-md-12">
+          {spaceSize} Coworking Spaces available for you
+        </div>
+
+        {Lists?.sort((a, b) => (a.Distance > b.Distance ? 1 : -1)).map(List => {
+          if (spaceFilter === "All" && List.dayPassAvailable === true) {
+            return (
+              <SearchListingCard
+                key={List.spaceId}
+                spacetype={List.spaceType}
+                listingImg={List.spaceImage}
+                title={List.spaceTitle}
+                gftitle={List.spaceGFName}
+                spaceAddress={List.spaceAddress}
+                priceHr={List.priceHr}
+                priceDay={List.priceDay}
+                priceMonth={List.priceMonth}
+                monthPassAvailable="false"
+                dayPassAvailable="true"
+                hourPassAvailable={List.hourPassAvailable}
+                spaceId={List.spaceId}
+                officeSpaceType={List.officeSpaceType}
+                filter={spaceFilter}
+                spaceDisplayName={List.spaceDisplayName}
+                Distance={List.Distance}
+                Rating={List.Rating}
+                Facility={List.Facility}
+                OriginalName={List.OriginalName}
+                Slug={"/coworking-space/" + List.slug}
+                hasCovidSafeBadge={List.hasCovidSafeBadge}
+              ></SearchListingCard>
+            )
+          }
+          if (
+            List.Facility.search(opendeskquery) > 1 &&
+            List.Facility.search(privatecabinquery) > 1 &&
+            List.dayPassAvailable === true &&
+            List.Facility.search(metroquery) > 1 &&
+            List.Facility.search(twentyfourquery) > 1
+          ) {
+            return (
+              <SearchListingCard
+                key={List.spaceId}
+                spacetype={List.spaceType}
+                listingImg={List.spaceImage}
+                title={List.spaceTitle}
+                gftitle={List.spaceGFName}
+                spaceAddress={List.spaceAddress}
+                priceHr={List.priceHr}
+                priceDay={List.priceDay}
+                priceMonth={List.priceMonth}
+                monthPassAvailable="false"
+                dayPassAvailable="true"
+                hourPassAvailable={List.hourPassAvailable}
+                spaceId={List.spaceId}
+                officeSpaceType={List.officeSpaceType}
+                filter={spaceFilter}
+                spaceDisplayName={List.spaceDisplayName}
+                Distance={List.Distance}
+                Rating={List.Rating}
+                Facility={List.Facility}
+                OriginalName={List.OriginalName}
+                Slug={"/coworking-space/" + List.slug}
+                hasCovidSafeBadge={List.hasCovidSafeBadge}
+              ></SearchListingCard>
+            )
+          }
+        })}
+      </div>
+    )
+  }
+  const MOfficeSpace = () => {
+    useEffect(() => {
+      setspaceSize(document.querySelectorAll(".listingCardPadding").length)
+    })
+    return (
+      <div className="row">
+        <div className="col-md-12">
+          <div>
+            <ul className="search OfficeFilter">
               <li>
                 <a
                   className={"CheckBox " + MetroNearByFilter}
@@ -672,7 +796,7 @@ const Listing = props => {
         </div>
 
         {Lists?.sort((a, b) => (a.Distance > b.Distance ? 1 : -1)).map(List => {
-          if (spaceFilter === "All") {
+          if (spaceFilter === "All" && List.monthPassAvailable === true) {
             return (
               <SearchListingCard
                 key={List.spaceId}
@@ -684,8 +808,8 @@ const Listing = props => {
                 priceHr={List.priceHr}
                 priceDay={List.priceDay}
                 priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
+                monthPassAvailable="true"
+                dayPassAvailable="false"
                 hourPassAvailable={List.hourPassAvailable}
                 spaceId={List.spaceId}
                 officeSpaceType={List.officeSpaceType}
@@ -694,14 +818,16 @@ const Listing = props => {
                 Distance={List.Distance}
                 Rating={List.Rating}
                 Facility={List.Facility}
-                Slug={List.slug}
+                OriginalName={List.OriginalName}
+                Slug={"/office-space/" + List.slug}
+                hasCovidSafeBadge={List.hasCovidSafeBadge}
               ></SearchListingCard>
             )
           }
           if (
+            List.monthPassAvailable === true &&
             List.Facility.search(opendeskquery) > 1 &&
             List.Facility.search(privatecabinquery) > 1 &&
-            List.Facility.search(dailypassquery) > 1 &&
             List.Facility.search(metroquery) > 1 &&
             List.Facility.search(twentyfourquery) > 1
           ) {
@@ -716,8 +842,8 @@ const Listing = props => {
                 priceHr={List.priceHr}
                 priceDay={List.priceDay}
                 priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
+                monthPassAvailable="true"
+                dayPassAvailable="false"
                 hourPassAvailable={List.hourPassAvailable}
                 spaceId={List.spaceId}
                 officeSpaceType={List.officeSpaceType}
@@ -726,120 +852,9 @@ const Listing = props => {
                 Distance={List.Distance}
                 Rating={List.Rating}
                 Facility={List.Facility}
-                Slug={List.slug}
-              ></SearchListingCard>
-            )
-          }
-        })}
-      </div>
-    )
-  }
-
-  const WorkCafe = () => {
-    useEffect(() => {
-      setspaceSize(document.querySelectorAll(".listingCardPadding").length)
-    })
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="padding-20"></div>
-          <div>
-            {" "}
-            <b>Filter:</b>
-            <ul className="search OfficeFilter">
-              <li>
-                <a
-                  className={"CheckBox " + MetroNearByFilter}
-                  onClick={MetroNearByCheck}
-                >
-                  Near Metro{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + OpenSixFilter}
-                  onClick={OpenSixCheck}
-                >
-                  Open &gt; 6PM{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + MostPopularFilter}
-                  onClick={MostPopularCheck}
-                >
-                  Most Popular{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="padding-20"></div>
-        </div>
-        <div className="col-md-12">
-          <br />
-        </div>
-        <div className="padding-20"></div>
-
-        <div className="col-md-12">
-          {spaceSize} Work Cafes available for you
-        </div>
-        {Lists?.sort((a, b) => (a.Distance > b.Distance ? 1 : -1)).map(List => {
-          if (spaceFilter === "All") {
-            return (
-              <SearchListingCard
-                key={List.spaceId}
-                spacetype={List.spaceType}
-                listingImg={List.spaceImage}
-                title={List.spaceTitle}
-                gftitle={List.spaceGFName}
-                spaceAddress={List.spaceAddress}
-                priceHr={List.priceHr}
-                priceDay={List.priceDay}
-                priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
-                hourPassAvailable={List.hourPassAvailable}
-                spaceId={List.spaceId}
-                officeSpaceType={List.officeSpaceType}
-                filter={spaceFilter}
-                spaceDisplayName={List.spaceDisplayName}
-                Distance={List.Distance}
-                Rating={List.Rating}
-                Facility={List.Facility}
-                Slug={List.slug}
-              ></SearchListingCard>
-            )
-          }
-          if (
-            List.Facility.search(opensixquery) > 1 &&
-            List.Facility.search(metroquery) > 1 &&
-            List.Facility.search(mostpopularquery) > 1
-          ) {
-            return (
-              <SearchListingCard
-                key={List.spaceId}
-                spacetype={List.spaceType}
-                listingImg={List.spaceImage}
-                title={List.spaceTitle}
-                gftitle={List.spaceGFName}
-                spaceAddress={List.spaceAddress}
-                priceHr={List.priceHr}
-                priceDay={List.priceDay}
-                priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
-                hourPassAvailable={List.hourPassAvailable}
-                spaceId={List.spaceId}
-                officeSpaceType={List.officeSpaceType}
-                filter={spaceFilter}
-                spaceDisplayName={List.spaceDisplayName}
-                Distance={List.Distance}
-                Rating={List.Rating}
-                Facility={List.Facility}
-                Slug={List.slug}
+                OriginalName={List.OriginalName}
+                Slug={"/office-space/" + List.slug}
+                hasCovidSafeBadge={List.hasCovidSafeBadge}
               ></SearchListingCard>
             )
           }
@@ -857,8 +872,6 @@ const Listing = props => {
         <div className="col-md-12">
           <div className="padding-20"></div>
           <div>
-            {" "}
-            <b>Filter:</b>
             <ul className="search OfficeFilter">
               <li>
                 <a
@@ -901,7 +914,7 @@ const Listing = props => {
                   className={"CheckBox " + CoffeeTeaFilter}
                   onClick={CoffeeTeaCheck}
                 >
-                  Free Tea/Cofee{" "}
+                  Free Tea/Coffee{" "}
                   <i className="fa fa-times-circle" aria-hidden="true"></i>
                 </a>
               </li>
@@ -939,7 +952,9 @@ const Listing = props => {
                 Distance={List.Distance}
                 Rating={List.Rating}
                 Facility={List.Facility}
-                Slug={List.slug}
+                OriginalName={List.OriginalName}
+                Slug={"/meeting-space/" + List.slug}
+                hasCovidSafeBadge={List.hasCovidSafeBadge}
               ></SearchListingCard>
             )
           }
@@ -972,7 +987,9 @@ const Listing = props => {
                 Distance={List.Distance}
                 Rating={List.Rating}
                 Facility={List.Facility}
-                Slug={List.slug}
+                OriginalName={List.OriginalName}
+                Slug={"/meeting-space/" + List.slug}
+                hasCovidSafeBadge={List.hasCovidSafeBadge}
               ></SearchListingCard>
             )
           }
@@ -981,273 +998,14 @@ const Listing = props => {
     )
   }
 
-  const EventSpace = () => {
-    useEffect(() => {
-      setspaceSize(document.querySelectorAll(".listingCardPadding").length)
-    })
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="padding-20"></div>
-          <div>
-            {" "}
-            <b>Filter:</b>
-            <ul className="search OfficeFilter">
-              <li>
-                <a
-                  className={"CheckBox " + LessThirtyFilter}
-                  onClick={LessThirtyCheck}
-                >
-                  &lt; 30 Seats{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + ThirtyToSixtyFilter}
-                  onClick={ThirtytoSixtyCheck}
-                >
-                  30 to 60 Seats{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + MorethanSixtyFilter}
-                  onClick={MorethanSixtyCheck}
-                >
-                  &gt; 60 Seats{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + ProjectFilter}
-                  onClick={ProjectCheck}
-                >
-                  Projector / LED{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + AudioEquipmentFilter}
-                  onClick={AudioEquipmentCheck}
-                >
-                  Audio Equipment{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="col-md-12">
-          <br />
-        </div>
-        <div className="padding-20"></div>
-
-        <div className="col-md-12">
-          {spaceSize} Event Spaces available for you
-        </div>
-        {Lists?.sort((a, b) => (a.Distance > b.Distance ? 1 : -1)).map(List => {
-          if (spaceFilter === "All") {
-            return (
-              <SearchListingCard
-                key={List.spaceId}
-                spacetype={List.spaceType}
-                listingImg={List.spaceImage}
-                title={List.spaceTitle}
-                gftitle={List.spaceGFName}
-                spaceAddress={List.spaceAddress}
-                priceHr={List.priceHr}
-                priceDay={List.priceDay}
-                priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
-                hourPassAvailable={List.hourPassAvailable}
-                spaceId={List.spaceId}
-                officeSpaceType={List.officeSpaceType}
-                filter={spaceFilter}
-                spaceDisplayName={List.spaceDisplayName}
-                Distance={List.Distance}
-                Rating={List.Rating}
-                Facility={List.Facility}
-                Slug={List.slug}
-              ></SearchListingCard>
-            )
-          }
-          if (
-            List.Facility.search(projectquery) > 1 &&
-            List.Facility.search(audioquery) > 1 &&
-            ((List.Facility.search(lessthanthirtyquery) > 1 &&
-              List.Facility.search(thirtytosixtyquery) > 1 &&
-              List.Facility.search(morethansixty) > 1) ||
-              List.Facility.search(fivefiftyquery) > 1)
-          ) {
-            return (
-              <SearchListingCard
-                key={List.spaceId}
-                spacetype={List.spaceType}
-                listingImg={List.spaceImage}
-                title={List.spaceTitle}
-                gftitle={List.spaceGFName}
-                spaceAddress={List.spaceAddress}
-                priceHr={List.priceHr}
-                priceDay={List.priceDay}
-                priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
-                hourPassAvailable={List.hourPassAvailable}
-                spaceId={List.spaceId}
-                officeSpaceType={List.officeSpaceType}
-                filter={spaceFilter}
-                spaceDisplayName={List.spaceDisplayName}
-                Distance={List.Distance}
-                Rating={List.Rating}
-                Facility={List.Facility}
-                Slug={List.slug}
-              ></SearchListingCard>
-            )
-          }
-        })}
-      </div>
-    )
-  }
-
-  const TrainingSpace = () => {
-    useEffect(() => {
-      setspaceSize(document.querySelectorAll(".listingCardPadding").length)
-    })
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="padding-20"></div>
-          <div>
-            {" "}
-            <b>Filter:</b>
-            <ul className="search OfficeFilter">
-              <li>
-                <a
-                  className={"CheckBox " + LessTenFilter}
-                  onClick={LessTenCheck}
-                >
-                  &lt; 10 Seats{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + TenToTwentyFilter}
-                  onClick={TenToTwentyCheck}
-                >
-                  10 to 20 Seats{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + MorethanTwentyFilter}
-                  onClick={MoreThanTwentyCheck}
-                >
-                  &gt; 20 Seats{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={"CheckBox " + ProjectFilter}
-                  onClick={ProjectCheck}
-                >
-                  Projector / LED{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a className={"CheckBox " + SystemFilter} onClick={SystemCheck}>
-                  With Systems{" "}
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="col-md-12">
-          <br />
-        </div>
-        <div className="padding-20"></div>
-
-        <div className="col-md-12">
-          {spaceSize} Training Spaces available for you
-        </div>
-        {Lists?.sort((a, b) =>
-          a.DistanceRound > b.DistanceRound ? 1 : -1
-        ).map(List => {
-          if (spaceFilter === "All") {
-            return (
-              <SearchListingCard
-                key={List.spaceId}
-                spacetype={List.spaceType}
-                listingImg={List.spaceImage}
-                title={List.spaceTitle}
-                gftitle={List.spaceGFName}
-                spaceAddress={List.spaceAddress}
-                priceHr={List.priceHr}
-                priceDay={List.priceDay}
-                priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
-                hourPassAvailable={List.hourPassAvailable}
-                spaceId={List.spaceId}
-                officeSpaceType={List.officeSpaceType}
-                filter={spaceFilter}
-                spaceDisplayName={List.spaceDisplayName}
-                Distance={List.Distance}
-                Rating={List.Rating}
-                Facility={List.Facility}
-                Slug={List.slug}
-              ></SearchListingCard>
-            )
-          }
-          if (
-            List.Facility.search(projectquery) > 1 &&
-            ((List.Facility.search(lesstenquery) > 1 &&
-              List.Facility.search(tentotwenty) > 1 &&
-              List.Facility.search(morethantwentyquery) > 1) ||
-              List.Facility.search(fivefiftyquery) > 1)
-          ) {
-            return (
-              <SearchListingCard
-                key={List.spaceId}
-                spacetype={List.spaceType}
-                listingImg={List.spaceImage}
-                title={List.spaceTitle}
-                gftitle={List.spaceGFName}
-                spaceAddress={List.spaceAddress}
-                priceHr={List.priceHr}
-                priceDay={List.priceDay}
-                priceMonth={List.priceMonth}
-                monthPassAvailable={List.monthPassAvailable}
-                dayPassAvailable={List.dayPassAvailable}
-                hourPassAvailable={List.hourPassAvailable}
-                spaceId={List.spaceId}
-                officeSpaceType={List.officeSpaceType}
-                filter={spaceFilter}
-                spaceDisplayName={List.spaceDisplayName}
-                Distance={List.Distance}
-                Rating={List.Rating}
-                Facility={List.Facility}
-                Slug={List.slug}
-              ></SearchListingCard>
-            )
-          }
-        })}
-      </div>
-    )
-  }
   return (
     <div>
       <div className={"loader " + Loader}>
-        <img src={logo} width="200"></img>
+        <img
+          src="https://assets.gofloaters.com/flyingtilo.gif"
+          width="200"
+          alt="Flying Tilo"
+        ></img>
       </div>
       <div className="container">
         <div className="row">
@@ -1255,16 +1013,19 @@ const Listing = props => {
             <p></p>
           </div>
         </div>
-        {props.spacetype === "officeSpace" ? <OfficeSpace></OfficeSpace> : ""}
-        {props.spacetype === "workCafe" ? <WorkCafe></WorkCafe> : ""}
-        {props.spacetype === "meetingSpace" ? (
-          <MeetingSpace></MeetingSpace>
+        {props.spacetype === "dailyofficeSpace" ? (
+          <DOfficeSpace></DOfficeSpace>
         ) : (
           ""
         )}
-        {props.spacetype === "eventSpace" ? <EventSpace></EventSpace> : ""}
-        {props.spacetype === "trainingRoom" ? (
-          <TrainingSpace></TrainingSpace>
+        {props.spacetype === "monthlyofficeSpace" ? (
+          <MOfficeSpace></MOfficeSpace>
+        ) : (
+          ""
+        )}
+
+        {props.spacetype === "meetingSpace" ? (
+          <MeetingSpace></MeetingSpace>
         ) : (
           ""
         )}

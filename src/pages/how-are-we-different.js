@@ -1,20 +1,15 @@
 import React from "react"
 import Layout from "../components/layout"
-import { Helmet } from "react-helmet"
 import HeaderBanner from "../components/headerbanner"
-import BeforeAfterSlider from "react-before-after-slider"
-import HowWeWork01 from "../img/how-we-work-01.jpg"
-import HowWeWork02 from "../img/how-we-work-02.jpg"
-import HowWeWork03 from "../img/how-we-work-03.jpg"
-import HowWeWork04 from "../img/how-we-work-04.jpg"
-import HowWeWork05 from "../img/how-we-work-05.jpg"
+import SEOHeader from "../components/seo-header"
 export default () => (
   <div>
-    <Helmet>
-      <title>How are we different | GoFloaters</title>
-      <meta name="description" content="How are we different"></meta>
-      <meta name="keywords" content="gofloaters event spaces, event spaces" />
-    </Helmet>
+    <SEOHeader
+      title="List Your Space | Coworking, Office Space & Meeting Rooms"
+      description="We can help you find short/long term clients by listing your property on our platform. All our properties are vetted, and relevant amenities are highlighted."
+      socialURL="https://assets.gofloaters.com/socialimage/how-we-are.jpg"
+      pinterest="true"
+    ></SEOHeader>
     <Layout>
       <HeaderBanner>
         <h1>How are we different</h1>
@@ -123,46 +118,18 @@ export default () => (
             </div>
           </div>
           <div className="col-md-12"></div>
-
           <div className="col-md-12 text-center">
             <br></br>
             <br></br>
             <h3>GoFloaters Office Space</h3> <br></br>
           </div>
           <div className="col-md-12 text-center">
-            <img src={HowWeWork03} className="img-responsive"></img>
+            <img
+              src="https://assets.gofloaters.com/how-we-work-03.jpg"
+              className="img-responsive"
+              alt="How GoFloaters Work?"
+            ></img>
             <br></br>
-          </div>
-          <div className="col-md-12 text-center">
-            <br></br>
-            <h3>
-              Working from home Vs <strong>GoFloaters Work Cafe</strong>
-            </h3>
-            <br></br>
-          </div>
-          <div className="col-md-6 text-center">
-            <img src={HowWeWork02} className="img-responsive"></img>
-            <p>Working from home</p>
-          </div>
-          <div className="col-md-6 text-center">
-            <img src={HowWeWork01} className="img-responsive"></img>
-            <p>Working from GoFloaters Work Cafe</p>
-          </div>
-          <div className="col-md-12 text-center">
-            <br></br> <br></br>
-            <h3>
-              Working from cafe Vs Working from
-              <strong> GoFloaters Work Cafe</strong>
-            </h3>
-            <br></br>
-          </div>
-          <div className="col-md-6 text-center">
-            <img src={HowWeWork04} className="img-responsive"></img>
-            <p>Working from cafe</p>
-          </div>
-          <div className="col-md-6 text-center">
-            <img src={HowWeWork05} className="img-responsive"></img>
-            <p>Working from GoFloaters Work Cafe</p>
           </div>
         </div>
       </div>

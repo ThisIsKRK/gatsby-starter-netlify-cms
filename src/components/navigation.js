@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import logo from "../img/logo.png"
-import arrow from "../img/arrow-icon.png"
+
 const Navigation = () => {
   const [menuState, setmenuState] = useState("close")
   const MenuOpen = () => {
@@ -30,7 +30,10 @@ const Navigation = () => {
         <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-light">
             <Link className="navbar-brand logo center-logo" to="/">
-              <img src={logo} alt="GoFloaters" />
+              <img
+                src="https://assets.gofloaters.com/logo.png"
+                alt="GoFloaters"
+              />
             </Link>
             <button
               className="navbar-toggler"
@@ -48,22 +51,15 @@ const Navigation = () => {
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <Link
-                    to="/daily-office"
+                    to="/coworking-spaces/"
                     className="nav-link"
                     style={{ paddingLeft: "0", fontSize: "0.9rem" }}
                   >
-                    Daily Office
+                    Coworking Spaces
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link
-                    to="/monthly-office"
-                    className="nav-link"
-                    style={{ paddingLeft: "0", fontSize: "0.9rem" }}
-                  >
-                    Monthly Office
-                  </Link>
-                </li>
+                
+
                 <li className="nav-item">
                   <Link
                     to="/meeting-rooms/"
@@ -74,8 +70,26 @@ const Navigation = () => {
                     Meeting Spaces
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link
+                    to="/office-spaces/"
+                    className="nav-link"
+                    style={{ paddingLeft: "0", fontSize: "0.9rem" }}
+                  >
+                    Office Spaces
+                  </Link>
+                </li>
               </ul>
               <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link
+                    to="/teams/"
+                    className="nav-link teamLinksNav"
+                    style={{ fontSize: "0.9rem" }}
+                  >
+                    Teams<span>New</span>
+                  </Link>
+                </li>
                 <li className="nav-item dropdown mr-auto">
                   <a
                     href="#"
@@ -89,7 +103,7 @@ const Navigation = () => {
                   <ul className="dropdown-menu">
                     <li>
                       <Link
-                        to="/our-community-partners/"
+                        to="/our-community-perks"
                         title="Meeting Spaces"
                         style={{ fontSize: "0.9rem" }}
                       >
@@ -116,33 +130,35 @@ const Navigation = () => {
                     </li>
                   </ul>
                 </li>
+
                 <li className="nav-item">
                   <Link
-                    to="/dont-let-space-go-to-waste"
+                    to="/dont-let-space-go-to-waste/"
                     className="nav-link"
                     style={{ fontSize: "0.9rem" }}
                   >
                     List your Space
                   </Link>
                 </li>
-                <li className="nav-item">
+
+               {/* <li className="nav-item">
                   <Link
                     to="/search"
-                    className="nav-link community"
+                    className="nav-link community "
                     style={{
                       borderRadius: "5px",
                       fontSize: "0.9rem",
                       paddingBottom: "3px",
                     }}
                   >
-                    FIND YOUR OFFICE{" "}
+                    FIND COWORKING SPACE
                     <img
-                      src={arrow}
+                      src="https://assets.gofloaters.com/arrow-icon.png"
                       alt="arrow"
                       style={{ width: "20px", paddingBottom: "3px" }}
                     />
                   </Link>
-                </li>
+                  </li>*/}
               </ul>
             </div>
           </nav>
@@ -163,24 +179,30 @@ const Navigation = () => {
         </div>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to="/daily-office" className="nav-link">
-              Daily Office
+            <Link to="/coworking-spaces/" className="nav-link">
+              Coworking Spaces
             </Link>
           </li>
+        
           <li className="nav-item">
-            <Link to="/monthly-office" className="nav-link">
-              Monthly Office
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/meeting-rooms" className="nav-link">
+            <Link to="/meeting-rooms/" className="nav-link">
               Meeting Spaces
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/office-spaces/" className="nav-link">
+              Office Spaces
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/teams/" className="nav-link teamLinksNav">
+              Teams<span>New</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link
-              to="/our-community-partners"
+              to="/our-community-perks"
               className="nav-link"
               style={{ color: "#4F9FC8" }}
             >
@@ -188,24 +210,24 @@ const Navigation = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <a
-              href="/events"
+            <Link
+              to="/events"
               className="nav-link"
               className="nav-link"
               style={{ color: "#4F9FC8" }}
             >
               Community Events
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a
-              href="/blog"
+            <Link
+              to="/blog"
               className="nav-link"
               className="nav-link"
               style={{ color: "#4F9FC8" }}
             >
               Blog
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="padding-20"></div>
@@ -217,7 +239,7 @@ const Navigation = () => {
         <div className="padding-20"></div>
         <br></br>
         <Link className="navbar-brand logo" to="/">
-          <img src={logo} alt="GoFloaters" />
+          <img src="https://assets.gofloaters.com/logo.png" alt="GoFloaters" />
         </Link>
       </div>
     </div>

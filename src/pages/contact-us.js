@@ -1,25 +1,18 @@
 import React from "react"
 import Layout from "../components/layout"
-import { Helmet } from "react-helmet"
 import HeaderBanner from "../components/headerbanner"
 import ContactForm from "../components/ContactForm"
+import SEOHeader from "../components/seo-header"
 
 const ContactPage = () => {
   return (
     <div>
-      <Helmet>
-        <title>
-          Contact Us | GoFloaters Contact Us - GoFloaters - Hire an Office Space
-        </title>
-        <meta
-          name="description"
-          content="Looking to hire an office space? Connect with us using any of our support options like online chat, email or phone. Our working spaces are located in primary locations with cool amenities."
-        ></meta>
-        <meta
-          name="keywords"
-          content="Book Private Office, Shared office, Coworking Space"
-        />
-      </Helmet>
+      <SEOHeader
+        title="Contact Gofloaters For Office Space & Meeting Rooms in India"
+        description="Call us - +91-7338730800, E-Mail - support@gofloaters.com & Click the chat bubble in the bottom right of this page."
+        socialURL="https://assets.gofloaters.com/socialimage/coworking-spaces-in-bengaluru.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
         <HeaderBanner>
           <h1>Contact Us</h1>
@@ -29,12 +22,12 @@ const ContactPage = () => {
             <div className="col-md-12"></div>
             <div className="col-md-12 text-center"></div>
 
-            <div className="col-md-4 text-center">
+            <div className="col-md-6 text-center">
               <i className="fa fa-chat"></i>
               <h3>Chat</h3>
               <p>Click the chat bubble in the bottom right of this page.</p>
             </div>
-            <div className="col-md-4 text-center">
+            <div className="col-md-6 text-center">
               <i className="fa fa-chat"></i>
               <h3>Email</h3>
               <p>
@@ -43,11 +36,11 @@ const ContactPage = () => {
                 </a>
               </p>
             </div>
-            <div className="col-md-4 text-center">
+            {/* <div className="col-md-4 text-center">
               <i className="fa fa-chat"></i>
               <h3>Phone</h3>
               <p>+91-7338730800</p>
-            </div>
+            </div> */}
             <div className="col-md-12 text-center">
               <br></br>
               <p>

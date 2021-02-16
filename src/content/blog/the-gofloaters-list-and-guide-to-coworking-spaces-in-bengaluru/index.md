@@ -1,13 +1,13 @@
 ---
 templateKey: blog-post
-title: The GoFloaters' list (and guide) to coworking spaces in Bengaluru
+title: The GoFloaters' list (and guide) to coworking spaces in Bangalore
 date: 2019-08-31
 description: Namma Ooru goes by many names, Garden City, Pub Capital and Silicon Valley of India. There’s no disputing the fact that this is the city for startups...
 featuredpost: false
 featuredImage: "./Add-a-subheading-23.png"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Guides & Hacks
 tags:
  - Coworking
  - Listicle
@@ -43,7 +43,7 @@ You can’t argue with the fact that Indiranagar is the place to be in the city!
 
 ![Shared-office-JP-Nagar](./Shared-office-JP-Nagar.jpg)
 
-In bengaluru, you know that finding a good parking spot is about as rare as observing a solar eclipse. This especially holds true for the up-market area of JP Nagar. Which is why a shared office space like this that comes with free onsite parking is something to hold on to. It also helps that the office space has lovely and bright design elements, and comes equipped with projector, whiteboard, and Wi-Fi among others.
+in Bangalore, you know that finding a good parking spot is about as rare as observing a solar eclipse. This especially holds true for the up-market area of JP Nagar. Which is why a shared office space like this that comes with free onsite parking is something to hold on to. It also helps that the office space has lovely and bright design elements, and comes equipped with projector, whiteboard, and Wi-Fi among others.
 
 ### HALASURU
 
@@ -51,8 +51,8 @@ In bengaluru, you know that finding a good parking spot is about as rare as obse
 
 ![Shared-office-Halasuru-1](./Shared-office-Halasuru-1.jpg)
 
-This crowded and busy area near the lake is one of the oldest neighbourhoods in the city. Traffic can be nightmarish in bengaluru, as you well know, so if your coworkers and you live in the area or the surrounding areas of Indira Nagar, MG Road etc, this is an ideal location and it makes sense to rent out this shared office space. It comes fully loaded with a printer, copier among other things. And the décor is funky and happy, making it a fun and creative space to work from.
+This crowded and busy area near the lake is one of the oldest neighbourhoods in the city. Traffic can be nightmarish in Bangalore, as you well know, so if your coworkers and you live in the area or the surrounding areas of Indira Nagar, MG Road etc, this is an ideal location and it makes sense to rent out this shared office space. It comes fully loaded with a printer, copier among other things. And the décor is funky and happy, making it a fun and creative space to work from.
 
-Like what you see? We have over 50 coworking spaces in Bengaluru alone! These include coworking cafés and restaurants, shared offices and meeting and event spaces. We’re also constantly adding new spaces, so check out our [complete list](https://app.gofloaters.com/#/LandingPage) of coworking spaces in the city and find one that fits your budget and need!
+Like what you see? We have over 50 coworking spaces in Bangalore alone! These include coworking cafés and restaurants, shared offices and meeting and event spaces. We’re also constantly adding new spaces, so check out our [complete list](https://app.gofloaters.com/#/LandingPage) of coworking spaces in the city and find one that fits your budget and need!
 
 <!--EndFragment-->

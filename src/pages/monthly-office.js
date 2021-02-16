@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
 import SearchForm from "../components/search/search"
-import OfficeSpacesContent from "../components/officespacecontent"
+import MOfficeSpacesContent from "../components/mofficespacesontent"
+import MofficeContentText from "../components/mofficecontenttext"
 import HeaderBanner from "../components/headerbanner"
-import OfficeSpaceLocationSwitch from "../components/officespacelocationswitch"
-import ListingCard from "../components/Card/listingcard"
-import { graphql } from "gatsby"
+import MonthlyOfficeSpaceLocationSwitch from "../components/monthlyofficespacelocationswitch"
+import MonthlyListingCard from "../components/Card/monthlylistingcard"
+import { graphql, Link } from "gatsby"
+import SEOHeader from "../components/seo-header"
+import SocialImage from "../img/socialimage/monthly-office.jpg"
 
 const MonthyOfficeSpace = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
@@ -103,8 +106,7 @@ const MonthyOfficeSpace = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a
               className={"CheckBox " + MetroNearByFilter}
@@ -143,53 +145,53 @@ const MonthyOfficeSpace = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>
-          Book Office Spaces for rent in Bengaluru - Work at your comfort -
-          GoFloaters
-        </title>
-        <meta
-          property="og:title"
-          content=" Book Office Spaces for rent in Bengaluru - Work at your comfort -
-          GoFloaters"
-        />
-        <meta
-          name="description"
-          content="Explore the best share office spaces from GoFloaters at the best prices. Shared offices are great for entrepreneurs, startups, and other professionals!"
-        ></meta>
-        <meta
-          property="og:description"
-          content="Explore the best share office spaces from GoFloaters at the best prices. Shared offices are great for entrepreneurs, startups, and other professionals!"
-        ></meta>
-        <meta
-          name="keywords"
-          content="office spaces, gofloaters office spaces"
-        />
-      </Helmet>
+      <SEOHeader
+        title="Book Monthly Office for Rent at Pocket-Friendly Price"
+        description="Book Monthly Office Space & Serviced Office With GoFloaters. Choose the fully-equipped workspaces for teams of all sizes for a day, a month, or longer."
+        socialURL="https://assets.gofloaters.com/socialimage/monthly-office.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="office-space">
-          <h1>Monthly Office</h1>
-        </HeaderBanner>
-        <div className="container">
-          <OfficeSpacesContent />
-        </div>
-        <div className="SpaceGray">
+        <HeaderBanner headerclass="office-space"></HeaderBanner>
+        <div>
           <div className="container">
             <div className="row">
-              <div className="col-md-3"></div>
-              <div className="col-md-6">
+              <div className="col-md-12">
+                <h1>Monthly Offices for Rent</h1>
+                <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                  Office for a month | Office for every size | All inclusive
+                  pricing
+                </h2>
                 <div className="padding-20"></div>
-                <SearchForm spacetype="officeSpace"></SearchForm>
+                <SearchForm spacetype="meetingSpace"></SearchForm>
+                <br></br>
                 <div className="padding-20"></div>
               </div>
               <div className="col-md-3"></div>
-
               <div className="col-md-12">
-                <br></br> <br></br>
-                <OfficeSpaceLocationSwitch city="Bengaluru" />
+                <MonthlyOfficeSpaceLocationSwitch city="Chennai" />
               </div>
             </div>
-            <br />
+            <div className="filterbar" style={{ marginTop: 15 }}>
+              <ul className="SearchListingFilter scrollmenu">
+                <li>
+                  <Link to="/coworking-spaces-in-chennai/">
+                    Coworking Spaces
+                  </Link>
+                </li>
+               
+                <li>
+                  <Link to="/meeting-rooms-in-chennai/" className="active">
+                    Meeting Spaces
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/office-spaces-for-rent-in-chennai/">
+                    Office Spaces
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <div>
               <OfficeFilter></OfficeFilter>
             </div>
@@ -198,14 +200,17 @@ const MonthyOfficeSpace = props => {
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Office Spaces available for you
+            {spaceSize} Office Spaces available for you in Chennai
           </p>
           <div className="row">
             {lists.map((list, i) => {
               const listData = list.node
-              if (spaceFilter === "All") {
+              if (
+                spaceFilter === "All" &&
+                listData.monthPassAvailable === true
+              ) {
                 return (
-                  <ListingCard
+                  <MonthlyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -221,9 +226,11 @@ const MonthyOfficeSpace = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
                     Slug={"/monthly-office/" + listData.slug}
-                  ></ListingCard>
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></MonthlyListingCard>
                 )
               }
               if (
@@ -231,10 +238,11 @@ const MonthyOfficeSpace = props => {
                 listData.Facility.search(privatecabinquery) > 1 &&
                 listData.Facility.search(dailypassquery) > 1 &&
                 listData.Facility.search(metroquery) > 1 &&
-                listData.Facility.search(twentyfourquery) > 1
+                listData.Facility.search(twentyfourquery) > 1 &&
+                listData.monthPassAvailable === true
               ) {
                 return (
-                  <ListingCard
+                  <MonthlyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -250,13 +258,16 @@ const MonthyOfficeSpace = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
                     Slug={"/monthly-office/" + listData.slug}
-                  ></ListingCard>
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></MonthlyListingCard>
                 )
               }
             })}
           </div>
+          <MofficeContentText></MofficeContentText>
         </div>
       </Layout>
     </div>
@@ -268,7 +279,7 @@ export const query = graphql`
     allListings(
       filter: {
         subType: { eq: "Office Space" }
-        spaceCity: { eq: "Bengaluru" }
+        spaceCity: { eq: "Chennai" }
         monthPassAvailable: { eq: true }
       }
     ) {
@@ -282,6 +293,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -294,6 +306,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

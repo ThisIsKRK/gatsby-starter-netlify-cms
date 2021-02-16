@@ -7,10 +7,11 @@ featuredpost: false
 featuredImage: "./the-complete-and-ultimate-guide-to-coworking-spaces.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Startups & Companies
 tags:
  - Remote Working
  - Productivity
+ - Work from Anywhere
 ---
 
 <!--StartFragment-->
@@ -115,7 +116,7 @@ To better illustrate my point, I’m going to use some examples of coworking caf
 
 3. On the other hand, if you want some peace and quiet to focus you could pop into [Grapevine Café](https://app.gofloaters.com/#/home/explore/spacedetail/-LTWH_stK1c-26RNHgwE) in HSR Layout and work without being bothered, in a comfortable and atmospheric setting.
 
-When it comes to shared offices—for the sake of continuity I’ll stick to the spaces we have in Bengaluru—there’s a formality and professionalism that comes with the spot.
+When it comes to shared offices—for the sake of continuity I’ll stick to the spaces we have in Bangalore—there’s a formality and professionalism that comes with the spot.
 
 ![Gatelength-tech](./Gatelength-tech.jpg)
 
@@ -153,7 +154,7 @@ Check out [this space](https://app.gofloaters.com/#/home/explore/spacedetail/-Lh
 
 ![Coworking-JP-Nagar](./Coworking-JP-Nagar.jpg)
 
-In Bengaluru we have some amazing coworking spots, but [this one](https://app.gofloaters.com/#/home/explore/spacedetail/-Le1LLjd0N74044YI0eo) in JP Nagar is particularly bright and welcoming with its yellow walls, potted plants, and well laid out spaces. There’s also a training room and conference room on hand, which is always a bonus. When you enter this space, you feel ready to work and get on with your day.
+in Bangalore we have some amazing coworking spots, but [this one](https://app.gofloaters.com/#/home/explore/spacedetail/-Le1LLjd0N74044YI0eo) in JP Nagar is particularly bright and welcoming with its yellow walls, potted plants, and well laid out spaces. There’s also a training room and conference room on hand, which is always a bonus. When you enter this space, you feel ready to work and get on with your day.
 
 **Comfortable furniture**
 
@@ -229,7 +230,7 @@ So why go with a coworking space rather than a regular office?
 
 ![cowomen-XC1Ccohy8P0-unsplash-1024x683](./cowomen-XC1Ccohy8P0-unsplash-1024x683.jpg)
 
-India is a country of startups, there’s no denying that. Globally, bengaluru is ranked third for the launch of tech-startups in particular (with Silicon Valley and London being one and two) according to this piece in [The Times of India](https://timesofindia.indiatimes.com/city/bengaluru/firm-footing-bengaluru-is-still-indias-technology-startup-capital/articleshow/71089577.cms). People are constantly coming together to ideate, innovate and create. But an idea doesn’t turn into profit overnight. And while your startup needs a space to work out of, a regular office may be out of reach financially. Well, thank god for coworking spaces!
+India is a country of startups, there’s no denying that. Globally, bengaluru is ranked third for the launch of tech-startups in particular (with Silicon Valley and London being one and two) according to this piece in [The Times of India](https://timesofindia.indiatimes.com/city/bangalore/firm-footing-bengaluru-is-still-indias-technology-startup-capital/articleshow/71089577.cms). People are constantly coming together to ideate, innovate and create. But an idea doesn’t turn into profit overnight. And while your startup needs a space to work out of, a regular office may be out of reach financially. Well, thank god for coworking spaces!
 
 1. **The fiscal, the flexible, and the facilities:** Shared offices are affordable and come with Wi-Fi and seating and many even have amenities like printer and scanner among others. So, your startup doesn’t have to spend on high rent and buying equipment. Instead, that money can be used towards hiring talent and growing the business. Another awesome aspect of a shared office is that you only pay month-on-month. So, you can pick up and move whenever you need to.
 
@@ -245,7 +246,7 @@ Om Thoke is the Founder of [Webfosys](http://www.webfosys.com/) and [Bloggers.Wo
 
 “_I also came across interesting startup ideas at these coworking places and they’re a great place for bloggers/entrepreneurs to find cofounders/mentors/investors/fresh talent to recruit._”
 
-Om now supports coworking by offering free incubation to promising startups at his own offices in bengaluru.
+Om now supports coworking by offering free incubation to promising startups at his own offices in Bangalore.
 
 ### THE DRAWBACKS OF COWORKING SPACES
 

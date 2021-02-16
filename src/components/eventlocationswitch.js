@@ -7,7 +7,7 @@ const EventSpaceLocationSwitch = props => {
       case "Chennai":
         return navigate("/event-spaces-in-chennai/")
       case "Bengaluru":
-        return navigate("/event-spaces-in-bengaluru/")
+        return navigate("/event-spaces-in-bangalore/")
       case "Coimbatore":
         return navigate("/event-spaces-in-coimbatore/")
       case "Hyderabad":
@@ -31,7 +31,7 @@ const EventSpaceLocationSwitch = props => {
       case "Ahmedabad":
         return navigate("/event-spaces-in-ahmedabad/")
       default:
-        return navigate("/event-spaces-in-bengaluru/")
+        return navigate("/event-spaces-in-bangalore/")
     }
   }
 
@@ -52,7 +52,7 @@ const EventSpaceLocationSwitch = props => {
         <li>
           <Link
             className={city === "Bengaluru" ? "active" : ""}
-            to="/event-spaces-in-bengaluru/"
+            to="/event-spaces-in-bangalore/"
           >
             Bengaluru
           </Link>

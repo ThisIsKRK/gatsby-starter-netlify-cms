@@ -1,7 +1,7 @@
 ---
 templateKey: event-post
 title: GoSeek webinar&#58; All Things Content
-description:  GoSeek webinar&#58; All Things Content
+description:  An Interactive discussion on Content Marketing, Get your questions answered from an expert in the content game.
 featuredpost: false
 featuredImage: "./GoFloaters-Webinar_Yaagneshwaran-Ganesh.jpg"
 eventdate: 2020-05-09

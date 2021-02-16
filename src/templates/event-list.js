@@ -20,7 +20,7 @@ class EventIndex extends React.Component {
       <div>
         {" "}
         <SEO
-          title={siteTitle}
+          title={siteTitle + " Events"}
           keywords={[
             `gofloaters`,
             `remote works`,

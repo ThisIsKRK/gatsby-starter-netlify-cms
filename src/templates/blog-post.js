@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/Layout"
-import { Helmet } from "react-helmet"
+import SEOHeader from "../components/seo-header"
 import { kebabCase } from "lodash"
 class BlogPostTemplate extends React.Component {
   render() {
@@ -11,32 +11,30 @@ class BlogPostTemplate extends React.Component {
     const tags = post.frontmatter.tags
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <Helmet>
-          <title>{post.frontmatter.title}</title>
-          <meta
-            name="description"
-            content={post.frontmatter.description}
-          ></meta>
-          <meta property="og:title" content={post.frontmatter.title} />
-          <meta
-            property="og:description"
-            content={post.frontmatter.description}
-          />
-          <meta
-            property="og:image"
-            content={post.frontmatter.featuredImage.publicURL}
-          />
-          <meta property="og:image:width" content="1280" />
-          <meta property="og:image:height" content="628" />
-        </Helmet>
+      <Layout location={this.props.location} title={siteTitle} type="blogPage">
+        <SEOHeader
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          socialLocalURL={post.frontmatter.featuredImage.publicURL}
+          pinterest="true"
+          socialURL=""
+        ></SEOHeader>
 
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 blog">
+              <h5 className="categoryLink">
+                <Link
+                  to={`/blog/category/${kebabCase(post.frontmatter.category)}/`}
+                >
+                  {post.frontmatter.category}
+                </Link>
+              </h5>
               <h1>{post.frontmatter.title}</h1>
-              <p>
-                {" "}
+              <h2>
+                {post.frontmatter.subTitle ? post.frontmatter.subTitle : ""}
+              </h2>
+              <p className="blogDate">
                 {post.frontmatter.date} |{" "}
                 <a
                   className="authorlinks"
@@ -50,7 +48,9 @@ class BlogPostTemplate extends React.Component {
               <img
                 src={post.frontmatter.featuredImage.publicURL}
                 alt={post.frontmatter.title}
+                className="img-responsive"
               ></img>
+
               <div
                 className="blogContent"
                 dangerouslySetInnerHTML={{ __html: post.html }}
@@ -130,8 +130,10 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      tableOfContents
       frontmatter {
         title
+        subTitle
         date(formatString: "MMMM DD, YYYY")
         author
         tags

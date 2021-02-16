@@ -2,12 +2,12 @@
 templateKey: blog-post
 title: The GoFloaters' list to coworking spaces in HSR Layout
 date: 2020-03-16
-description: The Hosur–Sarjapur Road Layout is a popular area to live and work from in bengaluru. It’s close to the IT parks, and being a suburb of the city rents are comparatively more affordable
+description: The Hosur–Sarjapur Road Layout is a popular area to live and work from in Bangalore. It’s close to the IT parks, and being a suburb of the city rents are comparatively more affordable
 featuredpost: false
 featuredImage: "./Banoffee-Cafe-HSR-Layout-GoFloaters-coworking-spaces.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking 
+category: Guides & Hacks 
 tags:
   - Coworking 
   - Listicle
@@ -17,9 +17,9 @@ tags:
 
 <!--StartFragment-->
 
-The Hosur–Sarjapur Road Layout is a popular area to live and work from in bengaluru. It’s close to the IT parks, and being a suburb of the city rents are comparatively more affordable, so plenty of folks choose to live here and it has become the destination of choice for startups and small businesses
+The Hosur–Sarjapur Road Layout is a popular area to live and work from in Bangalore. It’s close to the IT parks, and being a suburb of the city rents are comparatively more affordable, so plenty of folks choose to live here and it has become the destination of choice for startups and small businesses
 
-On the other hand, HSR layout comes with its fair share of problems as well. The area is filled with offices, apartments, hotels, and restaurants—which makes finding parking spots a nightmare. You know the horror stories you hear about traffic in bengaluru? Where people are stuck on the road for hours during their work commute, this is the area where a lot of that happens. Oh, and the potholed streets don’t help. So, if you live in the area you definitely want to stay close to home when it comes to finding a space to work.
+On the other hand, HSR layout comes with its fair share of problems as well. The area is filled with offices, apartments, hotels, and restaurants—which makes finding parking spots a nightmare. You know the horror stories you hear about traffic in Bangalore? Where people are stuck on the road for hours during their work commute, this is the area where a lot of that happens. Oh, and the potholed streets don’t help. So, if you live in the area you definitely want to stay close to home when it comes to finding a space to work.
 
 ### Coworking cafés
 

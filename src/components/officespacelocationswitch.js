@@ -7,7 +7,7 @@ const OfficeSpaceLocationSwitch = props => {
       case "Chennai":
         return navigate("/office-spaces-for-rent-in-chennai/")
       case "Bengaluru":
-        return navigate("/office-spaces-for-rent-in-bengaluru/")
+        return navigate("/office-spaces-for-rent-in-bangalore/")
       case "Coimbatore":
         return navigate("/office-spaces-for-rent-in-coimbatore/")
       case "Hyderabad":
@@ -31,114 +31,160 @@ const OfficeSpaceLocationSwitch = props => {
       case "Ahmedabad":
         return navigate("/office-spaces-for-rent-in-ahmedabad/")
       default:
-        return navigate("/office-spaces-for-rent-in-bengaluru/")
+        return navigate("/office-spaces-for-rent-in-bangalore/")
     }
   }
 
   var city = props.city
   return (
-    <div className="filterbar">
-      <ul className="ListingFilter DesktopOnly">
-        <b>Browse spaces by city:</b>
-        <br></br>
-        <li>
-          <Link
-            className={city === "Chennai" ? "active" : ""}
-            to="/office-spaces-for-rent-in-chennai/"
-          >
-            Chennai
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city === "Bengaluru" ? "active" : ""}
-            to="/office-spaces-for-rent-in-bengaluru/"
-          >
-            Bengaluru
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Coimbatore" ? "active" : ""}
-            to="/office-spaces-for-rent-in-coimbatore/"
-          >
-            Coimbatore
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Hyderabad" ? "active" : ""}
-            to="/office-spaces-for-rent-in-hyderabad/"
-          >
-            Hyderabad
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "New Delhi" ? "active" : ""}
-            to="/office-spaces-for-rent-in-new-delhi/"
-          >
-            New Delhi
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Noida" ? "active" : ""}
-            to="/office-spaces-for-rent-in-noida/"
-          >
-            Noida
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Gurugram" ? "active" : ""}
-            to="/office-spaces-for-rent-in-gurugram/"
-          >
-            Gurugram
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Gaziabad" ? "active" : ""}
-            to="/office-spaces-for-rent-in-gaziabad/"
-          >
-            Gaziabad
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Faridabad" ? "active" : ""}
-            to="/office-spaces-for-rent-in-faridabad/"
-          >
-            Faridabad
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Mumbai" ? "active" : ""}
-            to="/office-spaces-for-rent-in-mumbai/"
-          >
-            Mumbai
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Pune" ? "active" : ""}
-            to="/office-spaces-for-rent-in-pune/"
-          >
-            Pune
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={city == "Kochi" ? "active" : ""}
-            to="/office-spaces-for-rent-in-kochi/"
-          >
-            Kochi
-          </Link>
-        </li>
-      </ul>
-      <div className="ListingFilterMobile MobileOnly">
+    <div className="scrollmenu">
+      <Link
+        className={
+          city === "Chennai" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-chennai/"
+      >
+        Chennai
+      </Link>
+      <Link
+        className={
+          city === "Bengaluru"
+            ? "ListingSearchLink active"
+            : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-bangalore/"
+      >
+        Bengaluru
+      </Link>
+      <Link
+        className={
+          city == "Coimbatore"
+            ? "ListingSearchLink active"
+            : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-coimbatore/"
+      >
+        Coimbatore
+      </Link>
+      <Link
+        className={
+          city == "Hyderabad" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-hyderabad/"
+      >
+        Hyderabad
+      </Link>
+      <Link
+        className={
+          city == "New Delhi" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-new-delhi/"
+      >
+        New Delhi
+      </Link>
+      <Link
+        className={
+          city == "Noida" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-noida/"
+      >
+        Noida
+      </Link>
+      <Link
+        className={
+          city == "Gurugram" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-gurugram/"
+      >
+        Gurugram
+      </Link>
+
+      <Link
+        className={
+          city == "Gaziabad" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-gaziabad/"
+      >
+        Gaziabad
+      </Link>
+
+      <Link
+        className={
+          city == "Faridabad" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-faridabad/"
+      >
+        Faridabad
+      </Link>
+
+      <Link
+        className={
+          city == "Mumbai" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-mumbai/"
+      >
+        Mumbai
+      </Link>
+
+      <Link
+        className={
+          city == "Pune" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-pune/"
+      >
+        Pune
+      </Link>
+
+      <Link
+        className={
+          city == "Kochi" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-kochi/"
+      >
+        Kochi
+      </Link>
+      <Link
+        className={
+          city == "Indore" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-indore/"
+      >
+        Indore
+      </Link>
+      <Link
+        className={
+          city == "Ahmedabad" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-ahmedabad/"
+      >
+        Ahmedabad
+      </Link>
+      <Link
+        className={
+          city == "Kolkata" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-kolkata/"
+      >
+        Kolkata
+      </Link>
+      <Link
+        className={
+          city == "Madurai" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-madurai/"
+      >
+        Madurai
+      </Link>
+      <Link
+        className={
+          city == "Trichy" ? "ListingSearchLink active" : "ListingSearchLink"
+        }
+        to="/office-spaces-for-rent-in-trichy/"
+      >
+        Trichy
+      </Link>
+
+      {/* <div className="ListingFilterMobile">
         <b>Browse spaces by city:</b>
         <select
           className="form-control"
@@ -183,7 +229,7 @@ const OfficeSpaceLocationSwitch = props => {
             Kochi
           </option>
         </select>
-      </div>
+      </div> */}
     </div>
   )
 }

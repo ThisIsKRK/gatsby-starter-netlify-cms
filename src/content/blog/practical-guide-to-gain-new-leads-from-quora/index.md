@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./practical-guide-to-gain-new-leads-from-quora.jpg"
 author: Team GoFloaters
 authorURL: https://www.linkedin.com/company/gofloaters/
-category: Lead Generation 
+category: Guides & Hacks
 tags:
  - Quora 
  - Business to Business

@@ -10,14 +10,21 @@
     border-radius: 50%;
     border:2px solid #25a9d4;
 }
-
+.roundCircleM
+{
+    width: 20px;
+    height: 20px;
+    background: rgba(37,169,212,0.35);
+    border-radius: 50%;
+    border:2px solid #25a9d4;
+}
 .spaceDetailContainer h4
 {
     color: #25a9d4;
     font-size:18px !important;
 }
 .spaceDetailContainer tr.active {
-    background: #d9d9d9;
+   /* background: #d9d9d9;*/
 }
 .spaceDetailContainer p
 {
@@ -96,12 +103,18 @@ a
     text-align: center;
     a
     {
-        
         color:#fff;
         background-color: #dc7846;
         border-radius: 16px;
         text-decoration: none;
         padding: 15px 30px;
+        cursor:pointer;
+    }
+    a:hover
+    {
+        color:#fff;
+        background-color: #dc7846;
+        cursor:pointer;
     }
 }
 @media (min-width: 768px) {
@@ -116,7 +129,7 @@ a
 }
 .spaceDetailContainer h1
 {
-    font-size: 36px !important;
+    font-size: 28px !important;
     margin: 0;
     font-weight: bold;
 }
@@ -134,7 +147,7 @@ a
     }
     .spaceDetailContainer h1
 {
-    font-size: 32px !important;
+    font-size: 22px !important;
     margin: 0;
     font-weight: bold;
 }
@@ -151,4 +164,8 @@ a
     table
     {
         font-size: 14px;
+    }
+
+    .modal-backdrop.show {
+        opacity: .25;
     }

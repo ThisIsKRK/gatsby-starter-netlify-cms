@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./camera-coffee-composition-1509428.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Startups & Companies
 tags:
  - Remote Working
  - Productivity
@@ -34,6 +34,6 @@ As an entrepreneur, your work hours are not fixed. You might be meeting clients 
 
 When you’re running your own business, there’ll be a lot of meetings with clients, investors, and even vendors. It helps to have an appropriate space to take these meetings. Thanks to coworking spaces, you can pick a spot at a location that is convenient for you and the person you’re meeting with. For a casual meeting with a client, you could pop into a coworking café and make a deal over a pot of tea. If you need to make a presentation to your investors, rent out a professional meeting or conference room at a great location for a couple of hours and wow them. Many of these spaces come equipped with projector and whiteboard—so you don’t have to worry about investing in or lugging around your own equipment.
 
-Are you an entrepreneur with a great idea that you want to put into action? Find yourself a coworking space that suits your need, vibe, and budget and get working. Check out our [complete list](https://gofloaters.com/work-cafe/) containing every type of coworking space in your city.
+Are you an entrepreneur with a great idea that you want to put into action? Find yourself a coworking space that suits your need, vibe, and budget and get working. Check out our [complete list](https://gofloaters.com/office-spaces/) containing every type of coworking space in your city.
 
 <!--EndFragment-->

@@ -1,18 +1,18 @@
 import React from "react"
 import Layout from "../../components/layout"
+import arrow from "../../img/arrow-icon.png"
 import { Helmet } from "react-helmet"
-import segmentstartup from "../../img/partner/Segment-Startup-Program-logo.png"
 import HeaderBanner from "../../components/headerbanner.js"
 import { Link } from "gatsby"
 const Segments = () => {
   return (
     <div>
       <Helmet>
-        <title>Segment Startup Program</title>
+        <title>Segment Startup Program - Partner Perks of GoFloaters</title>
         <div className="col-md-12 breadcrumb-container text-center">
           <p>
-            <Link to="/our-community-partners/">Community Benefits</Link> /
-            Segment Startup Program
+            <Link to="/our-community-perks">Community Benefits</Link> / Segment
+            Startup Program
           </p>
         </div>
       </Helmet>
@@ -24,7 +24,7 @@ const Segments = () => {
           <div className="row">
             <div className="col-md-3 text-center">
               <img
-                src={segmentstartup}
+                src="https://assets.gofloaters.com/partner/Segment-Startup-Program-logo.png"
                 alt="Segment Startup Program"
                 className="img-responsive"
               ></img>
@@ -196,14 +196,28 @@ const Segments = () => {
               <p>
                 <br />
                 If you are part of our community and wish to avail this benefit
-                -{" "}
+                <br />
+                <br />
                 <a
                   href="https://gofloatersscdd.typeform.com/to/vwAJwR"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="claimnowButton"
+                  className=""
+                  style={{
+                    fontSize: "0.9rem",
+                    color: "#fff",
+                    background: "#4f9fc8",
+                    borderRadius: "5px",
+                    padding: "7px 15px",
+                    marginTop: "10px",
+                  }}
                 >
-                  Claim Now
+                  Claim Now{" "}
+                  <img
+                    src="https://assets.gofloaters.com/arrow-icon.png"
+                    alt="arrow"
+                    style={{ width: "20px", paddingBottom: "3px" }}
+                  />
                 </a>
                 <br /> <br />
               </p>

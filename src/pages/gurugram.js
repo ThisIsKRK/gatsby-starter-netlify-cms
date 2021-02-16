@@ -1,28 +1,10 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
-import { Helmet } from "react-helmet"
 import SearchForm from "../components/search/search"
-import OfficeSpacesContent from "../components/officespacecontent"
-import HeaderBanner from "../components/headerbanner"
-import OfficeSpaceLocationSwitch from "../components/officespacelocationswitch"
-import ListingCard from "../components/Card/listingcard"
+import DailyListingCard from "../components/Card/dailylistingcard"
 import { graphql, Link, navigate } from "gatsby"
-
+import SEOHeader from "../components/seo-header"
 const Gurugram = props => {
-  const locationSelected = filter => {
-    switch (filter) {
-      case "Work Cafe":
-        return navigate("/coworking-spaces-in-gurugram")
-      case "Office Spaces":
-        return navigate("/office-spaces-for-rent-in-gurugram/")
-      case "Training Room":
-        return navigate("/training-rooms-in-gurugram/")
-      case "Event Spaces":
-        return navigate("/event-spaces-in-gurugram/")
-      case "Meeting Spaces":
-        return navigate("/meeting-rooms-in-gurugram/")
-    }
-  }
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])
   const [privateCabinFilter, setprivateCabinFilter] = useState("false")
@@ -108,17 +90,7 @@ const Gurugram = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
-          <li>
-            <a
-              className={"CheckBox " + DailyPassFilter}
-              onClick={DailyPassCheck}
-            >
-              Daily Pass{" "}
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
-            </a>
-          </li>
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a
               className={"CheckBox " + MetroNearByFilter}
@@ -157,81 +129,64 @@ const Gurugram = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>
-          Book Shared Offices, Coworking Spaces, Private Offices and Meeting,
-          Event, Training spaces @ Gurugram - GoFloaters
-        </title>
-        <meta
-          name="description"
-          content=" Book Shared Offices, Coworking Spaces, Private Offices and Meeting,
-          Event, Training spaces @ Gurugram - GoFloaters"
-        ></meta>
-        <meta
-          name="keywords"
-          content="Book Private Office, Shared office, Coworking Space"
-        />
-      </Helmet>
+      <SEOHeader
+      title="Best Coworking Spaces in Gurugram | Office for rent in Gurugram | Gofloaters"
+      description="Furnished & Ready-to-move-in office space for rent in Gurugram. Flexible plans that suit your needs. Coworking Spaces for teams. All-inclusive pricing."
+        socialURL="https://assets.gofloaters.com/socialimage/gurugram.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="office-space">
-          <h1>Office Spaces in Gurugram</h1>
-        </HeaderBanner>
-        <div className="container">
-          <ul className="ListingFilter DesktopOnly">
-            <li>
-              <Link
-                to="/office-spaces-for-rent-in-gurugram/"
-                className="active"
-              >
-                Office Spaces
-              </Link>
-            </li>
-            <li>
-              <Link to="/coworking-spaces-in-gurugram/">Work Cafe</Link>
-            </li>
-            <li>
-              <Link to="/meeting-rooms-in-gurugram/">Meeting Spaces</Link>
-            </li>
+        <div>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <h1 className="listingpageTitle">
+                  Coworking Spaces in Gurugram
+                </h1>
+                <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                  Coworking Spaces for every size |
+                  All inclusive pricing
+                </h2>
 
-            <li>
-              <Link to="/training-rooms-in-gurugram/">Training Room</Link>
-            </li>
-            <li>
-              <Link to="/event-spaces-in-gurugram/">Event Spaces</Link>
-            </li>
-          </ul>
-          <div className="MobileOnly">
-            <b>Showing: </b>
-            <select
-              className="form-control"
-              onChange={e => {
-                locationSelected(e.currentTarget.value)
-              }}
-            >
-              <option value="Work Cafe">Work Cafe</option>
-              <option value="Meeting Spaces">Meeting Spaces</option>
-              <option value="Office Spaces" selected>
-                Office Spaces
-              </option>
-              <option value="Training Room">Training Room</option>
-              <option value="Event Spaces">Event Spaces</option>
-            </select>
+                <SearchForm spacetype="meetingSpace"></SearchForm>
+              </div>
+              <div className="col-md-3"></div>
+            </div>
+            <div className="filterbar" style={{ marginTop: 15 }}>
+              <ul className="SearchListingFilter scrollmenu">
+                <li>
+                  <Link to="/coworking-spaces-in-gurugram/" className="active">
+                    Coworking Spaces
+                  </Link>
+                </li>
+               
+                <li>
+                  <Link to="/meeting-rooms-in-gurugram/">Meeting Spaces</Link>
+                </li>
+                <li>
+                  <Link to="/office-spaces-for-rent-in-gurugram/">
+                    Office Spaces
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <OfficeFilter></OfficeFilter>
+            </div>
           </div>
         </div>
-        <div className="container">
-          <OfficeFilter></OfficeFilter>
-        </div>
+
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Office Spaces available for you
+            {spaceSize} Coworking Spaces in Gurugram available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
               const listData = list.node
-              if (spaceFilter === "All") {
+              if (spaceFilter === "All" && listData.dayPassAvailable === true) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -247,20 +202,22 @@ const Gurugram = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
               if (
                 listData.Facility.search(opendeskquery) > 1 &&
                 listData.Facility.search(privatecabinquery) > 1 &&
-                listData.Facility.search(dailypassquery) > 1 &&
+                listData.Facility.search("Daily Pass") > 1 &&
                 listData.Facility.search(metroquery) > 1 &&
                 listData.Facility.search(twentyfourquery) > 1
               ) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -276,9 +233,11 @@ const Gurugram = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
             })}
@@ -304,6 +263,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -316,6 +276,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

@@ -2,11 +2,11 @@
 templateKey: blog-post
 title: The GoFloaters' list to coworking spaces in Indiranagar
 date: 2019-09-14
-description: Who would have thought this sleepy neighbourhood filled with families and retirees would, in just a decade, become the place to be in bengaluru (Bengaluru).
+description: Who would have thought this sleepy neighbourhood filled with families and retirees would, in just a decade, become the place to be in Bangalore (Bengaluru).
 featuredImage: "./Creative-shared-office-Indiranagar-GoFloaters-coworking-spaces.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Guides & Hacks
 tags:
  - Coworking
  - Listicle
@@ -17,7 +17,7 @@ tags:
 
 <!--StartFragment-->
 
-Who would have thought this sleepy neighbourhood filled with families and retirees would, in just a decade, become the place to be in bengaluru (Bengaluru). Restaurants and pubs line the streets, the vibe of the area is fun and free, and you’ll find people walking everywhere. On the flip side, the popularity of the area has made property prices skyrocket and the narrow streets aren’t able to contain the traffic. Nevertheless, everyone wants to live here and party here and even work here!
+Who would have thought this sleepy neighbourhood filled with families and retirees would, in just a decade, become the place to be in Bangalore (Bengaluru). Restaurants and pubs line the streets, the vibe of the area is fun and free, and you’ll find people walking everywhere. On the flip side, the popularity of the area has made property prices skyrocket and the narrow streets aren’t able to contain the traffic. Nevertheless, everyone wants to live here and party here and even work here!
 
 ### Coworking cafés
 

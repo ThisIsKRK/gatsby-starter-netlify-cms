@@ -3,11 +3,16 @@ import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
 import HeaderBanner from "../components/headerbanner"
 import SuggestForm from "../components/SuggestForm"
+import SEOHeader from "../components/seo-header"
+
 export default () => (
   <div>
-    <Helmet>
-      <title>Suggest a Space</title>
-    </Helmet>
+    <SEOHeader
+      title="Suggest A Space | Coworking, Office Space & Meeting Rooms"
+      description="Know an awesome spot that you think should be on the GoFloaters platform? Fill in the details and we’ll see what we can do."
+      socialURL="https://assets.gofloaters.com/socialimage/homepage.jpg"
+      pinterest="true"
+    ></SEOHeader>
     <Layout>
       <HeaderBanner>
         <h1>Suggest a Space</h1>

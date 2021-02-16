@@ -10,7 +10,7 @@ eventtime:  4:00 pm - 8:00 pm
 
 <!--StartFragment-->
 
-The FUTURE Beckons’, the 8th edition of the CII – Yi Entrepreneurship Summit, a well-recognized event in Bengaluru circles was held at the Quest Office, Mg Road in partnership with GoFloaters as the Space Partner.
+The FUTURE Beckons’, the 8th edition of the CII – Yi Entrepreneurship Summit, a well-recognized event in Bangalore circles was held at the Quest Office, Mg Road in partnership with GoFloaters as the Space Partner.
 
 Young India of Bengaluru discussed debated series of ideas in a persuasive set of briefings from Yi StarTrails which is instrumental in devising a paradigm shift in the mindset of many aspiring and existing entrepreneurs. Thus, facilitating the exchange of ideas and experiences to benefit the nation’s next-gen entrepreneurs and Young Indians.
 

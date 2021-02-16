@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import HeaderBanner from "../components/headerbanner"
 import Layout from "../components/Layout"
+import { Helmet } from "react-helmet"
 // Components
 import { Link, graphql } from "gatsby"
 
@@ -14,6 +15,9 @@ const Tags = ({ pageContext, data }) => {
 
   return (
     <div>
+      <Helmet>
+        <title>{tag}</title>
+      </Helmet>
       <Layout>
         <HeaderBanner>
           <h1>{tagHeader}</h1>

@@ -5,10 +5,12 @@ import SearchForm from "../components/search/search"
 import OfficeSpacesContent from "../components/officespacecontent"
 import HeaderBanner from "../components/headerbanner"
 import OfficeSpaceLocationSwitch from "../components/officespacelocationswitch"
-import ListingCard from "../components/Card/listingcard"
-import { graphql } from "gatsby"
+import MonthlyListingCard from "../components/Card/monthlylistingcard"
+import SEOHeader from "../components/seo-header"
+import SocialImage from "../img/socialimage/office-spaces-for-rent-in-gaziabad.jpg"
+import { graphql, Link } from "gatsby"
 
-const GaziabadOfficeSpace = props => {
+const GaziabadDailyOfficeSpace = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])
   const [privateCabinFilter, setprivateCabinFilter] = useState("false")
@@ -57,7 +59,8 @@ const GaziabadOfficeSpace = props => {
       setspaceFilter("Twenty Four Hours")
     }
   }
-  var metroquery,
+  var officequery,
+    metroquery,
     opendeskquery,
     privatecabinquery,
     dailypassquery,
@@ -87,6 +90,14 @@ const GaziabadOfficeSpace = props => {
   } else {
     twentyfourquery = " "
   }
+  if (
+    privateCabinFilter === "false" &&
+    DailyPassFilter === "false" &&
+    MetroNearByFilter === "false" &&
+    TwentyFourFilter === "false"
+  ) {
+    officequery = true
+  }
 
   const OfficeFilter = () => {
     useEffect(() => {
@@ -94,17 +105,7 @@ const GaziabadOfficeSpace = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
-          <li>
-            <a
-              className={"CheckBox " + DailyPassFilter}
-              onClick={DailyPassCheck}
-            >
-              Daily Pass{" "}
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
-            </a>
-          </li>
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a
               className={"CheckBox " + MetroNearByFilter}
@@ -143,69 +144,71 @@ const GaziabadOfficeSpace = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>
-          Book Office Spaces for rent in Gaziabad - Work at your comfort -
-          GoFloaters
-        </title>
-        <meta
-          property="og:title"
-          content="Book Office Spaces for rent in Gaziabad - Work at your comfort -
-          GoFloaters"
-        />
-        <meta
-          name="description"
-          content="Explore the best share office spaces from GoFloaters at the best prices. Shared offices are great for entrepreneurs, startups, and other professionals!"
-        ></meta>
-        <meta
-          property="og:description"
-          content="Explore the best share office spaces from GoFloaters at the best prices. Shared offices are great for entrepreneurs, startups, and other professionals!"
-        ></meta>
-        <meta
-          name="keywords"
-          content="office spaces, gofloaters office spaces"
-        />
-      </Helmet>
+      <SEOHeader
+       title="Office for rent in Gaziabad | Best coworking spaces in Gaziabad | Gofloaters"
+       description="Furnished Office Space for rent in Gaziabad with High-Speed Internet. Great amenities and spacious offices available for you to choose from. Book Instantly."
+        socialURL="https://assets.gofloaters.com/socialimage/office-spaces-for-rent-in-gaziabad.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="office-space">
-          <h1>Office Spaces in Gaziabad</h1>
-        </HeaderBanner>
+        {/*<HeaderBanner headerclass="office-space"></HeaderBanner>*/}
         <div className="container">
-          <OfficeSpacesContent />
-        </div>
-        <div className="SpaceGray">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-3"></div>
-              <div className="col-md-6">
-                <div className="padding-20"></div>
-                <SearchForm spacetype="officeSpace"></SearchForm>
-                <div className="padding-20"></div>
-              </div>
-              <div className="col-md-3"></div>
-
-              <div className="col-md-12">
-                <br></br> <br></br>
-                <OfficeSpaceLocationSwitch city="Gaziabad" />
-              </div>
+          <div className="row">
+            <div className="col-md-12">
+              <h1 className="listingpageTitle">Monthly Office Spaces in Gaziabad</h1>
+              <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                Office for every size | All inclusive
+                pricing
+              </h2>
+              <div className="padding-20"></div>
+              <SearchForm spacetype="dailyofficeSpace"></SearchForm>
+              <br></br>
+              <div className="padding-20"></div>
             </div>
-            <br />
-            <div>
-              <OfficeFilter></OfficeFilter>
+            <div className="col-md-3"></div>
+            <div className="col-md-12">
+              <OfficeSpaceLocationSwitch city="Gaziabad" />
             </div>
+          </div>
+          <div className="filterbar" style={{ marginTop: 15 }}>
+            <ul className="SearchListingFilter scrollmenu">
+              <li>
+                <Link to="/coworking-spaces-in-gaziabad/">
+                  Coworking Spaces
+                </Link>
+              </li>
+             
+              <li>
+                <Link to="/meeting-rooms-in-gaziabad/">Meeting Spaces</Link>
+              </li>
+              <li>
+                <Link
+                  to="/office-spaces-for-rent-in-gaziabad/"
+                  className="active"
+                >
+                  Office Spaces
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <OfficeFilter></OfficeFilter>
           </div>
         </div>
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Office Spaces available for you
+            {spaceSize} Office Spaces in Gaziabad available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
               const listData = list.node
-              if (spaceFilter === "All") {
+              if (
+                spaceFilter === "All" &&
+                listData.monthPassAvailable === true
+              ) {
                 return (
-                  <ListingCard
+                  <MonthlyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -221,20 +224,22 @@ const GaziabadOfficeSpace = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/office-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></MonthlyListingCard>
                 )
               }
               if (
                 listData.Facility.search(opendeskquery) > 1 &&
                 listData.Facility.search(privatecabinquery) > 1 &&
-                listData.Facility.search(dailypassquery) > 1 &&
+                listData.monthPassAvailable === true &&
                 listData.Facility.search(metroquery) > 1 &&
                 listData.Facility.search(twentyfourquery) > 1
               ) {
                 return (
-                  <ListingCard
+                  <MonthlyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -250,23 +255,39 @@ const GaziabadOfficeSpace = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/office-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></MonthlyListingCard>
                 )
               }
             })}
-          </div>
+          </div>{" "}
+          <p className="text-center">
+            Are you a freelancer or an independent professional? Do you own a
+            startup or a small/medium business or part of a large enterprise? We
+            know exactly know what you need when it comes to an office. We’ve
+            done all the work for you! We’ve handpicked office spaces in your
+            city - spaces that come with fast Wi-Fi, well-designed interiors and
+            ample plug points. The best part is you say ‘NO’ to contracts and
+            high rents, and can pay per day or month-on-month. Yes, you read
+            right!
+          </p>
         </div>
       </Layout>
     </div>
   )
 }
-export default GaziabadOfficeSpace
+export default GaziabadDailyOfficeSpace
 export const query = graphql`
-  query GaziabadOfficeSpace {
+  query GaziabadDailyOfficeSpace {
     allListings(
-      filter: { subType: { eq: "Office Space" }, spaceCity: { eq: "Gaziabad" } }
+      filter: {
+        subType: { eq: "Office Space" }
+        spaceCity: { eq: "Gaziabad" }
+        monthPassAvailable: { eq: true }
+      }
     ) {
       totalCount
       edges {
@@ -278,6 +299,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -290,6 +312,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

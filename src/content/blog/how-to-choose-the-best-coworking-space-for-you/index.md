@@ -4,7 +4,7 @@ title: How to choose the best coworking space for you!
 date: 2019-08-20
 description: As I said in my previous post, there’s a coworking space for every need. And if you take a look at our list of spaces, you’ll find plenty...
 featuredpost: false
-featuredImage: "./photo-1518481852452-9415b262eba4.jpeg"
+featuredImage: "./how-to-choose-the-best-coworking-space-for-you.jpeg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
 category: Coworking

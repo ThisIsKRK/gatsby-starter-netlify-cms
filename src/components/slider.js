@@ -7,6 +7,9 @@ import forbes from "../img/featureon/forbes.jpg"
 import indianExpress from "../img/featureon/the-new-indian-express.jpg"
 import entrepreneur from "../img/featureon/entrepreneurindia.jpg"
 import yourstory from "../img/featureon/yourstory.jpg"
+import timesofindia from "../img/featureon/timesofindia.png"
+import thehindu from "../img/featureon/thehindu.jpg"
+import hindubusinessline from "../img/featureon/hindubusinessline.png"
 import { Link } from "gatsby"
 class SimpleSlider extends React.Component {
   render() {
@@ -49,44 +52,60 @@ class SimpleSlider extends React.Component {
       ],
     }
     return (
-      <div>
-        <Slider {...settings}>
-          <div>
-            <div className="featureon">
-              <Link to="/press" title="We’re famous!">
-                <img src={forbes} alt="Forbes"></img>
-              </Link>
-            </div>
-          </div>
-          <div>
-            <div className="featureon">
-              <Link to="/press" title="We’re famous!">
-                <img src={yourstory} alt="YourStory"></img>
-              </Link>
-            </div>
-          </div>
-          <div>
-            <div className="featureon">
-              <Link to="/press" title="We’re famous!">
-                <img src={entrepreneur} alt="entrepreneur"></img>
-              </Link>
-            </div>
-          </div>
-          <div>
-            <div className="featureon">
-              <Link to="/press" title="We’re famous!">
-                <img src={indianExpress} alt="Indian Express"></img>
-              </Link>
-            </div>
-          </div>
-          <div>
-            <div className="featureon">
-              <Link to="/press" title="We’re famous!">
-                <img src={startupStory} alt="Startup Story"></img>
-              </Link>
-            </div>
-          </div>
-        </Slider>
+      <div className="row">
+        <div className="featureon col-md-2 col-6">
+          <Link to="/press" title="We’re famous!">
+            <img
+              src="https://assets.gofloaters.com/featureon/forbes.jpg"
+              alt="Forbes"
+            ></img>
+          </Link>
+        </div>
+
+        <div className="featureon col-md-2 col-6">
+          <Link to="/press" title="We’re famous!">
+            <img
+              src="https://assets.gofloaters.com/featureon/yourstory.jpg"
+              alt="YourStory"
+            ></img>
+          </Link>
+        </div>
+
+        <div className="featureon col-md-2 col-6">
+          <Link to="/press" title="We’re famous!">
+            <img
+              src="https://assets.gofloaters.com/featureon/entrepreneurindia.jpg"
+              alt="entrepreneur"
+            ></img>
+          </Link>
+        </div>
+
+        <div className="featureon col-md-2 col-6">
+          <Link to="/press" title="We’re famous!">
+            <img
+              src="https://assets.gofloaters.com/featureon/the-new-indian-express.jpg"
+              alt="Indian Express"
+            ></img>
+          </Link>
+        </div>
+
+        <div className="featureon col-md-2 col-6">
+          <Link to="/press" title="We’re famous!">
+            <img
+              src="https://assets.gofloaters.com/featureon/startup-story.jpg"
+              alt="Startup Story"
+            ></img>
+          </Link>
+        </div>
+
+        <div className="featureon col-md-2 col-6">
+          <Link to="/press" title="We’re famous!">
+            <img
+              src="https://assets.gofloaters.com/featureon/timesofindia.png"
+              alt="times of india"
+            ></img>
+          </Link>
+        </div>
       </div>
     )
   }

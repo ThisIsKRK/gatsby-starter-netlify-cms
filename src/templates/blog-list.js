@@ -10,17 +10,36 @@ class BlogIndex extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
+    const category = Object.values(data.category.distinct)
     const { currentPage, blognumPages } = this.props.pageContext
     const isFirst = currentPage === 1
     const isLast = currentPage === blognumPages
     const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
     const nextPage = (currentPage + 1).toString()
 
+    const Category = category.map(cate => {
+      return (
+        <li>
+          <Link
+            to={
+              "/blog/category/" +
+              cate
+                .replace(/&/g, "")
+                .toLowerCase()
+                .replace("  ", "-")
+                .replace(" ", "-")
+            }
+          >
+            {cate}
+          </Link>
+        </li>
+      )
+    })
     return (
       <div>
         {" "}
         <SEO
-          title={siteTitle}
+          title={siteTitle + " Blog"}
           keywords={[
             `gofloaters`,
             `remote works`,
@@ -31,7 +50,20 @@ class BlogIndex extends React.Component {
           <HeaderBanner>
             <h1>Blog</h1>
           </HeaderBanner>
-
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <ul className="categoryType">
+                  <li>
+                    <Link to="/blog" className="active">
+                      All
+                    </Link>
+                  </li>
+                  {Category}
+                </ul>
+              </div>
+            </div>
+          </div>
           <div className="container">
             <div className="row">
               {posts.map(({ node }) => {
@@ -137,9 +169,21 @@ export const pageQuery = graphql`
         title
       }
     }
+    category: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: { templateKey: { eq: "blog-post" } }
+        fileAbsolutePath: { regex: "/(blog)/" }
+      }
+    ) {
+      distinct(field: frontmatter___category)
+    }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fileAbsolutePath: { regex: "/(blog)/" } }
+      filter: {
+        fileAbsolutePath: { regex: "/(blog)/" }
+        frontmatter: { templateKey: { eq: "blog-post" } }
+      }
       limit: $limit
       skip: $skip
     ) {

@@ -3,8 +3,10 @@ import PropTypes from "prop-types"
 import withLocation from "./withLocation"
 import Listing from "./listing"
 import SearchFormAlter from "./search/searchalter"
-import { navigate } from "gatsby"
-
+import { navigate, Link } from "gatsby"
+import MonthlyOfficeSpaceLocationSwitch from "../components/monthlyofficespacelocationswitch"
+import OfficeSpaceLocationSwitch from "../components/officespacelocationswitch"
+import MeetingLocationSwitch from "../components/meetinglocationswitch"
 const SearchComponent = ({ search }) => {
   var { city } = search
   var { lat } = search
@@ -16,7 +18,7 @@ const SearchComponent = ({ search }) => {
     city = "Bengaluru"
     lat = "12.968367"
     lng = "77.5953411"
-    spaceType = "officeSpace"
+    spaceType = "dailyofficeSpace"
   }
 
   useEffect(() => {
@@ -35,18 +37,36 @@ const SearchComponent = ({ search }) => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <SearchFormAlter placeholder={inCity} spacetype="officeSpace" />
+            <h1 className="listingpageTitle">Search Results</h1>
+          </div>
+          <div className="col-md-12">
+            <SearchFormAlter
+              placeholder={inCity}
+              spacetype="dailyofficeSpace"
+            />
+            <br></br>
+            {listingFilter === "dailyofficeSpace" ? (
+              <OfficeSpaceLocationSwitch />
+            ) : (
+              ""
+            )}
+            {listingFilter === "monthlyofficeSpace" ? (
+              <MonthlyOfficeSpaceLocationSwitch />
+            ) : (
+              ""
+            )}
+            {listingFilter === "meetingSpace" ? <MeetingLocationSwitch /> : ""}
+
             <div className="padding-20"></div>
           </div>
 
           <div className="col-md-12">
             <div className="filterbar" style={{ marginTop: 15 }}>
-              <b>Showing: &nbsp;</b>
-              <ul className="SearchListingFilter">
+              <ul className="SearchListingFilter scrollmenu">
                 <li>
                   <a
                     onClick={e => {
-                      setlistingFilter("officeSpace")
+                      setlistingFilter("dailyofficeSpace")
                       var url =
                         "/search/?city=" +
                         city +
@@ -54,31 +74,14 @@ const SearchComponent = ({ search }) => {
                         lat +
                         "&lng=" +
                         lng +
-                        "&spaceType=officeSpace"
+                        "&spaceType=dailyofficeSpace"
                       navigate(url)
                     }}
-                    className={listingFilter === "officeSpace" ? "active" : ""}
+                    className={
+                      listingFilter === "dailyofficeSpace" ? "active" : ""
+                    }
                   >
-                    Office Spaces
-                  </a>
-                </li>
-                <li>
-                  <a
-                    onClick={e => {
-                      setlistingFilter("workCafe")
-                      var url =
-                        "/search/?city=" +
-                        city +
-                        "&lat=" +
-                        lat +
-                        "&lng=" +
-                        lng +
-                        "&spaceType=workCafe"
-                      navigate(url)
-                    }}
-                    className={listingFilter === "workCafe" ? "active" : ""}
-                  >
-                    Work Cafes
+                    Coworking Spaces
                   </a>
                 </li>
                 <li>
@@ -103,7 +106,7 @@ const SearchComponent = ({ search }) => {
                 <li>
                   <a
                     onClick={e => {
-                      setlistingFilter("eventSpace")
+                      setlistingFilter("monthlyofficeSpace")
                       var url =
                         "/search/?city=" +
                         city +
@@ -111,56 +114,17 @@ const SearchComponent = ({ search }) => {
                         lat +
                         "&lng=" +
                         lng +
-                        "&spaceType=eventSpace"
+                        "&spaceType=monthlyofficeSpace"
                       navigate(url)
                     }}
-                    className={listingFilter === "eventSpace" ? "active" : ""}
+                    className={
+                      listingFilter === "monthlyofficeSpace" ? "active" : ""
+                    }
                   >
-                    Events Spaces
-                  </a>
-                </li>
-                <li>
-                  <a
-                    onClick={e => {
-                      setlistingFilter("trainingRoom")
-                      var url =
-                        "/search/?city=" +
-                        city +
-                        "&lat=" +
-                        lat +
-                        "&lng=" +
-                        lng +
-                        "&spaceType=trainingRoom"
-                      navigate(url)
-                    }}
-                    className={listingFilter === "trainingRoom" ? "active" : ""}
-                  >
-                    Training Spaces
+                    Office Spaces
                   </a>
                 </li>
               </ul>
-              <br></br>
-              {/*  <select
-                className="form-control officeselector"
-                onChange={e => {
-                  var url =
-                    "/search/?city=" +
-                    city +
-                    "&lat=" +
-                    lat +
-                    "&lng=" +
-                    lng +
-                    "&spaceType=" +
-                    e.currentTarget.value
-                  navigate(url)
-                }}
-              >
-                <option value="officeSpace">Office Spaces</option>
-                <option value="workCafe">Work Cafes</option>
-                <option value="meetingSpace">Meeting Spaces</option>
-                <option value="eventSpace">Events Spaces</option>
-                <option value="trainingRoom">Training Spaces</option>
-              </select>*/}
             </div>
           </div>
         </div>
@@ -168,13 +132,21 @@ const SearchComponent = ({ search }) => {
       {city !== "" &&
       lat !== "" &&
       lng !== "" &&
-      spaceType === "officeSpace" ? (
-        <Listing city={city} lat={lat} lng={lng} spacetype="officeSpace" />
+      spaceType === "dailyofficeSpace" ? (
+        <Listing city={city} lat={lat} lng={lng} spacetype="dailyofficeSpace" />
       ) : (
         ""
       )}
-      {city !== "" && lat !== "" && lng !== "" && spaceType === "workCafe" ? (
-        <Listing city={city} lat={lat} lng={lng} spacetype="workCafe" />
+      {city !== "" &&
+      lat !== "" &&
+      lng !== "" &&
+      spaceType === "monthlyofficeSpace" ? (
+        <Listing
+          city={city}
+          lat={lat}
+          lng={lng}
+          spacetype="monthlyofficeSpace"
+        />
       ) : (
         ""
       )}
@@ -183,19 +155,6 @@ const SearchComponent = ({ search }) => {
       lng !== "" &&
       spaceType === "meetingSpace" ? (
         <Listing city={city} lat={lat} lng={lng} spacetype="meetingSpace" />
-      ) : (
-        ""
-      )}
-      {city !== "" && lat !== "" && lng !== "" && spaceType === "eventSpace" ? (
-        <Listing city={city} lat={lat} lng={lng} spacetype="eventSpace" />
-      ) : (
-        ""
-      )}
-      {city !== "" &&
-      lat !== "" &&
-      lng !== "" &&
-      spaceType === "trainingRoom" ? (
-        <Listing city={city} lat={lat} lng={lng} spacetype="trainingRoom" />
       ) : (
         ""
       )}

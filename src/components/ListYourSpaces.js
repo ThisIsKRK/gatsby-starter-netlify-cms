@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
+import ReCAPTCHA from "react-google-recaptcha"
 const ListYourSpaces = () => {
   const [SuccessMessage, setSuccessMessage] = useState("hide")
   const [ErrorMessage, setErrorMessage] = useState("")
@@ -12,6 +13,15 @@ const ListYourSpaces = () => {
   const [Locality, setLocality] = useState("")
   const [SpaceName, setSpaceName] = useState("")
   const [Button, SetButton] = useState(false)
+  const [disableClass, SetdisableClass] = useState(true)
+  function onChange(value) {
+    console.log("Captcha value:", value)
+    if (value) {
+      SetdisableClass(false)
+    } else {
+      SetdisableClass(true)
+    }
+  }
   const handleSubmit = e => {
     e.preventDefault()
     if (Name !== "" && Email !== "") {
@@ -25,10 +35,9 @@ const ListYourSpaces = () => {
           xmIwtLD:
             "73f4525508bb3339e7d15b9ea5cb5eb6593296bc4cd461205e64d7842d7476b7",
           actionType: "Q29udGFjdHM=",
-          returnURL: "https://gofloaters.com",
+          returnURL: "https://gofloaters.com/thanks/",
           First_Name: Name,
           Last_Name: Name,
-
           Email: Email,
           Mobile: Phone,
           City: City,
@@ -85,7 +94,7 @@ const ListYourSpaces = () => {
         type="text"
         style={{ display: "none" }}
         name="returnURL"
-        value="https://gofloaters.com"
+        value="https://gofloaters.com/thanks/"
       />
       <div className="form-group">
         <label htmlFor="Name">First Name *:</label>
@@ -114,6 +123,14 @@ const ListYourSpaces = () => {
           name="Email"
           onChange={e => {
             setEmail(e.currentTarget.value)
+            var pattern = new RegExp(
+              /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+            )
+            if (!pattern.test(e.currentTarget.value)) {
+              SetdisableClass(true)
+            } else {
+              SetdisableClass(false)
+            }
             setErrorMessage("")
           }}
           required
@@ -125,9 +142,16 @@ const ListYourSpaces = () => {
           type="text"
           className="form-control"
           value={Phone}
-          name="Mobile"
           onChange={e => {
             setPhone(e.currentTarget.value)
+            var pattern = new RegExp(/^[0-9\b]+$/)
+            if (!pattern.test(e.currentTarget.value)) {
+              SetdisableClass(true)
+            } else if (e.currentTarget.value.length != 10) {
+              SetdisableClass(true)
+            } else {
+              SetdisableClass(false)
+            }
             setErrorMessage("")
           }}
           required
@@ -172,8 +196,7 @@ const ListYourSpaces = () => {
 
       <div className="form-group">
         <label htmlFor="SpaceName">
-          What type of space is this (Cafe/Restaurant, Coworking space, Office
-          space etc.) *
+          What type of space is this (Coworking space, Office space etc.) *
         </label>
         <select
           name="CONTACTCF3"
@@ -186,10 +209,10 @@ const ListYourSpaces = () => {
           }}
         >
           <option value="-None-">-None-</option>
-          <option value="Cafe or Restaurant">Cafe or Restaurant</option>
           <option value="Coworking Space">Coworking Space</option>
+          <option value="Business Center">Business Center</option>
           <option value="Office Space">Office Space</option>
-          <option value="Meeting or Event Space">Meeting or Event Space</option>
+          <option value="Meeting Space">Meeting Space</option>
         </select>
       </div>
       <div className="form-group">
@@ -203,7 +226,12 @@ const ListYourSpaces = () => {
           id="YourMessage"
         ></textarea>
       </div>
-      <button type="submit" className="btn btn-default">
+      <ReCAPTCHA
+        sitekey="6LfeE8gZAAAAAJyawsFSisrZuiasCQudfimFLb7j"
+        onChange={onChange}
+      />
+      <br></br>
+      <button type="submit" className="btn btn-default" disabled={disableClass}>
         Submit
       </button>
       <p>

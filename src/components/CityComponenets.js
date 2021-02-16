@@ -45,7 +45,7 @@ const CityComponents = props => {
                         lat +
                         "&lng=" +
                         lng +
-                        "&spaceType=officeSpace"
+                        "&spaceType=dailyofficeSpace"
                       navigate(url)
                     }}
                     className={spaceType ==== "officeSpace" ? "active" : ""}

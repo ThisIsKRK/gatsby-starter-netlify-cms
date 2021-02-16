@@ -1,10 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
-
+import { render, h } from "preact"
+import { useState } from "preact/hooks"
 export default function HTML(props) {
   if (typeof window !== "undefined") {
     const google = window.google
   }
+
   return (
     <html {...props.htmlAttributes}>
       <head>
@@ -15,7 +17,7 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNcWXxIn7uaweoEprz2UcuMfuqtpglYEM&libraries=places"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFzQyh0__KlIMKsmGqMIsnsolOeXTYoUs&libraries=places"></script>
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}

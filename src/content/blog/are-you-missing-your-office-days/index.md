@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./are-you-missing-your-office-mates.jpg"
 author: Barkha Kumari
 authorURL: https://www.linkedin.com/in/barkha-kumari-82a99414/
-category: Remote Work
+category: Startups & Companies
 tags:
   - Remote Work
   - Work From Home
@@ -20,7 +20,7 @@ tags:
 
 So many things have changed since the novel Coronavirus invaded our lives and locked us in. Such as my sister-in-law's frequent craving for Work-From-Home.
 
-"My tech park is 6.5km away but sometimes, it can take me one-and-a-half hours just one way. And how much planning goes into finding that one cab to my office is another story!" she sounded like an employee union leader every time she made a case for herself and inadvertently for everybody working in Bengaluru. Those were pre-COVID days when traffic was abnormal yet normal, you know.
+"My tech park is 6.5km away but sometimes, it can take me one-and-a-half hours just one way. And how much planning goes into finding that one cab to my office is another story!" she sounded like an employee union leader every time she made a case for herself and inadvertently for everybody working in Bangalore. Those were pre-COVID days when traffic was abnormal yet normal, you know.
 
 But today, she's a reformed employee. "I miss the office. I want to go to the office," she declares surely, only for the nth time.
 

@@ -1,7 +1,7 @@
 ---
 templateKey: event-post
 title: GoSeek Breakfast
-description: GoSeek Breakfast
+description: GoSeeK Breakfast with Blockchain hands on session at Alwarpet.
 featuredpost: false
 featuredImage: "./goseek-breakfast.jpg"
 eventdate: 2018-03-08

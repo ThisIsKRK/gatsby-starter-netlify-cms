@@ -2,7 +2,7 @@
 templateKey: blog-post
 title: 10 best cafes with free WiFi in Chennai
 date: 2019-11-30
-description: Chennai audience has opened up to the concept of mixing dining with work at cafes. Cafe Coworking as a concept has caught in Chennai after it became the defacto options for meetings in Bengaluru .
+description: Chennai audience has opened up to the concept of mixing dining with work at cafes. Cafe Coworking as a concept has caught in Chennai after it became the defacto options for meetings in Bangalore .
 featuredpost: false
 featuredImage: "./Yellow-Submarine-ZRO.jpg"
 author: Shyam Nagarajan
@@ -18,7 +18,7 @@ tags:
 
 <!--StartFragment-->
 
-Chennai audience has opened up to the concept of mixing dining with work at cafes. Cafe Coworking as a concept has caught in Chennai after it became the de facto options for meetings in Bengaluru . Many cafe owners have realised the fact that it all finally boils down to the experience that they provide of which food is a just a part. WiFi seems to be a good amenity to offer specifically to the mobile workforce that is hopping onto cafes to catch up professionally or to just crack away on their laptop.
+Chennai audience has opened up to the concept of mixing dining with work at cafes. Cafe Coworking as a concept has caught in Chennai after it became the de facto options for meetings in Bangalore . Many cafe owners have realised the fact that it all finally boils down to the experience that they provide of which food is a just a part. WiFi seems to be a good amenity to offer specifically to the mobile workforce that is hopping onto cafes to catch up professionally or to just crack away on their laptop.
 
 So here is the GoFloaters Top 10 of the cafes that provide you with free WiFi that you can work out of.
 

@@ -41,7 +41,9 @@ const SearchForm = props => {
             style={{ width: "90%" }}
             className="form-control signupform"
             placeholder={
-              props.placeholder ? props.placeholder : "Enter your location.."
+              props.placeholder
+                ? props.placeholder
+                : "Where would you like to work or meet"
             }
             name="SearchLocation"
             onPlaceSelected={place => {
@@ -67,7 +69,7 @@ const SearchForm = props => {
                 latValue +
                 "&lng=" +
                 lngValue +
-                "&spaceType=officeSpace"
+                "&spaceType=dailyofficeSpace"
               navigate(url)
             }} */
             types={["(regions)"]}

@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./top-five-productive-tools.jpg"
 author: Soundhariya Viswanathan
 authorURL: https://www.linkedin.com/in/soundhariyav/
-category: Remote Work 
+category: Remote Work
 tags:
   - Freelancer
   - Freelance

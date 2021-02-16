@@ -6,8 +6,9 @@ import MeetingSpacesContent from "../components/meetingspacecontent"
 import HeaderBanner from "../components/headerbanner"
 import MeetingLocationSwitch from "../components/meetinglocationswitch"
 import ListingCard from "../components/Card/listingcard"
-import { graphql } from "gatsby"
-
+import { graphql, Link } from "gatsby"
+import SEOHeader from "../components/seo-header"
+import SocialImage from "../img/socialimage/meeting-rooms-in-gaziabad.jpg"
 const GaziabadMeetingSpaces = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])
@@ -115,8 +116,7 @@ const GaziabadMeetingSpaces = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a className={"CheckBox " + LessFiveFilter} onClick={LessFiveCheck}>
               &lt; 5 Seats{" "}
@@ -152,7 +152,7 @@ const GaziabadMeetingSpaces = props => {
               className={"CheckBox " + CoffeeTeaFilter}
               onClick={CoffeeTeaCheck}
             >
-              Free Tea/Cofee{" "}
+              Free Tea/Coffee{" "}
               <i className="fa fa-times-circle" aria-hidden="true"></i>
             </a>
           </li>
@@ -163,50 +163,55 @@ const GaziabadMeetingSpaces = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>
-          Meeting spaces on Hourly, Daily & Monthly Rental in Gaziabad -
-          GoFloaters
-        </title>
-        <meta
-          property="og:title"
-          content="Meeting spaces on Hourly, Daily & Monthly Rental in Gaziabad - GoFloaters"
-        />
-        <meta
-          name="description"
-          content="Meeting spaces, conference rooms, training rooms, event spaces at great prices are available at GoFloaters. Get exactly what you need when you book with us!"
-        ></meta>
-
-        <meta
-          name="og:description"
-          content="Meeting spaces, conference rooms, training rooms, event spaces at great prices are available at GoFloaters. Get exactly what you need when you book with us!"
-        ></meta>
-      </Helmet>
+      <SEOHeader
+        title="Book Conference Rooms & Meeting Rooms in Gaziabad at GoFloaters"
+        description="Book Meeting Rooms In Gaziabad With GoFloaters. Conduct your meetings professionally with the well-equipped Conference rooms in Gaziabad."
+        socialURL="https://assets.gofloaters.com/socialimage/meeting-rooms-in-gaziabad.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="meeting-space">
-          {" "}
-          <h1>Meeting Spaces in Gaziabad</h1>
-        </HeaderBanner>
-        <div className="container">
-          <MeetingSpacesContent />
-        </div>
-        <div className="SpaceGray">
+        {/*<HeaderBanner headerclass="meeting-space"></HeaderBanner>*/}
+        <div>
           <div className="container">
             <div className="row">
-              <div className="col-md-3"></div>
-              <div className="col-md-6">
+              <div className="col-md-12">
+                <h1 className="listingpageTitle">
+                  Meeting Spaces in Gaziabad
+                </h1>
+                <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                  Meeting Spaces by the hour | Fully-equipped spaces | Pocket
+                  Friendly
+                </h2>
                 <div className="padding-20"></div>
-                <SearchForm spacetype="officeSpace"></SearchForm>
+                <SearchForm spacetype="meetingSpace"></SearchForm>
+                <br></br>
                 <div className="padding-20"></div>
               </div>
               <div className="col-md-3"></div>
-
               <div className="col-md-12">
-                <br></br> <br></br>
                 <MeetingLocationSwitch city="Gaziabad" />
               </div>
             </div>
-            <br />
+            <div className="filterbar" style={{ marginTop: 15 }}>
+              <ul className="SearchListingFilter scrollmenu">
+                <li>
+                  <Link to="/coworking-spaces-in-gaziabad/">
+                    Coworking Spaces
+                  </Link>
+                </li>
+                
+                <li>
+                  <Link to="/meeting-rooms-in-gaziabad/" className="active">
+                    Meeting Spaces
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/office-spaces-for-rent-in-gaziabad/">
+                    Office Spaces
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <div>
               <OfficeFilter></OfficeFilter>
             </div>
@@ -215,7 +220,7 @@ const GaziabadMeetingSpaces = props => {
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Meeting Spaces available for you
+            {spaceSize} Meeting Spaces in Gaziabad available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
@@ -238,8 +243,10 @@ const GaziabadMeetingSpaces = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
                     Slug={"/meeting-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
                   ></ListingCard>
                 )
               }
@@ -268,13 +275,22 @@ const GaziabadMeetingSpaces = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
                     Slug={"/meeting-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
                   ></ListingCard>
                 )
               }
             })}
           </div>
+          <p className="text-center">
+            Planning to host a workshop, team meeting, board meeting, conference
+            or recruitment drive? We have awesome meeting spaces across the city
+            with amazing amenties. If you need food, we can arrange that as
+            well. So, what are you waiting for? Go ahead and book your next
+            meeting.
+          </p>
         </div>
       </Layout>
     </div>
@@ -299,6 +315,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -311,6 +328,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

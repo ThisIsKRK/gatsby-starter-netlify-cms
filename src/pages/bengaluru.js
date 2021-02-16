@@ -2,27 +2,11 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
 import SearchForm from "../components/search/search"
-import OfficeSpacesContent from "../components/officespacecontent"
 import HeaderBanner from "../components/headerbanner"
-import OfficeSpaceLocationSwitch from "../components/officespacelocationswitch"
-import ListingCard from "../components/Card/listingcard"
+import DailyListingCard from "../components/Card/dailylistingcard"
 import { graphql, Link, navigate } from "gatsby"
-
+import SEOHeader from "../components/seo-header"
 const Bengaluru = props => {
-  const locationSelected = filter => {
-    switch (filter) {
-      case "Work Cafe":
-        return navigate("/coworking-spaces-in-bengaluru")
-      case "Office Spaces":
-        return navigate("/office-spaces-for-rent-in-bengaluru/")
-      case "Training Room":
-        return navigate("/training-rooms-in-bengaluru/")
-      case "Event Spaces":
-        return navigate("/event-spaces-in-bengaluru/")
-      case "Meeting Spaces":
-        return navigate("/meeting-rooms-in-bengaluru/")
-    }
-  }
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])
   const [privateCabinFilter, setprivateCabinFilter] = useState("false")
@@ -108,17 +92,7 @@ const Bengaluru = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
-          <li>
-            <a
-              className={"CheckBox " + DailyPassFilter}
-              onClick={DailyPassCheck}
-            >
-              Daily Pass{" "}
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
-            </a>
-          </li>
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a
               className={"CheckBox " + MetroNearByFilter}
@@ -157,81 +131,73 @@ const Bengaluru = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>
-          Book Shared Offices, Coworking Spaces, Private Offices and Meeting,
-          Event, Training spaces @ Bengaluru - GoFloaters
-        </title>
-        <meta
-          name="description"
-          content=" Book Shared Offices, Coworking Spaces, Private Offices and Meeting,
-          Event, Training spaces @ Bengaluru - GoFloaters"
-        ></meta>
-        <meta
-          name="keywords"
-          content="Book Private Office, Shared office, Coworking Space"
-        />
-      </Helmet>
+      <SEOHeader
+        title="Best Coworking Spaces in Bengaluru | Office for rent in Bengaluru | Gofloaters"
+        description="Furnished & Ready-to-move-in office space for rent in Bengaluru. Flexible plans that suit your needs. Coworking Spaces for teams. All-inclusive pricing."
+        socialURL="https://assets.gofloaters.com/socialimage/bengaluru.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="office-space">
-          <h1>Office Spaces in Bengaluru</h1>
-        </HeaderBanner>
-        <div className="container">
-          <ul className="ListingFilter DesktopOnly">
-            <li>
-              <Link
-                to="/office-spaces-for-rent-in-bengaluru/"
-                className="active"
-              >
-                Office Spaces
-              </Link>
-            </li>
-            <li>
-              <Link to="/coworking-spaces-in-bengaluru/">Work Cafe</Link>
-            </li>
-            <li>
-              <Link to="/meeting-rooms-in-bengaluru/">Meeting Spaces</Link>
-            </li>
-
-            <li>
-              <Link to="/training-rooms-in-bengaluru/">Training Room</Link>
-            </li>
-            <li>
-              <Link to="/event-spaces-in-bengaluru/">Event Spaces</Link>
-            </li>
-          </ul>
-          <div className="MobileOnly">
-            <b>Showing: </b>
-            <select
-              className="form-control"
-              onChange={e => {
-                locationSelected(e.currentTarget.value)
-              }}
-            >
-              <option value="Work Cafe">Work Cafe</option>
-              <option value="Meeting Spaces">Meeting Spaces</option>
-              <option value="Office Spaces" selected>
-                Office Spaces
-              </option>
-              <option value="Training Room">Training Room</option>
-              <option value="Event Spaces">Event Spaces</option>
-            </select>
+        <div>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <h1 className="listingpageTitle">
+                  Coworking Spaces in Bangalore
+                </h1>
+                <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                  Coworking Spaces for every size |
+                  All inclusive pricing
+                </h2>
+                <p style={{ fontSize: "13px" }}>
+                  If you are looking for the best coworking space in Bangalore
+                  then you have come to the right page. An average cost of a hot
+                  desk in Bangalore is in the range of Rs 250 / day. Some of the
+                  popular localities are{" "}
+                  <a href="https://gofloaters.com/search/?city=Koramangala,%20Bengaluru,%20%20Karnataka&lat=12.9351929&lng=77.62448069999999&spaceType=dailyofficeSpace">
+                    Koramangala
+                  </a>
+                  , Indiranagar, MG Road, JP Nagar and Malleswaram. .
+                  <br />
+                </p>
+                <SearchForm spacetype="meetingSpace"></SearchForm>
+              </div>
+              <div className="col-md-3"></div>
+            </div>
+            <div className="filterbar" style={{ marginTop: 15 }}>
+              <ul className="SearchListingFilter scrollmenu">
+                <li>
+                  <Link to="/coworking-spaces-in-bangalore/" className="active">
+                    Coworking Spaces
+                  </Link>
+                </li>
+              
+                <li>
+                  <Link to="/meeting-rooms-in-bangalore/">Meeting Spaces</Link>
+                </li>  <li>
+                  <Link to="/office-spaces-for-rent-in-bangalore/">
+                    Office Spaces
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <OfficeFilter></OfficeFilter>
+            </div>
           </div>
         </div>
-        <div className="container">
-          <OfficeFilter></OfficeFilter>
-        </div>
+
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Office Spaces available for you
+            {spaceSize} Coworking Spaces in Bangalore available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
               const listData = list.node
-              if (spaceFilter === "All") {
+              if (spaceFilter === "All" && listData.dayPassAvailable === true) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -247,20 +213,22 @@ const Bengaluru = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
               if (
                 listData.Facility.search(opendeskquery) > 1 &&
                 listData.Facility.search(privatecabinquery) > 1 &&
-                listData.Facility.search(dailypassquery) > 1 &&
+                listData.Facility.search("Daily Pass") > 1 &&
                 listData.Facility.search(metroquery) > 1 &&
                 listData.Facility.search(twentyfourquery) > 1
               ) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -276,9 +244,11 @@ const Bengaluru = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
             })}
@@ -307,6 +277,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -319,6 +290,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

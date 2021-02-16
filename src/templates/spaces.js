@@ -2,8 +2,10 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
-import SimpleMap from "../components/simplemap"
+import HeartTick from "../img/hearttick.svg"
 import "../styles/spacedetail.scss"
+import SEOHeader from "../components/seo-header"
+import SimpleMap from "../components/simplemap"
 class Spaces extends React.Component {
   render() {
     const post = this.props.data.listings
@@ -61,9 +63,12 @@ class Spaces extends React.Component {
       Title =
         post.spaceGFName +
         " - " +
-        post.spaceDisplayName +
+        post.OriginalName +
         " - " +
-        post.spaceAddress
+        post.spaceDisplayName +
+        " near " +
+        post.spaceAddress +
+        ", "
     }
     function tConv24(time24) {
       var ts = time24
@@ -80,7 +85,7 @@ class Spaces extends React.Component {
       "Sunday",
       "Monday",
       "Tuesday",
-      "Wednesday ",
+      "Wednesday",
       "Thursday",
       "Friday",
       "Saturday",
@@ -89,10 +94,13 @@ class Spaces extends React.Component {
 
     return (
       <div>
+        <SEOHeader
+          title={Title + "  " + post.spaceCity + " | GoFloaters"}
+          description={Title +" : "+ post.spaceDesc}
+          socialURL={post.spaceImage}
+          pinterest="true"
+        ></SEOHeader>
         <Helmet>
-          <title>
-            {Title} - {post.spaceCity} | GoFloaters
-          </title>
           <script
             src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -116,7 +124,7 @@ class Spaces extends React.Component {
           <div className="container spaceDetailContainer">
             <div className="row">
               <div className="col-md-12 addressBar">
-                <Link to={"/" + post.spaceCity.toLowerCase()}>
+                <Link to={"/" + post.spaceCity.toLowerCase().replace(" ", "-")}>
                   {post.spaceCity}
                 </Link>{" "}
                 /{" "}
@@ -124,11 +132,17 @@ class Spaces extends React.Component {
                   ? post.spaceDisplayName
                   : post.spaceGFName}
               </div>
-              <div className="col-md-12 MobileOnly">
+            </div>
+            <div className="row">
+              <div className="col-12 MobileOnly">
                 {post.spaceType === "Cafe" ? (
-                  <h1>{post.spaceDisplayName}</h1>
+                  <h1>
+                    {post.spaceDisplayName} - {post.OriginalName}
+                  </h1>
                 ) : (
-                  <h1>{post.spaceGFName}</h1>
+                  <h1>
+                    {post.spaceGFName} - {post.OriginalName}
+                  </h1>
                 )}
                 {post.spaceType !== "Cafe" ? (
                   <p>
@@ -136,9 +150,9 @@ class Spaces extends React.Component {
                     <img
                       src="https://app.gofloaters.com/assets/imgs/location.png"
                       width="11px"
+                      alt="Space Location"
                     ></img>{" "}
                     {post.spaceAddress}
-                    <br></br>
                     <br></br>
                   </p>
                 ) : (
@@ -146,13 +160,30 @@ class Spaces extends React.Component {
                     <img
                       src="https://app.gofloaters.com/assets/imgs/location.png"
                       width="11px"
+                      alt="Space Location"
                     ></img>{" "}
                     {post.spaceAddress}
-                    <br></br>
                     <br></br>
                   </p>
                 )}
               </div>
+              {post.hasCovidSafeBadge ? (
+                <div
+                  className="col-5 MobileOnly"
+                  style={{ padding: "10px 15px 10px" }}
+                >
+                  <Link className="verifiedSpaceNew" to="/covid-safety-pledge/">
+                    <img
+                      src="https://assets.gofloaters.com/hearttick.svg"
+                      className="verfiedBadge"
+                      title="Verified Spaces"
+                    ></img>
+                    <p>Verified Safe</p>
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className="row">
               <div className="col-md-6">
@@ -229,11 +260,10 @@ class Spaces extends React.Component {
                   <br></br>
                   <a
                     href={
-                      "https://app.gofloaters.com/#/home/explore/spacedetail/" +
+                      "https://app.gofloaters.com/#/home/explore/bookingrequest/" +
                       post.spaceId
                     }
                     target="_blank"
-                    rel="nofollow"
                   >
                     Book Now
                   </a>
@@ -245,6 +275,7 @@ class Spaces extends React.Component {
                     <img
                       src="https://app.gofloaters.com/assets/imgs/discountoffer.png"
                       width="20"
+                      alt="Discount Offer"
                     ></img>{" "}
                     {post.exclusiveOffer}
                     <br></br>
@@ -268,45 +299,77 @@ class Spaces extends React.Component {
                 )}
               </div>
               <div className="col-md-6">
-                <div className="DesktopOnly">
-                  {post.spaceType === "Cafe" ? (
-                    <h1>{post.spaceDisplayName}</h1>
-                  ) : (
-                    <h1>{post.spaceGFName}</h1>
-                  )}
-                  {post.spaceType !== "Cafe" ? (
-                    <p>
-                      {post.spaceDisplayName}&nbsp;|&nbsp;
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="DesktopOnly">
+                      {post.spaceType === "Cafe" ? (
+                        <h1>
+                          {post.spaceDisplayName} - {post.OriginalName}
+                        </h1>
+                      ) : (
+                        <h1>
+                          {post.spaceGFName} - {post.OriginalName}
+                        </h1>
+                      )}
+                      {post.spaceType !== "Cafe" ? (
+                        <p>
+                          {post.spaceDisplayName}&nbsp;|&nbsp;
+                          <img
+                            src="https://app.gofloaters.com/assets/imgs/location.png"
+                            width="11px"
+                            alt="Space Location"
+                          ></img>{" "}
+                          {post.spaceAddress}
+                          <br></br>
+                        </p>
+                      ) : (
+                        <p>
+                          <img
+                            src="https://app.gofloaters.com/assets/imgs/location.png"
+                            width="11px"
+                            alt="Space Location"
+                          ></img>{" "}
+                          {post.spaceAddress}
+                          <br></br>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="col-md-4 col-6 DesktopOnly"
+                  style={{ minHeight: "45px", padding: "5px 0px" }}
+                >
+                  {post.hasCovidSafeBadge ? (
+                    <Link
+                      className="verifiedSpaceNew"
+                      to="/covid-safety-pledge/"
+                    >
                       <img
-                        src="https://app.gofloaters.com/assets/imgs/location.png"
-                        width="11px"
-                      ></img>{" "}
-                      {post.spaceAddress}
-                      <br></br>
-                    </p>
+                        src="https://assets.gofloaters.com/hearttick.svg"
+                        className="verfiedBadge"
+                        title="Verified Spaces"
+                      ></img>
+                      <p>Verified Safe</p>
+                    </Link>
                   ) : (
-                    <p>
-                      <img
-                        src="https://app.gofloaters.com/assets/imgs/location.png"
-                        width="11px"
-                      ></img>{" "}
-                      {post.spaceAddress}
-                      <br></br>
-                    </p>
+                    ""
                   )}
                 </div>
+                <div className="col-6"></div>
                 {post.Rating >= 1 ? (
                   <p>
                     <br></br>
-                    <b>Rating:</b> <i class="fa fa-star star"></i> {post.Rating}
+                    <b>Rating:</b> <i className="fa fa-star star"></i>{" "}
+                    {post.Rating}
                   </p>
                 ) : (
                   ""
                 )}
+
                 {post.spaceDesc ? (
                   <div>
                     <br></br>
-
                     <h4>Overview</h4>
                     <p>{post.spaceDesc}</p>
                   </div>
@@ -319,7 +382,10 @@ class Spaces extends React.Component {
                   <h4>Amenities</h4>
                   {post.Facility.search("Hi Speed WiFi") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/hi_speed_wifi.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/hi_speed_wifi.png"
+                        alt="Hi Speed WiFi"
+                      ></img>
                       <p>Hi Speed WiFi</p>
                     </span>
                   ) : (
@@ -327,7 +393,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Power Backup") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/power_backup.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/power_backup.png"
+                        alt="Power Backup"
+                      ></img>
                       <p>Power Backup</p>
                     </span>
                   ) : (
@@ -335,7 +404,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("WiFi Backup") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/wifi_backup.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/wifi_backup.png"
+                        alt="WiFi Backup"
+                      ></img>
                       <p>WiFi Backup</p>
                     </span>
                   ) : (
@@ -343,7 +415,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Projector") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/projector.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/projector.png"
+                        alt="Projector"
+                      ></img>
                       <p>Projector</p>
                     </span>
                   ) : (
@@ -351,7 +426,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Television") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/television.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/television.png"
+                        alt="Television"
+                      ></img>
                       <p>Television</p>
                     </span>
                   ) : (
@@ -359,7 +437,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Whiteboard") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/whiteboard.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/whiteboard.png"
+                        alt="Whiteboard"
+                      ></img>
                       <p>Whiteboard</p>
                     </span>
                   ) : (
@@ -372,7 +453,10 @@ class Spaces extends React.Component {
                   <h4>Space Info</h4>
                   {post.Facility.search("AC") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/ac.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/ac.png"
+                        alt="AC"
+                      ></img>
                       <p>AC</p>
                     </span>
                   ) : (
@@ -380,7 +464,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Metro Nearby") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/metro_nearby.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/metro_nearby.png"
+                        alt="Metro Nearby"
+                      ></img>
                       <p>Metro Nearby</p>
                     </span>
                   ) : (
@@ -388,7 +475,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Free Parking") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/free_parking.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/free_parking.png"
+                        alt="Free Parking"
+                      ></img>
 
                       <p>Free Parking</p>
                     </span>
@@ -397,7 +487,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Rest Rooms") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/rest_rooms.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/rest_rooms.png"
+                        alt="Rest Rooms"
+                      ></img>
                       <p>Rest Rooms</p>
                     </span>
                   ) : (
@@ -405,7 +498,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Coffee/Tea") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/coffee_tea.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/coffee_tea.png"
+                        alt="Coffee/Tea"
+                      ></img>
                       <p>Coffee/Tea</p>
                     </span>
                   ) : (
@@ -413,7 +509,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Pantry") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/pantry.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/pantry.png"
+                        alt="Pantry"
+                      ></img>
                       <p>Pantry</p>
                     </span>
                   ) : (
@@ -421,7 +520,10 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Meeting Rooms") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/meeting_rooms.png"></img>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/meeting_rooms.png"
+                        alt="Meeting Rooms"
+                      ></img>
                       <p>Meeting Rooms</p>
                     </span>
                   ) : (
@@ -429,8 +531,11 @@ class Spaces extends React.Component {
                   )}
                   {post.Facility.search("Outside Food Allowed") > 1 ? (
                     <span className="amenities text-center">
-                      <img src="https://app.gofloaters.com/assets/imgs/outside_food_allowed.png"></img>
-                      <p> Outside Food Allowed</p>
+                      <img
+                        src="https://app.gofloaters.com/assets/imgs/outside_food_allowed.png"
+                        alt="Outside Food Allowed"
+                      ></img>
+                      <p>Outside Food Allowed</p>
                     </span>
                   ) : (
                     ""
@@ -650,6 +755,7 @@ class Spaces extends React.Component {
                     <img
                       src="https://app.gofloaters.com/assets/imgs/landmark.png"
                       width="17"
+                      alt="Landmark"
                     ></img>{" "}
                     Landmark: {post.landmark}
                   </p>
@@ -658,10 +764,24 @@ class Spaces extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-12">
-                {/* <SimpleMap
-                  lat={post.location[0]}
-                  lng={post.location[1]}
-               ></SimpleMap> */}
+                {post.geoLocation !== "" ? (
+                  <SimpleMap
+                    lat={post.geoLocation[0]}
+                    lng={post.geoLocation[1]}
+                  ></SimpleMap>
+                ) : (
+                  ""
+                )}
+                <br></br> <br></br>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12">
+              <br></br>
+                  <h4>Space Overview</h4>
+                  <p className="spaceOverviewtext" dangerouslySetInnerHTML={{ __html: post.spaceOverview }}>
+                 
+                  </p>
                 <br></br> <br></br>
               </div>
             </div>
@@ -678,6 +798,7 @@ export const pageQuery = graphql`
   query SpacesSlug($slug: String!) {
     listings(slug: { eq: $slug }) {
       spaceDisplayName
+      OriginalName
       spaceCity
       spaceGFName
       spaceId
@@ -701,10 +822,12 @@ export const pageQuery = graphql`
       noiseLevel
       landmark
       spaceDesc
-
+      hasCovidSafeBadge
       Rating
       securitydeposit
       seat
+      geoLocation
+      spaceOverview
       monday {
         from
         to

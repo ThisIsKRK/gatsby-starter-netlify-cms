@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./blur-blurry-coffee-273222.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Startups & Companies
 tags:
  - Remote Working
  - Productivity

@@ -123,6 +123,7 @@ Link{
     top: 175px;
     padding-bottom: 0px;
   }
+  
 }
 
 form {
@@ -132,11 +133,14 @@ form {
 .form-group {
   width: 100%;
 }
-
+.hybrid-highlight
+{
+  font-weight: bold;
+}
 .hybrid-highlight {
   background: url("./highlight-hybrid.png");
   background-repeat: no-repeat;
-  background-size: 100% 95%;
+  background-size: 100% ;
   padding: 0px;
 }
 
@@ -234,6 +238,7 @@ form {
   }
 
   .hybrid-h1-unshackle {
-    font-size: 18px;
+    font-size: 22px;
   }
 }
+

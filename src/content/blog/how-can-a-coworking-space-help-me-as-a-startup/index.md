@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./backpack-business-co-working-2566581.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Startups & Companies
 tags:
  - Remote Working
  - Productivity
@@ -17,7 +17,7 @@ tags:
 
 <!--StartFragment-->
 
-India is home to more than 20,000 startups. You read right! Check out this piece in [The Times of India](https://timesofindia.indiatimes.com/city/bengaluru/firm-footing-bengaluru-is-still-indias-technology-startup-capital/articleshow/71089577.cms), which breaks down the number of startups city wise. We are a country with a growing number of millennials, a lot of homegrown talent, and folks just bursting with ideas and innovations. As people come together to create and build, they need a place to work out of.
+India is home to more than 20,000 startups. You read right! Check out this piece in [The Times of India](https://timesofindia.indiatimes.com/city/bangalore/firm-footing-bengaluru-is-still-indias-technology-startup-capital/articleshow/71089577.cms), which breaks down the number of startups city wise. We are a country with a growing number of millennials, a lot of homegrown talent, and folks just bursting with ideas and innovations. As people come together to create and build, they need a place to work out of.
 
 I’m sure you’ve heard the stories of the early startups that made it big, which were founded out of a cramped garage or tiny spare room. But thanks to coworking spaces, your startup can do one better and work out of a spot that inspires creativity and productivity.
 

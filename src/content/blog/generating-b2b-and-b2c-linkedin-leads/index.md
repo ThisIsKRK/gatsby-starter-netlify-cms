@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./generating-b2b-and-b2c-linkedin-leads.jpg"
 author: Team GoFloaters
 authorURL: https://www.linkedin.com/company/gofloaters/
-category: Lead Generation 
+category: Guides & Hacks
 tags:
  - LinkedIn 
  - Business to Business
@@ -38,8 +38,8 @@ Practical tips to identify prospects & generate leads in any business scenario
 
 Identifying prospects, creating contacts, and building relationships is the key to converting potential leads into customers and numerous platforms provide opportunities for marketers in B2B leads generation.
 <p id="fact"></p>
-![Generating B2B and B2C LinkedIn leads](./clip_image002.gif) 
 
+![Generating B2B and B2C LinkedIn leads](./clip_image002.jpg) 
 
 Among the numerous platforms, a few specific ones used for B2B leads generations are listed above. 
 But fret not, I'm here to speak on one unique platform named LinkedIn.
@@ -48,7 +48,7 @@ But fret not, I'm here to speak on one unique platform named LinkedIn.
  
 LinkedIn is a social networking platform that connects graduates, thought leaders, decision-makers, and executives with each other to share their experience, expand their network, and explore potential opportunities. 
 
-![Generating B2B and B2C LinkedIn leads](./clip_image004.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image004.jpg)
 
 **<em>The facts and figures are in millions.</em>**
 Here are some more exciting facts about LinkedIn.
@@ -69,7 +69,7 @@ Here are some more exciting facts about LinkedIn.
 80% of B2B leads from social media platforms come from LinkedIn. A research conducted by  <a target="_blank" rel="nofollow" href="https://blog.hubspot.com/blog/tabid/6307/bid/30030/LinkedIn-277-More-Effective-for-Lead-Generation-Than-Facebook-Twitter-New-Data.aspx">HubSpot</a> explains how LinkedIn helps marketers generate more leads than Facebook and Twitter combined.
 
 
-![Generating B2B and B2C LinkedIn leads](./clip_image008.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image008.jpg)
 <p id="leadgen"></p>
 
 ##Where do I start on LinkedIn?
@@ -78,7 +78,7 @@ Here are some more exciting facts about LinkedIn.
  **Sales Navigator**
  Sales navigator is a sales tool that connects sales professionals with potential prospects by narrowing down on the demographics, industry sector, and seniority level using its unique features and inmail them to promote/sell your product/service.
 
-![Generating B2B and B2C LinkedIn leads](./clip_image010.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image010.jpg)
 
 
  
@@ -91,38 +91,38 @@ The sales navigator is one of the techniques of  <a target="_blank" rel="nofollo
 
  **1. Narrowing down on the geography:** The first step of the Sales Navigator tool is to narrow down on the geographical locations you want to target. 
 
-![Generating B2B and B2C LinkedIn leads](./clip_image012.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image012.jpg)
 
 
 
 **2. Narrowing down on the industry:** After choosing the location, the next step is to select the industry your clients might be a part of.
 
-![Generating B2B and B2C LinkedIn leads](./clip_image014.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image014.jpg)
 
 
 
 **3. Targeting company size:** The third step is to select the size of the organization you want to target. 
 
-![Generating B2B and B2C LinkedIn leads](./clip_image016.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image016.jpg)
 
 
 
 **4. Functions of your prospects:** This step helps you choose the functions of your client you want to target.
 
-![Generating B2B and B2C LinkedIn leads](./clip_image018.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image018.jpg)
 
 
 
 **5. Seniority Level:** This step helps you in selecting decision-makers as your potential clients.
 
-![Generating B2B and B2C LinkedIn leads](./clip_image020.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image020.jpg)
 
 
 
 Before the tool starts providing recommendations, it asks to save particular accounts based on the previous selections.
 After pressing the start advanced search, this is what the page looks like.
 
-![Generating B2B and B2C LinkedIn leads](./clip_image022.gif)
+![Generating B2B and B2C LinkedIn leads](./clip_image022.jpg)
 
 
 

@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./jehu-christan-LZOuBaf69n8-unsplash-1.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Guides & Hacks
 tags:
  - Coworking
  - Listicle

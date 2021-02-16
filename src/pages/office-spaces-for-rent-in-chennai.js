@@ -5,10 +5,12 @@ import SearchForm from "../components/search/search"
 import OfficeSpacesContent from "../components/officespacecontent"
 import HeaderBanner from "../components/headerbanner"
 import OfficeSpaceLocationSwitch from "../components/officespacelocationswitch"
-import ListingCard from "../components/Card/listingcard"
-import { graphql } from "gatsby"
+import MonthlyListingCard from "../components/Card/monthlylistingcard"
+import SEOHeader from "../components/seo-header"
 
-const ChennaiOfficeSpace = props => {
+import { graphql, Link } from "gatsby"
+
+const ChennaiDailyOfficeSpace = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])
   const [privateCabinFilter, setprivateCabinFilter] = useState("false")
@@ -57,7 +59,8 @@ const ChennaiOfficeSpace = props => {
       setspaceFilter("Twenty Four Hours")
     }
   }
-  var metroquery,
+  var officequery,
+    metroquery,
     opendeskquery,
     privatecabinquery,
     dailypassquery,
@@ -87,6 +90,14 @@ const ChennaiOfficeSpace = props => {
   } else {
     twentyfourquery = " "
   }
+  if (
+    privateCabinFilter === "false" &&
+    DailyPassFilter === "false" &&
+    MetroNearByFilter === "false" &&
+    TwentyFourFilter === "false"
+  ) {
+    officequery = true
+  }
 
   const OfficeFilter = () => {
     useEffect(() => {
@@ -94,17 +105,7 @@ const ChennaiOfficeSpace = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
-          <li>
-            <a
-              className={"CheckBox " + DailyPassFilter}
-              onClick={DailyPassCheck}
-            >
-              Daily Pass{" "}
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
-            </a>
-          </li>
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a
               className={"CheckBox " + MetroNearByFilter}
@@ -143,53 +144,87 @@ const ChennaiOfficeSpace = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>
-          Book Office Spaces for rent in Chennai - Work at your comfort -
-          GoFloaters
-        </title>
-        <meta
-          property="og:title"
-          content="Book Office Spaces for rent in Chennai - Work at your comfort -
-          GoFloaters"
-        />
-        <meta
-          name="description"
-          content="Explore the best share office spaces from GoFloaters at the best prices. Shared offices are great for entrepreneurs, startups, and other professionals!"
-        ></meta>
-        <meta
-          property="og:description"
-          content="Explore the best share office spaces from GoFloaters at the best prices. Shared offices are great for entrepreneurs, startups, and other professionals!"
-        ></meta>
-        <meta
-          name="keywords"
-          content="office spaces, gofloaters office spaces"
-        />
-      </Helmet>
+      <SEOHeader
+        title="Office for rent in Chennai | Best coworking spaces in Chennai | Gofloaters"
+        description="Furnished Office Space for rent in Chennai with High-Speed Internet. Great amenities and spacious offices available for you to choose from. Book Instantly."
+        socialURL="https://assets.gofloaters.com/socialimage/office-spaces-for-rent-in-chennai.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="office-space">
-          <h1>Office Spaces in Chennai</h1>
-        </HeaderBanner>
-        <div className="container">
-          <OfficeSpacesContent />
-        </div>
-        <div className="SpaceGray">
+        {/*<HeaderBanner headerclass="office-space"></HeaderBanner>*/}
+
+        <div>
           <div className="container">
             <div className="row">
-              <div className="col-md-3"></div>
-              <div className="col-md-6">
+              <div className="col-md-12">
+                <h1 className="listingpageTitle">Monthly Office Spaces in Chennai</h1>
+                <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                  Office for every size | All inclusive
+                  pricing
+                </h2>
                 <div className="padding-20"></div>
-                <SearchForm spacetype="officeSpace"></SearchForm>
+                <p style={{ fontSize: "13px" }}>
+                  If you are looking for the best coworking space in Chennai If
+                  you are looking for the best office space on rent in Chennai
+                  then you have come to the right page. An average cost of a
+                  dedicated desk in Chennai is in the range of Rs 4000 / month
+                  to Rs 8000 / month. Some of the popular localities are{" "}
+                  <a href="https://gofloaters.com/search?city=Guindy,%20Chennai,%20%20Tamil%20Nadu&lat=13.0066625&lng=80.2206369&spaceType=monthlyofficeSpace">
+                    Guindy
+                  </a>
+                  ,{" "}
+                  <a href="https://gofloaters.com/search?city=Nungambakkam,%20Chennai,%20%20Tamil%20Nadu&lat=13.0569467&lng=80.242469&spaceType=monthlyofficeSpace">
+                    Nungambakkam
+                  </a>
+                  ,{" "}
+                  <a href="https://gofloaters.com/searchresult?city=Teynampet,%20Chennai,%20%20Tamil%20Nadu&lat=13.0404742&lng=80.25033350000001&spaceType=monthlyofficeSpace">
+                    Teynampet
+                  </a>
+                  ,{" "}
+                  <a href="https://gofloaters.com/search?city=Alwarpet,%20Chennai,%20%20Tamil%20Nadu&lat=13.0334869&lng=80.2531271&spaceType=officeSpace">
+                    Alwarpet
+                  </a>
+                  ,{" "}
+                  <a href="https://gofloaters.com/searchresult?city=Anna%20Nagar,%20Chennai,%20%20Tamil%20Nadu&lat=13.0849557&lng=80.2101342&spaceType=monthlyofficeSpace">
+                    Anna Nagar
+                  </a>{" "}
+                  and{" "}
+                  <a href="https://gofloaters.com/searchresult?city=Perungudi,%20Chennai,%20%20Tamil%20Nadu&lat=12.9653652&lng=80.2461057&spaceType=monthlyofficeSpace">
+                    Perungudi
+                  </a>
+                  .
+                  <br />
+                </p>
+                <SearchForm spacetype="dailyofficeSpace"></SearchForm>
+                <br></br>
                 <div className="padding-20"></div>
               </div>
               <div className="col-md-3"></div>
-
               <div className="col-md-12">
-                <br></br> <br></br>
                 <OfficeSpaceLocationSwitch city="Chennai" />
               </div>
             </div>
-            <br />
+            <div className="filterbar" style={{ marginTop: 15 }}>
+              <ul className="SearchListingFilter scrollmenu">
+                <li>
+                  <Link to="/coworking-spaces-in-chennai/">
+                    Coworking Spaces
+                  </Link>
+                </li>
+              
+                <li>
+                  <Link to="/meeting-rooms-in-chennai/">Meeting Spaces</Link>
+                </li>
+                <li>
+                  <Link
+                    to="/office-spaces-for-rent-in-chennai/"
+                    className="active"
+                  >
+                    Office Spaces
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <div>
               <OfficeFilter></OfficeFilter>
             </div>
@@ -198,14 +233,17 @@ const ChennaiOfficeSpace = props => {
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Office Spaces available for you
+            {spaceSize} Office Spaces in Chennai available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
               const listData = list.node
-              if (spaceFilter === "All") {
+              if (
+                spaceFilter === "All" &&
+                listData.monthPassAvailable === true
+              ) {
                 return (
-                  <ListingCard
+                  <MonthlyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -221,12 +259,15 @@ const ChennaiOfficeSpace = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/office-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></MonthlyListingCard>
                 )
               }
               if (
+                listData.monthPassAvailable === true &&
                 listData.Facility.search(opendeskquery) > 1 &&
                 listData.Facility.search(privatecabinquery) > 1 &&
                 listData.Facility.search(dailypassquery) > 1 &&
@@ -234,7 +275,7 @@ const ChennaiOfficeSpace = props => {
                 listData.Facility.search(twentyfourquery) > 1
               ) {
                 return (
-                  <ListingCard
+                  <MonthlyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -250,23 +291,194 @@ const ChennaiOfficeSpace = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/office-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></MonthlyListingCard>
                 )
               }
             })}
+          </div>{" "}
+          <div className="col-md-12">
+            <h4 style={{ fontWeight: "bold" }}>
+              Coworking Space in Chennai&nbsp;
+            </h4>
+            <p>
+              Looking for coworking spaces in Chennai? Book the best coworking
+              space in Chennai for teams of all sizes with all amenities from
+              hot desks to private cabins.
+              <br></br>
+              <br></br>
+              Chennai, formerly known as Madras, is a 369-year-old city and is
+              the capital of the southern state of Tamilnadu. It serves as one
+              of the main gateways to South India and has a thriving local
+              culture and art scene and is one of the major destinations for
+              medical tourism. It is considered as one of the world's fastest
+              growing cities although ranks 13th in terms of cleanliness. It is
+              on the Coromandel coast of the Bay of Bengal and has the second
+              longest beach front of any municipality in the world.
+              <br></br>
+              <br></br>
+              With an exponential growth in the entrepreneurial ecosystem in
+              Chennai, the startup culture is gaining prominence. Chennai is
+              considered the SaaS capital of India with startups like Zoho,
+              Freshworks, ChargeBee to claim Chennai their home. Coworking is
+              picking up as the popular choice as the way of working for
+              startups and many small and medium enterprises.&nbsp;
+              <br></br>
+              <br></br>
+              Shared office spaces offer individuals and companies the
+              flexibility of access to work spaces that have all the amenities
+              of a traditional office and sometimes more on a simple rental
+              model. The biggest advantage of shared office spaces is their
+              affordability. Office spaces on GoFloaters platform are available
+              on monthly basis rentals without long term contracts that block
+              you in.<br></br>
+              <br></br>
+              Chennai has seen its fair share of coworking spaces come up in the
+              last few years. Some national brands have also made a recent entry
+              into Chennai like Awfis, OYO Workflo, Innov8, Cowrks and IndiQube.
+              Chennai also has its own homegrown brands like Workafella,
+              Disruptors of Tomorrow, Dhwarco Coworking and Reach Offices.
+            </p>
+            <br></br>
+            <h4 style={{ fontWeight: "bold" }}>
+              Top Office Space Locations in Chennai
+            </h4>{" "}
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Old Mahabalipuram Road&nbsp;</h5>
+            <p>
+              This stretch of road starts from Madhya Kailash till it ends in
+              Mahabalipuram. This road is also called the IT Expressway with
+              many IT parks and large IT MNC dotting the road. It is also
+              well-known for many educational, technical institutions and
+              medical laboratories. Startups and service companies prefer to
+              take up space on this road as the talent pool is available to
+              tap.&nbsp;
+            </p>
+            <br></br>
+            <h5 style={{ fontWeight: "bold" }}>Guindy</h5>
+            <p>
+              A largely industrial district, Guindy is also home to Guindy
+              National Park. The Kathipara Junction with its butterfly flyover
+              is a prominent landmark in this area. Three main roads of Chennai
+              namely Anna Salai, Mount-Poonamallee Road, Inner Ring Road, 100
+              Feet Road or Jawaharlal Nehru Road, and GST Road meet here. Guindy
+              is well connected by road and train services. It is also well
+              connected by the trains with MRTS and Metro station. Guindy is
+              also located 10 km away from the airport. Due to its connectivity
+              many startups, small businesses and large companies have Guindy as
+              their first preference when it comes to office space.
+            </p>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Teynampet</h5>
+            <p>
+              Teynampet is one of the busiest commercial localities in the city
+              of Chennai. Teynampet is along Anna Salai, the arterial road of
+              Chennai. Teynampet also has some of the poshest pieces of real
+              estate and properties in Chennai. Teynampet is also well connected
+              via public bus and metro transport. Startups prefer Teynampet for
+              its connectivity.
+            </p>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Nungambakkam</h5>
+            <p>
+              Nungambakkam is one of the oldest parts of Chennai. Located along
+              Anna Salai, Nungambakkam is the official downtown of Chennai. The
+              neighborhood is home to many multi-national commercial
+              establishments, important government offices, foreign consulates,
+              sprawling educational institutions, shopping malls, sporting
+              facilities, tourist spots, star hotels, restaurants, and cultural
+              centers. Nungambakkam is also a prime residential area in Chennai.
+            </p>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Anna Nagar</h5>
+            <p>
+              Anna Nagar is located in the north-western part of Chennai. It is
+              one of the prime residential areas in Chennai and is home to
+              several prominent doctors, lawyers and politicians. Real estate
+              prices are among the highest in the city. Anna Nagar has several
+              established schools and colleges, places of worship and shopping
+              areas.&nbsp;
+            </p>
+            <br />
+            <br />
+            <h4 style={{ fontWeight: "bold" }}>
+              Why Choose GoFloaters to book your office space in Chennai
+            </h4>
+            <p>
+              GoFloaters has been in the space of helping individuals and teams
+              find flexible and affordable workspaces for over 3 years now.
+              GoFloaters was started with a vision to help anyone get an office
+              space when they want, where they want and within their budget. We
+              set out to build office spaces for a distributed world where
+              individuals and teams should be able to work near home.&nbsp;
+            </p>
+            <br />
+            <p>
+              Following are the advantages of booking coworking spaces and
+              meeting spaces on the GoFloaters app:
+            </p>
+            <ul>
+              <li>
+                <p>
+                  <strong>Work Near Home :</strong> In most of the cities that
+                  we serve you can get a space within 5 kms of your home or
+                  wherever you are
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Pay-per-use : </strong>You can book coworking spaces
+                  on a daily basis and meeting spaces on an hourly basis and pay
+                  only for the time you have used it.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>No contracts :</strong> You don&rsquo;t have to sign
+                  any kind of contracts with us.&nbsp;
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Cost effective :</strong> We have negotiated heavily
+                  with our space partners to bring you savings of at least 20%
+                  if not more on the day pass rates and the meeting room rents.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Instant Bookings : </strong>No need to call anyone or
+                  email anyone to check space availability. You can book
+                  coworking spaces instantaneously. Meeting spaces just need 30
+                  mins of time for confirmation.&nbsp;&nbsp;
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Community Perks :</strong> GoFloaters has partnered
+                  with over 65+ companies to bring you over Rs 1 Crore of
+                  benefits to you.
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
       </Layout>
     </div>
   )
 }
-export default ChennaiOfficeSpace
+export default ChennaiDailyOfficeSpace
 export const query = graphql`
-  query ChennaiOfficeSpace {
+  query ChennaiDailyOfficeSpace {
     allListings(
-      filter: { subType: { eq: "Office Space" }, spaceCity: { eq: "Chennai" } }
+      filter: {
+        subType: { eq: "Office Space" }
+        spaceCity: { eq: "Chennai" }
+        monthPassAvailable: { eq: true }
+      }
     ) {
       totalCount
       edges {
@@ -278,6 +490,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -290,6 +503,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

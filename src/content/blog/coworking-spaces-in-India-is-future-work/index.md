@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./adults-analysis-banking-1451447.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Startups & Companies
 tags:
  - Remote Working
  - Productivity

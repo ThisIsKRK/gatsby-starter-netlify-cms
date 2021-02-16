@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./Bistro-Claytopia-Koramangala-GoFloaters-coworking-spaces.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking 
+category: Guides & Hacks 
 tags:
   - Coworking 
   - Listicle
@@ -34,7 +34,7 @@ A warm and bright space in Koramangala, once you start working out of [here](htt
 **Bistro Claytopia**
 
 ![Bistro-Claytopia-Koramangala-GoFloaters-coworking-spaces](./Bistro-Claytopia-Koramangala-GoFloaters-coworking-spaces.jpg)
-You won’t believe you’re in the midst of Koramangala, when you’re working out of [this café](https://app.gofloaters.com/#/home/explore/spacedetail/-LTjRySCHwb-YkI8ovFq). It’s large, has indoor and outdoor space, lots of greenery and is far from the hustle and bustle outside. It’s hard to find a parking space in bengaluru, but luckily this café has free parking and it’s pet-friendly as well. So, bring your fur baby and sit and work here in peace.
+You won’t believe you’re in the midst of Koramangala, when you’re working out of [this café](https://app.gofloaters.com/#/home/explore/spacedetail/-LTjRySCHwb-YkI8ovFq). It’s large, has indoor and outdoor space, lots of greenery and is far from the hustle and bustle outside. It’s hard to find a parking space in Bangalore, but luckily this café has free parking and it’s pet-friendly as well. So, bring your fur baby and sit and work here in peace.
 
 **Indigo XP**
 

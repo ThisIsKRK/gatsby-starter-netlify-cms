@@ -1,39 +1,17 @@
 import React from "react"
 import Layout from "../components/layout"
-import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import HeaderBanner from "../components/headerbanner"
-import BusinessToday from "../img/featureon/business-tody.png"
-import BWDisrupt from "../img/featureon/BWDisrupt.png"
-import DeccanHerald from "../img/featureon/DeccanHerald.png"
-import DTNEXT from "../img/featureon/DTNEXT.png"
-import Entrepreneur from "../img/featureon/entrepreneurindia.jpg"
-import HinduBusiness from "../img/featureon/hindubusinessline.png"
-import Inventiva from "../img/featureon/Inventiva.png"
-import LBB from "../img/featureon/LBB.png"
-import Metroplus from "../img/featureon/metroplus.png"
-import Forbes from "../img/featureon/forbes.jpg"
-import Peoplematters from "../img/featureon/people-matters.png"
-import SiliconIndia from "../img/featureon/Silicon-India.png"
-import startupstory from "../img/featureon/startup-story.jpg"
-import TelanganaToday from "../img/featureon/TelanganaToday.png"
-import Thehindu from "../img/featureon/thehindu.jpg"
-import IndianExpress from "../img/featureon/the-new-indian-express.jpg"
-import NewsMinute from "../img/featureon/the-news-minute.png"
-import TimesofIndia from "../img/featureon/timesofindia.png"
-import Yourstory from "../img/featureon/yourstory.jpg"
-import YourstoryTamil from "../img/featureon/Yourstory-Tamil.png"
-import BangaloreMirror from "../img/featureon/BangaloreMirror.png"
-import ExpressIndulge from "../img/featureon/The-New-Indian-Express-Indulge.png"
-import CoFoundersTown from "../img/featureon/CoFoundersTown.png"
-import UnitedNewsofIndia from "../img/featureon/united-news-of-india.jpg"
-import ProjectHatch from "../img/featureon/project-hatch.jpg"
-import Indiabusinessjournal from "../img/featureon/indiabusinessjournal.jpg"
+import SEOHeader from "../components/seo-header"
+
 export default () => (
   <div>
-    <Helmet>
-      <title>We’re famous!</title>
-    </Helmet>
+    <SEOHeader
+      title="We’re famous!"
+      description="News Mentions, Press Release from GoFloaters"
+      socialURL="https://assets.gofloaters.com/socialimage/coworking-spaces-in-bengaluru.jpg"
+      pinterest="true"
+    ></SEOHeader>
     <Layout>
       <HeaderBanner>
         <h1>We’re famous!</h1>
@@ -42,7 +20,7 @@ export default () => (
         <div className="row">
           <div className="col-md-12"></div>
           <div className="col-md-12 text-center">
-            <h2>Just Out (Start-Up Story)</h2> <br></br>
+            <h3>Just Out (Start-Up Story)</h3> <br></br>
           </div>
         </div>
 
@@ -54,7 +32,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={startupstory}></img>
+                <img src="https://assets.gofloaters.com/featureon/startup-story.jpg"></img>
               </div>
 
               <span>‘Gofloaters on Demand Spaces’</span>
@@ -67,7 +45,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Yourstory}></img>
+                <img src="https://assets.gofloaters.com/featureon/yourstory.jpg"></img>
               </div>
               <span>‘Uber for gig economy workers’</span>
             </a>
@@ -79,7 +57,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Forbes}></img>
+                <img src="https://assets.gofloaters.com/featureon/forbes.jpg"></img>
               </div>
 
               <span>‘Reinventing Coworking’</span>
@@ -92,7 +70,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Thehindu}></img>
+                <img src="https://assets.gofloaters.com/featureon/thehindu.jpg"></img>
               </div>
 
               <span>‘GoFloaters on expansion mode’</span>
@@ -101,12 +79,12 @@ export default () => (
 
           <div className="col-md-3 press-card">
             <a
-              href="https://staging-gofloaterscom.kinsta.cloud/wp-content/uploads/2020/01/TOIH_2019_05_01_Page_19_cropped.jpg"
+              href="https://p5h.894.myftpupload.com/wp-content/uploads/2020/01/TOIH_2019_05_01_Page_19_cropped.jpg"
               target="_blank"
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={TimesofIndia}></img>
+                <img src="https://assets.gofloaters.com/featureon/timesofindia.png"></img>
               </div>
 
               <span>‘‘GoFloaters forays into Hyderabad’</span>
@@ -114,12 +92,12 @@ export default () => (
           </div>
           <div className="col-md-3 press-card">
             <a
-              href="https://staging-gofloaterscom.kinsta.cloud/wp-content/uploads/2020/01/GoFloaters_City-Express_hyd_thursday_june-6.jpg"
+              href="https://p5h.894.myftpupload.com/wp-content/uploads/2020/01/GoFloaters_City-Express_hyd_thursday_june-6.jpg"
               target="_blank"
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={IndianExpress}></img>
+                <img src="https://assets.gofloaters.com/featureon/the-new-indian-express.jpg"></img>
               </div>
 
               <span>‘All Set to Work’</span>
@@ -132,7 +110,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={IndianExpress}></img>
+                <img src="https://assets.gofloaters.com/featureon/the-new-indian-express.jpg"></img>
               </div>
 
               <span>‘Claim your space’</span>
@@ -145,7 +123,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Thehindu}></img>
+                <img src="https://assets.gofloaters.com/featureon/thehindu.jpg"></img>
               </div>
 
               <span>‘Sustainable work model’</span>
@@ -159,7 +137,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Entrepreneur}></img>
+                <img src="https://assets.gofloaters.com/featureon/entrepreneurindia.jpg"></img>
               </div>
 
               <span>‘Workspace for GenZ’</span>
@@ -172,7 +150,10 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Metroplus}></img>
+                <img
+                  src="https://assets.gofloaters.com/featureon/metroplus.png"
+                  alt="Metro Plus"
+                ></img>
               </div>
 
               <span>‘An office for a day’</span>
@@ -185,7 +166,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={NewsMinute}></img>
+                <img src="https://assets.gofloaters.com/featureon/the-news-minute.png"></img>
               </div>
 
               <span>
@@ -200,7 +181,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={BusinessToday}></img>
+                <img src="https://assets.gofloaters.com/featureon/business-tody.png"></img>
               </div>
 
               <span>‘GoFloaters helping get over cost constraints’</span>
@@ -214,7 +195,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Peoplematters}></img>
+                <img src="https://assets.gofloaters.com/featureon/people-matters.png"></img>
               </div>
 
               <span>‘Flexible workplaces: Empowering the workforce’</span>
@@ -227,7 +208,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={BWDisrupt}></img>
+                <img src="https://assets.gofloaters.com/featureon/BWDisrupt.png"></img>
               </div>
 
               <span>‘Changing the Game of Co-working Spaces’</span>
@@ -240,7 +221,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={TelanganaToday}></img>
+                <img src="https://assets.gofloaters.com/featureon/TelanganaToday.png"></img>
               </div>
 
               <span>‘GoFloaters forays into Hyderabad’</span>
@@ -253,7 +234,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={DTNEXT}></img>
+                <img src="https://assets.gofloaters.com/featureon/DTNEXT.png"></img>
               </div>
 
               <span>‘Work on the go’</span>
@@ -267,7 +248,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={YourstoryTamil}></img>
+                <img src="https://assets.gofloaters.com/featureon/Yourstory-Tamil.png"></img>
               </div>
 
               <span>‘Smartworkspaces for startups’</span>
@@ -280,7 +261,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={LBB}></img>
+                <img src="https://assets.gofloaters.com/featureon/LBB.png"></img>
               </div>
 
               <span>‘Workspaces on budget’</span>
@@ -288,12 +269,12 @@ export default () => (
           </div>
           <div className="col-md-3 press-card">
             <a
-              href="https://www.inventiva.co.in/press-release/inventiva/gofloaters-launches-operations-in-bengaluru/"
+              href="https://www.inventiva.co.in/press-release/inventiva/gofloaters-launches-operations-in-bangalore/"
               target="_blank"
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Inventiva}></img>
+                <img src="https://assets.gofloaters.com/featureon/Inventiva.png"></img>
               </div>
 
               <span>‘GoFloaters Launches Bengaluru Operations’</span>
@@ -306,7 +287,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={DeccanHerald}></img>
+                <img src="https://assets.gofloaters.com/featureon/DeccanHerald.png"></img>
               </div>
 
               <span>‘Helping convert hobby into business’</span>
@@ -320,7 +301,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={SiliconIndia}></img>
+                <img src="https://assets.gofloaters.com/featureon/Silicon-India.png"></img>
               </div>
 
               <span>
@@ -335,7 +316,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Yourstory}></img>
+                <img src="https://assets.gofloaters.com/featureon/yourstory.jpg"></img>
               </div>
 
               <span>‘Why GoFloaters is supremely useful’</span>
@@ -348,7 +329,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Entrepreneur}></img>
+                <img src="https://assets.gofloaters.com/featureon/entrepreneurindia.jpg"></img>
               </div>
 
               <span>‘Coping up during pandemic’</span>
@@ -356,12 +337,12 @@ export default () => (
           </div>
           <div className="col-md-3 press-card">
             <a
-              href="https://staging-gofloaterscom.kinsta.cloud/wp-content/uploads/2020/04/GoFloaters_Deccan-Herald_Mar-20-2020.jpg"
+              href="https://p5h.894.myftpupload.com/wp-content/uploads/2020/04/GoFloaters_Deccan-Herald_Mar-20-2020.jpg"
               target="_blank"
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={DeccanHerald}></img>
+                <img src="https://assets.gofloaters.com/featureon/DeccanHerald.png"></img>
               </div>
 
               <span>‘Helping convert hobby into business’</span>
@@ -375,7 +356,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Forbes}></img>
+                <img src="https://assets.gofloaters.com/featureon/forbes.jpg"></img>
               </div>
 
               <span>‘The Freelance Revolution during COVID-19’</span>
@@ -388,7 +369,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={CoFoundersTown}></img>
+                <img src="https://assets.gofloaters.com/featureon/CoFoundersTown.png"></img>
               </div>
 
               <span>
@@ -403,7 +384,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Forbes}></img>
+                <img src="https://assets.gofloaters.com/featureon/forbes.jpg"></img>
               </div>
 
               <span>
@@ -420,7 +401,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={TimesofIndia}></img>
+                <img src="https://assets.gofloaters.com/featureon/timesofindia.png"></img>
               </div>
 
               <span>‘Shared offices be the future for corporates’</span>
@@ -434,7 +415,10 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={IndianExpress}></img>
+                <img
+                  src="https://assets.gofloaters.com/featureon/the-new-indian-express.jpg"
+                  alt="Indian Express"
+                ></img>
               </div>
 
               <span>
@@ -450,7 +434,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={UnitedNewsofIndia}></img>
+                <img src="https://assets.gofloaters.com/featureon/united-news-of-india.jpg"></img>
               </div>
 
               <span>‘GoFloaters Kerala Launch’</span>
@@ -464,7 +448,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={ProjectHatch}></img>
+                <img src="https://assets.gofloaters.com/featureon/project-hatch.jpg"></img>
               </div>
               <span>‘How We Bootstrapped On-demand Office Space Platform’</span>
             </a>
@@ -478,9 +462,22 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Indiabusinessjournal}></img>
+                <img src="https://assets.gofloaters.com/featureon/indiabusinessjournal.jpg"></img>
               </div>
               <span>‘India Business Journal (IBJ)’</span>
+            </a>
+          </div>
+
+          <div className="col-md-3 press-card">
+            <a
+              href="https://www.mid-day.com/articles/co-working-in-the-new-normal/22969274"
+              target="_blank"
+              rel="nofollow"
+            >
+              <div className="pressimage">
+                <img src="https://assets.gofloaters.com/featureon/midday.jpg"></img>
+              </div>
+              <span>‘Co-working in the new normal’</span>
             </a>
           </div>
         </div>
@@ -500,7 +497,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={Thehindu}></img>
+                <img src="https://assets.gofloaters.com/featureon/thehindu.jpg"></img>
               </div>
 
               <span>
@@ -516,7 +513,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={IndianExpress}></img>
+                <img src="https://assets.gofloaters.com/featureon/the-new-indian-express.jpg"></img>
               </div>
 
               <span>
@@ -531,7 +528,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={BangaloreMirror}></img>
+                <img src="https://assets.gofloaters.com/featureon/BangaloreMirror.png"></img>
               </div>
 
               <span>‘Talent Showcase’</span>
@@ -544,7 +541,7 @@ export default () => (
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={ExpressIndulge}></img>
+                <img src="https://assets.gofloaters.com/featureon/The-New-Indian-Express-Indulge.png"></img>
               </div>
 
               <span>‘Market hopping’</span>
@@ -552,12 +549,12 @@ export default () => (
           </div>
           <div className="col-md-3 press-card">
             <a
-              href="https://staging-gofloaterscom.kinsta.cloud/wp-content/uploads/2020/01/Gofloaters.Dt-Next.pg_.15.jpg"
+              href="https://p5h.894.myftpupload.com/wp-content/uploads/2020/01/Gofloaters.Dt-Next.pg_.15.jpg"
               target="_blank"
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={DTNEXT}></img>
+                <img src="https://assets.gofloaters.com/featureon/DTNEXT.png"></img>
               </div>
 
               <span>‘Socialise, network and shop’</span>
@@ -565,12 +562,12 @@ export default () => (
           </div>
           <div className="col-md-3 press-card">
             <a
-              href="https://staging-gofloaterscom.kinsta.cloud/wp-content/uploads/2020/01/Gofloaters.City-Express.pg_.02.jpg"
+              href="https://p5h.894.myftpupload.com/wp-content/uploads/2020/01/Gofloaters.City-Express.pg_.02.jpg"
               target="_blank"
               rel="nofollow"
             >
               <div className="pressimage">
-                <img src={IndianExpress}></img>
+                <img src="https://assets.gofloaters.com/featureon/the-new-indian-express.jpg"></img>
               </div>
 
               <span>‘Show & sell’</span>
@@ -578,11 +575,11 @@ export default () => (
           </div>
           <div className="col-md-3 press-card">
             <a
-              href="https://staging-gofloaterscom.kinsta.cloud/wp-content/uploads/2020/01/GoFloater.metroplus.cchennai-byob_sept-102019.jpg"
+              href="https://p5h.894.myftpupload.com/wp-content/uploads/2020/01/GoFloater.metroplus.cchennai-byob_sept-102019.jpg"
               target="_blank"
             >
               <div className="pressimage">
-                <img src={Metroplus}></img>
+                <img src="https://assets.gofloaters.com/featureon/metroplus.png"></img>
               </div>
 
               <span>‘Wit and wisdom’</span>
@@ -594,7 +591,7 @@ export default () => (
               target="_blank"
             >
               <div className="pressimage">
-                <img src={TelanganaToday}></img>
+                <img src="https://assets.gofloaters.com/featureon/TelanganaToday.png"></img>
               </div>
 
               <span>‘a Art and Creative Fair in Hyderabad’</span>
@@ -606,7 +603,10 @@ export default () => (
               target="_blank"
             >
               <div className="pressimage">
-                <img src={HinduBusiness}></img>
+                <img
+                  src="https://assets.gofloaters.com/featureon/hindubusinessline.png"
+                  alt="Hindu Business Line"
+                ></img>
               </div>
 
               <span>‘Hackathon for entrepreneurs in Hyderabad’</span>
@@ -618,7 +618,7 @@ export default () => (
               target="_blank"
             >
               <div className="pressimage">
-                <img src={TelanganaToday}></img>
+                <img src="https://assets.gofloaters.com/featureon/TelanganaToday.png"></img>
               </div>
 
               <span>‘Hackathon for entrepreneurs in Hyderabad’</span>
@@ -628,62 +628,65 @@ export default () => (
 
         <div className="row">
           <div className="col-md-12 text-center">
-            <h3>Company Announcements:</h3>
+            <h3>Press Releases:</h3>
             <br></br>
           </div>
-          <table
-            style={{ padding: "10px", width: "100%" }}
-            className="col-md-12"
-          >
-            <tr>
-              <td>May 1, 2019</td>
-              <td>:</td>
-              <td>
-                <Link
-                  to="/announcements/gofloaters-debuts-in-hyderabad"
-                  className="links"
-                >
-                  GOFLOATERS DEBUTS IN HYDERABAD
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>March 23, 2020</td>
-              <td>:</td>
-              <td>
-                <Link
-                  to="/announcements/gofloaters-on-an-expansion-drive"
-                  className="links"
-                >
-                  GOFLOATERS DEBUTS IN HYDERABAD
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>March 23, 2020</td>
-              <td>:</td>
-              <td>
-                <Link
-                  to="/announcements/gofloaters-on-demand-workspace-app-expands-to-pune"
-                  className="links"
-                >
-                  GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO PUNE
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>June 20, 2020</td>
-              <td>:</td>
-              <td>
-                <Link
-                  to="/announcements/gofloaters-on-demand-workspace-app-expands-to-kochi"
-                  className="links"
-                >
-                  GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO KOCHI
-                </Link>
-              </td>
-            </tr>
-          </table>
+          <div className="col-md-2 text-center"></div>
+          <div className="col-md-8">
+            <table
+              style={{ padding: "10px", width: "100%" }}
+              className="col-md-12"
+            >
+              <tr>
+                <td>May 1, 2019</td>
+                <td>:</td>
+                <td>
+                  <Link
+                    to="/announcements/gofloaters-debuts-in-hyderabad"
+                    className="links"
+                  >
+                    GOFLOATERS DEBUTS IN HYDERABAD
+                  </Link>
+                </td>
+              </tr>
+              <tr>
+                <td>March 23, 2020</td>
+                <td>:</td>
+                <td>
+                  <Link
+                    to="/announcements/gofloaters-on-an-expansion-drive"
+                    className="links"
+                  >
+                    GOFLOATERS DEBUTS IN HYDERABAD
+                  </Link>
+                </td>
+              </tr>
+              <tr>
+                <td>March 23, 2020</td>
+                <td>:</td>
+                <td>
+                  <Link
+                    to="/announcements/gofloaters-on-demand-workspace-app-expands-to-pune"
+                    className="links"
+                  >
+                    GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO PUNE
+                  </Link>
+                </td>
+              </tr>
+              <tr>
+                <td>June 20, 2020</td>
+                <td>:</td>
+                <td>
+                  <Link
+                    to="/announcements/gofloaters-on-demand-workspace-app-expands-to-kochi"
+                    className="links"
+                  >
+                    GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO KOCHI
+                  </Link>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </Layout>

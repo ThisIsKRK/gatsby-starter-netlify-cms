@@ -2,18 +2,37 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
 import SearchForm from "../components/search/search"
-import WorkCafeContent from "../components/workcafecontent"
+import OfficeSpacesContent from "../components/officespacecontent"
 import HeaderBanner from "../components/headerbanner"
-import WorkSpaceLocationSwitch from "../components/workspaceslocationswitch"
-import ListingCard from "../components/Card/listingcard"
-import { graphql } from "gatsby"
+import OfficeSpaceLocationSwitch from "../components/coworkingspacelocationswitch"
+import DailyListingCard from "../components/Card/dailylistingcard"
+import SEOHeader from "../components/seo-header"
+import { graphql, Link } from "gatsby"
 
-const KochiWorkCafe = props => {
+const KochiCoworkingSpace = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])
+  const [privateCabinFilter, setprivateCabinFilter] = useState("false")
+  const [openDeskFilter, setopenDeskFilter] = useState("false")
   const [MetroNearByFilter, setMetroNearByFilter] = useState("false")
-  const [OpenSixFilter, setOpenSixFilter] = useState("false")
-  const [MostPopularFilter, setMostPopularFilter] = useState("false")
+  const [DailyPassFilter, setDailyPassFilter] = useState("false")
+  const [TwentyFourFilter, setTwentyFourFilter] = useState("false")
+  function privateCabinCheck() {
+    if (privateCabinFilter === "true") {
+      setprivateCabinFilter("false")
+    } else {
+      setprivateCabinFilter("true")
+      setspaceFilter("Private Cabin")
+    }
+  }
+  function openDeskCheck() {
+    if (openDeskFilter === "true") {
+      setopenDeskFilter("false")
+    } else {
+      setopenDeskFilter("true")
+      setspaceFilter("Open Desk")
+    }
+  }
   function MetroNearByCheck() {
     if (MetroNearByFilter === "true") {
       setMetroNearByFilter("false")
@@ -23,40 +42,60 @@ const KochiWorkCafe = props => {
     }
   }
 
-  function OpenSixCheck() {
-    if (OpenSixFilter === "true") {
-      setOpenSixFilter("false")
+  function DailyPassCheck() {
+    if (DailyPassFilter === "true") {
+      setDailyPassFilter("false")
     } else {
-      setOpenSixFilter("true")
-      setspaceFilter("Open 6PM")
+      setDailyPassFilter("true")
+      setspaceFilter("Daily Pass")
     }
   }
-  function MostPopularCheck() {
-    if (MostPopularFilter === "true") {
-      setMostPopularFilter("false")
+  function TwentyFourCheck() {
+    if (TwentyFourFilter === "true") {
+      setTwentyFourFilter("false")
     } else {
-      setMostPopularFilter("true")
-      setspaceFilter("Most Popular")
+      setTwentyFourFilter("true")
+      setspaceFilter("Twenty Four Hours")
     }
   }
-  var metroquery,
-    opensixquery,
-    mostpopularquery = " "
-
+  var officequery,
+    metroquery,
+    opendeskquery,
+    privatecabinquery,
+    dailypassquery,
+    twentyfourquery = " "
+  if (openDeskFilter === "true") {
+    opendeskquery = "Open Desk"
+  } else {
+    opendeskquery = " "
+  }
+  if (privateCabinFilter === "true") {
+    privatecabinquery = "Private Cabin"
+  } else {
+    privatecabinquery = " "
+  }
+  if (DailyPassFilter === "true") {
+    dailypassquery = "Daily Pass"
+  } else {
+    dailypassquery = " "
+  }
   if (MetroNearByFilter === "true") {
     metroquery = "Metro Nearby"
   } else {
     metroquery = " "
   }
-  if (OpenSixFilter === "true") {
-    opensixquery = "Open 6PM"
+  if (TwentyFourFilter === "true") {
+    twentyfourquery = "Twenty Four Hours"
   } else {
-    opensixquery = " "
+    twentyfourquery = " "
   }
-  if (MostPopularFilter === "true") {
-    mostpopularquery = "Most Popular"
-  } else {
-    mostpopularquery = " "
+  if (
+    privateCabinFilter === "false" &&
+    DailyPassFilter === "false" &&
+    MetroNearByFilter === "false" &&
+    TwentyFourFilter === "false"
+  ) {
+    officequery = true
   }
 
   const OfficeFilter = () => {
@@ -65,8 +104,7 @@ const KochiWorkCafe = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a
               className={"CheckBox " + MetroNearByFilter}
@@ -77,18 +115,25 @@ const KochiWorkCafe = props => {
             </a>
           </li>
           <li>
-            <a className={"CheckBox " + OpenSixFilter} onClick={OpenSixCheck}>
-              Open &gt; 6PM{" "}
+            <a
+              className={"CheckBox " + privateCabinFilter}
+              onClick={privateCabinCheck}
+            >
+              Private Cabin{" "}
               <i className="fa fa-times-circle" aria-hidden="true"></i>
             </a>
           </li>
           <li>
+            <a className={"CheckBox " + openDeskFilter} onClick={openDeskCheck}>
+              Desk <i className="fa fa-times-circle" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
             <a
-              className={"CheckBox " + MostPopularFilter}
-              onClick={MostPopularCheck}
+              className={"CheckBox " + TwentyFourFilter}
+              onClick={TwentyFourCheck}
             >
-              Most Popular{" "}
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
+              24x7 <i className="fa fa-times-circle" aria-hidden="true"></i>
             </a>
           </li>
         </ul>
@@ -98,67 +143,65 @@ const KochiWorkCafe = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>Work Cafes | Coworking Spaces in Hyderabad - GoFloaters</title>
-        <meta
-          property="og:title"
-          content="Work Cafes | Coworking Spaces in Hyderabad - GoFloaters"
-        />
-        <meta
-          name="description"
-          content="Coworking cafés at GoFloaters offer a calm and productive environment to get work done. High speed Wi-Fi, plug points, and excellent seating is guaranteed!"
-        ></meta>
-
-        <meta
-          name="og:description"
-          content="Coworking cafés at GoFloaters offer a calm and productive environment to get work done. High speed Wi-Fi, plug points, and excellent seating is guaranteed!"
-        ></meta>
-        <meta
-          name="keywords"
-          content="gofloaters ahmedabad, Book Private Office, Shared office, Coworking Space"
-        />
-      </Helmet>
+      <SEOHeader
+         title="Best coworking spaces in Kochi | Office for rent in Kochi | Gofloaters"
+         description="Book furnished coworking spaces in Kochi for a day instantly. Great amenities and spacious coworking spaces available in Kochi for you to choose from."
+        socialURL="https://assets.gofloaters.com/socialimage/coworking-spaces-in-kochi.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="work-cafe">
-          {" "}
-          <h1>Coworking Spaces in Kochi</h1>
-        </HeaderBanner>
+        {/*<HeaderBanner headerclass="office-space"></HeaderBanner>*/}
         <div className="container">
-          <WorkCafeContent />
-        </div>
-        <div className="SpaceGray">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-3"></div>
-              <div className="col-md-6">
-                <div className="padding-20"></div>
-                <SearchForm spacetype="officeSpace"></SearchForm>
-                <div className="padding-20"></div>
-              </div>
-              <div className="col-md-3"></div>
-
-              <div className="col-md-12">
-                <br></br> <br></br>
-                <WorkSpaceLocationSwitch city="Kochi" />
-              </div>
+          <div className="row">
+            <div className="col-md-12">
+              <h1 className="listingpageTitle">Coworking Spaces in Kochi</h1>
+              <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                Coworking Spaces for every size |
+                All inclusive pricing
+              </h2>
+              <div className="padding-20"></div>
+              <SearchForm spacetype="dailyofficeSpace"></SearchForm>
+              <br></br>
+              <div className="padding-20"></div>
             </div>
-            <br />
-            <div>
-              <OfficeFilter></OfficeFilter>
+            <div className="col-md-3"></div>
+            <div className="col-md-12">
+              <OfficeSpaceLocationSwitch city="Kochi" />
             </div>
+          </div>
+          <div className="filterbar" style={{ marginTop: 15 }}>
+            <ul className="SearchListingFilter scrollmenu">
+              <li>
+                <Link to="/coworking-spaces-in-kochi/" className="active">
+                  Coworking Spaces
+                </Link>
+              </li>
+              
+              <li>
+                <Link to="/meeting-rooms-in-kochi/">Meeting Spaces</Link>
+              </li>
+              <li>
+                <Link to="/office-spaces-for-rent-in-kochi/">
+                  Office Spaces
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <OfficeFilter></OfficeFilter>
           </div>
         </div>
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Work Cafes available for you
+            {spaceSize} Coworking Spaces in Kochi available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
               const listData = list.node
-              if (spaceFilter === "All") {
+              if (spaceFilter === "All" && listData.dayPassAvailable === true) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -174,18 +217,22 @@ const KochiWorkCafe = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
               if (
-                listData.Facility.search(opensixquery) > 1 &&
-                listData.Facility.search(mostpopularquery) > 1 &&
-                listData.Facility.search(metroquery) > 1
+                listData.Facility.search(opendeskquery) > 1 &&
+                listData.Facility.search(privatecabinquery) > 1 &&
+                listData.dayPassAvailable === true &&
+                listData.Facility.search(metroquery) > 1 &&
+                listData.Facility.search(twentyfourquery) > 1
               ) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -201,23 +248,39 @@ const KochiWorkCafe = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
             })}
-          </div>
+          </div>{" "}
+          <p className="text-center">
+            Are you a freelancer or an independent professional? Do you own a
+            startup or a small/medium business or part of a large enterprise? We
+            know exactly know what you need when it comes to an office. We’ve
+            done all the work for you! We’ve handpicked office spaces in your
+            city - spaces that come with fast Wi-Fi, well-designed interiors and
+            ample plug points. The best part is you say ‘NO’ to contracts and
+            high rents, and can pay per day or month-on-month. Yes, you read
+            right!
+          </p>
         </div>
       </Layout>
     </div>
   )
 }
-export default KochiWorkCafe
+export default KochiCoworkingSpace
 export const query = graphql`
-  query KochiWorkCafe {
+  query KochiCoworkingSpace {
     allListings(
-      filter: { subType: { eq: "Work Cafe" }, spaceCity: { eq: "Kochi" } }
+      filter: {
+        subType: { eq: "Office Space" }
+        spaceCity: { eq: "Kochi" }
+        dayPassAvailable: { eq: true }
+      }
     ) {
       totalCount
       edges {
@@ -229,6 +292,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -241,6 +305,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

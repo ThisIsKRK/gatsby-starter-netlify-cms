@@ -4,11 +4,7 @@ import { Helmet } from "react-helmet"
 import HeaderBanner from "../components/headerbanner"
 import "../styles/style.scss"
 import "../styles/csstyle.scss"
-import Vinay from "../img/testimonial/vinay-004.jpg"
-import Arpitaa from "../img/testimonial/arpita-002.jpg"
-import Devi from "../img/testimonial/deviprasad-003.jpg"
-import Balesh from "../img/testimonial/balesh-001.jpg"
-import Lavanya from "../img/testimonial/Lavanya-Testimonial.png"
+
 export default function ErrorPage() {
   return (
     <div>
@@ -27,7 +23,7 @@ export default function ErrorPage() {
                   &quot;Never have to worry about Internet or Plug Points.&quot;
                 </h4>
                 <img
-                  src={Arpitaa}
+                  src="https://assets.gofloaters.com/testimonial/arpita-002.jpg"
                   className="customerimage"
                   alt="Arpitha Ramani"
                 ></img>
@@ -46,7 +42,7 @@ export default function ErrorPage() {
                   cities.&quot;
                 </h4>
                 <img
-                  src={Vinay}
+                  src="https://assets.gofloaters.com/testimonial/vinay-004.jpg"
                   className="customerimage"
                   alt="Vinay Pushpakaran"
                 ></img>
@@ -68,7 +64,7 @@ export default function ErrorPage() {
                       target="_blank"
                     >
                       <img
-                        src={Lavanya}
+                        src="https://assets.gofloaters.com/testimonial/Lavanya-Testimonial.jpg"
                         className="responsiveimg"
                         alt="Lavanya Soman, CEO and Founder of Straight Circles"
                       ></img>
@@ -98,7 +94,7 @@ export default function ErrorPage() {
                   benefits.&quot;
                 </h4>
                 <img
-                  src={Devi}
+                  src="https://assets.gofloaters.com/testimonial/deviprasad-003.jpg"
                   className="customerimage"
                   alt="Devi Prasad"
                 ></img>
@@ -116,7 +112,7 @@ export default function ErrorPage() {
                   &quot;My go-to platform for all our external meetings.&quot;
                 </h4>
                 <img
-                  src={Balesh}
+                  src="https://assets.gofloaters.com/testimonial/balesh-001.jpg"
                   className="customerimage"
                   alt="Balesh Raghurajan"
                 ></img>

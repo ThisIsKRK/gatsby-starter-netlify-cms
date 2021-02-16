@@ -1,14 +1,5 @@
 import React from "react"
-import WorkCafeImage from "../styles/workcafe.jpg"
-import OfficeSpace from "../styles/officespace.jpg"
-import TrainingSpace from "../styles/trainingspace.jpg"
-import EventSpace from "../styles/eventspace.jpg"
-import MeetingSpace from "../styles/meetingspaces.jpg"
-import MOfficeSpace from "../styles/officespacem.jpg"
-import MWorkCafeImage from "../styles/workcafem.jpg"
-import MTrainingSpace from "../styles/trainingspacem.jpg"
-import MEventSpace from "../styles/eventspacem.jpg"
-import MMeetingSpace from "../styles/meetingspacesm.jpg"
+
 const HeaderBanner = props => {
   var headerclass = ""
   var MyClass = "1"
@@ -28,13 +19,13 @@ const HeaderBanner = props => {
       {headerclass === "office-space" ? (
         <div className="customHeader">
           <img
-            src={OfficeSpace}
+            src="https://assets.gofloaters.com/spaces/officespace.jpg"
             style={{ width: "100%" }}
             alt="Office Space GoFloaters"
             className="DesktopOnly"
           ></img>
           <img
-            src={MOfficeSpace}
+            src="https://assets.gofloaters.com/spaces/officespacem.jpg"
             style={{ width: "100%" }}
             alt="Office Space GoFloaters"
             className="MobileOnly"
@@ -48,13 +39,13 @@ const HeaderBanner = props => {
       {headerclass === "training-space" ? (
         <div className="customHeader">
           <img
-            src={TrainingSpace}
+            src="https://assets.gofloaters.com/spaces/trainingspace.jpg"
             style={{ width: "100%" }}
             alt="Training Space GoFloaters"
             className="DesktopOnly"
           ></img>
           <img
-            src={MTrainingSpace}
+            src="https://assets.gofloaters.com/spaces/trainingspacem.jpg"
             style={{ width: "100%" }}
             alt="Training Space GoFloaters"
             className="MobileOnly"
@@ -68,13 +59,13 @@ const HeaderBanner = props => {
       {headerclass === "work-cafe" ? (
         <div className="customHeader">
           <img
-            src={WorkCafeImage}
+            src="https://assets.gofloaters.com/spaces/workcafe.jpg"
             style={{ width: "100%" }}
             alt="Work Cafe GoFloaters"
             className="DesktopOnly"
           ></img>
           <img
-            src={MWorkCafeImage}
+            src="https://assets.gofloaters.com/spaces/workcafem.jpg"
             style={{ width: "100%" }}
             alt="Work Cafe GoFloaters"
             className="MobileOnly"
@@ -88,13 +79,13 @@ const HeaderBanner = props => {
       {headerclass === "meeting-space" ? (
         <div className="customHeader">
           <img
-            src={MeetingSpace}
+            src="https://assets.gofloaters.com/spaces/meetingspaces.jpg"
             style={{ width: "100%" }}
             alt="Meeting Space GoFloaters"
             className="DesktopOnly"
           ></img>
           <img
-            src={MMeetingSpace}
+            src="https://assets.gofloaters.com/spaces/meetingspacesm.jpg"
             style={{ width: "100%" }}
             alt="Meeting Space GoFloaters"
             className="MobileOnly"
@@ -108,13 +99,13 @@ const HeaderBanner = props => {
       {headerclass === "event-space" ? (
         <div className="customHeader">
           <img
-            src={EventSpace}
+            src="https://assets.gofloaters.com/spaces/eventspace.jpg"
             style={{ width: "100%" }}
             alt="Event Spaces GoFloaters"
             className="DesktopOnly"
           ></img>
           <img
-            src={MEventSpace}
+            src="https://assets.gofloaters.com/spaces/eventspacem.jpg"
             style={{ width: "100%" }}
             alt="Event Spaces GoFloaters"
             className="MobileOnly"

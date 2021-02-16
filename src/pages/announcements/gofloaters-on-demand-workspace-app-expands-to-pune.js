@@ -4,12 +4,17 @@ import { Helmet } from "react-helmet"
 import awslogo from "../../img/partner/aws-logo.png"
 import HeaderBanner from "../../components/headerbanner.js"
 import { Link } from "gatsby"
+import SEOHeader from "../../components/seo-header"
+import SocialImage from "../../img/socialimage/homepage.jpg"
 const announcementone = () => {
   return (
     <div>
-      <Helmet>
-        <title>GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO PUNE</title>
-      </Helmet>
+      <SEOHeader
+        title="GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO PUNE"
+        description="GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO PUNE"
+       socialURL="https://assets.gofloaters.com/socialimage/coworking-spaces-in-bengaluru.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
         <HeaderBanner>
           <h1>GOFLOATERS, ON-DEMAND WORKSPACE APP EXPANDS TO PUNE</h1>

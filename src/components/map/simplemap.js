@@ -5,6 +5,7 @@ const AnyReactComponent = ({ text }) => (
     <img
       src="https://app.gofloaters.com/assets/imgs/location.png"
       width="20"
+      alt="Space Location"
     ></img>
   </div>
 )

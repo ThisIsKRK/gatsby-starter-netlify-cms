@@ -8,13 +8,20 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.sourceNodes = async ({ boundActionCreators }) => {
   const { createNode } = boundActionCreators
   const fetchData = () =>
-    axios.get(`https://gofloaters.firebaseapp.com/spaces/allactive`)
+    axios.get(`https://gofloaters.web.app/spaces/allactive`)
   const res = await fetchData()
   let responsevalue = Object.values(res.data)
   const details = responsevalue
   function FacilityList(facility) {
     if (facility) {
       return facility
+    } else {
+      return ""
+    }
+  }
+  function geoLocationNew(geoLocation) {
+    if (typeof detail.spaceSubType === "object") {
+      return geoLocation
     } else {
       return ""
     }
@@ -152,6 +159,8 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
     var hourpassavailable = "false"
     var monthpassavailable = "false"
     var daypassavailable = "false"
+    var geoLat = ""
+    var geoLang = ""
     {
       /* if (!detail.spaceSubType === "Work Cafe") {
       str = detail.spaceDisplayName
@@ -192,6 +201,9 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
       slug = slug.replace(".", "-")
       slug = slug.replace("|", "-")
       slug = slug.replace("---", "-")
+      slug = slug.replace("_", "-")
+      slug = slug.replace("--", "-")
+      slug = slug.replace("|", "")
       slug = slug.replace("--", "-")
     }
     if (detail.gofloatersSpaceName === "N/A") {
@@ -205,6 +217,8 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
       slug = slug.replace(".", "-")
       slug = slug.replace("|", "-")
       slug = slug.replace("---", "-")
+      slug = slug.replace("--", "-")
+      slug = slug.replace("|", "")
       slug = slug.replace("--", "-")
     }
 
@@ -245,6 +259,15 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
     } else {
       subSpaceTypeString = ""
     }
+    var geoLocationLatLang = []
+    // console.log(typeof detail.location)
+    if (typeof detail.location === "object") {
+      geoLocationLatLang = detail.location
+    } else {
+      geoLocationLatLang = []
+    }
+    // console.log("geoLocationLatLang", slug, geoLocationLatLang)
+    //console.log("detail.location", slug, detail.location)
     var spaceSize = " "
     if (detail.seatsAvailable) {
       spaceSize = detail.seatsAvailable.toString()
@@ -260,6 +283,23 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
         "https://cdn.app.gofloaters.com"
       )
     }
+    var spaceImagesarray = []
+    if (detail.photos) {
+      spaceImagesarray = detail.photos
+    }
+
+    if (typeof detail.location !== "undefined" && detail.location.length > 0) {
+      geoLat = detail.location[1]
+    } else {
+      geoLat = ""
+    }
+
+    if (typeof detail.location !== "undefined" && detail.location.length > 0) {
+      geoLang = detail.location[0]
+    } else {
+      geoLang = ""
+    }
+
     function mondayTiming(operationTiming) {
       var values = { from: " ", to: " ", useNow: false, holiday: false }
       if (operationTiming) {
@@ -316,6 +356,7 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
         return values
       }
     }
+
     const ListingNode = {
       id: `${i}`,
       parent: `__SOURCE__`,
@@ -325,7 +366,7 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
       children: [],
       spaceId: detail.spaceId,
       spaceImage: spaceImages,
-      photos: detail.photos,
+      photos: spaceImagesarray,
       spaceTitle: detail.spaceDisplayName,
       spaceGFName: detail.gofloatersSpaceName,
       OriginalName: detail.originalName,
@@ -337,7 +378,7 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
       priceDay: priceperday,
       priceMonth: pricepermonth,
       slug: slug,
-      location: detail.location,
+      hasCovidSafeBadge: detail.hasCovidSafeBadge,
       spaceDesc: detail.spaceDesc,
       seat: spaceSize,
       exclusiveOffer: detail.exclusiveOffer,
@@ -350,8 +391,9 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
       hourPassAvailable: hourpassavailable,
       dayPassAvailable: daypassavailable,
       officeSpaceType: detail.officeSpaceType,
-      purposesList: detail.purposesList,
+      geoLocation: geoLocationLatLang,
       spaceDisplayName: detail.spaceDisplayName,
+      spaceOverview: detail.spaceOverview,
       Rating: getAvgRating(detail.feedback),
       Facility:
         "All," +
@@ -395,10 +437,8 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const spaceDetail = path.resolve(`./src/templates/spaces.js`)
   const EventPost = path.resolve(`./src/templates/event-post.js`)
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
-  const tagTemplate = path.resolve("src/templates/tags.js")
 
   return graphql(
     `
@@ -432,7 +472,10 @@ exports.createPages = ({ graphql, actions }) => {
         }
         blog: allMarkdownRemark(
           limit: 1000
-          filter: { fileAbsolutePath: { regex: "/(blog)/" } }
+          filter: {
+            fileAbsolutePath: { regex: "/(blog)/" }
+            frontmatter: { templateKey: { eq: "blog-post" } }
+          }
         ) {
           totalCount
           edges {
@@ -474,10 +517,25 @@ exports.createPages = ({ graphql, actions }) => {
     })
     // Office Space Daily
     posts.forEach(post => {
-      var SpaceURL = `/daily-office/${post.node.slug}/`
+      var SpaceURL = `/office-space/${post.node.slug}/`
       if (
         post.node.slug !== "" &&
-        post.node.subType == "Office Space" &&
+        post.node.subType.includes("Office Space") &&
+        post.node.monthPassAvailable === true
+      ) {
+        createPage({
+          path: SpaceURL,
+          component: path.resolve(`./src/templates/mspaces.js`),
+          context: { slug: post.node.slug },
+        })
+      }
+    })
+    // Coworking Space
+    posts.forEach(post => {
+      var SpaceURL = `/coworking-space/${post.node.slug}/`
+      if (
+        post.node.slug !== "" &&
+        post.node.subType.includes("Office Space") &&
         post.node.dayPassAvailable === true
       ) {
         createPage({
@@ -488,11 +546,11 @@ exports.createPages = ({ graphql, actions }) => {
       }
     })
     // Office Space Monthly
-    posts.forEach(post => {
+    {/*posts.forEach(post => {
       var SpaceURL = `/monthly-office/${post.node.slug}/`
       if (
         post.node.slug !== "" &&
-        post.node.subType == "Office Space" &&
+        post.node.subType.includes("Office Space") &&
         post.node.monthPassAvailable === true
       ) {
         createPage({
@@ -501,7 +559,7 @@ exports.createPages = ({ graphql, actions }) => {
           context: { slug: post.node.slug },
         })
       }
-    })
+    }) */}
     //Event Pages
 
     events.forEach((event, index) => {

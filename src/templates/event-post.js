@@ -2,7 +2,8 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/Layout"
 import HeaderBanner from "../components/headerbanner"
-import { Helmet } from "react-helmet"
+import SEOHeader from "../components/seo-header"
+
 class EventPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
@@ -11,22 +12,13 @@ class EventPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <Helmet>
-          <title>{post.frontmatter.title}</title>
-          <meta
-            name="description"
-            content={post.frontmatter.description}
-          ></meta>
-          <meta property="og:title" content={post.frontmatter.title} />
-          <meta
-            property="og:description"
-            content={post.frontmatter.description}
-          />
-          <meta
-            property="og:image"
-            content={post.frontmatter.featuredImage.publicURL}
-          />
-        </Helmet>
+        <SEOHeader
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          socialLocalURL={post.frontmatter.featuredImage.publicURL}
+          pinterest="true"
+          socialURL=""
+        ></SEOHeader>
         <HeaderBanner>
           <h3>GoFloaters Events</h3>
           <p
@@ -45,25 +37,52 @@ class EventPostTemplate extends React.Component {
             <div className="col-md-3 eventImage">
               <img
                 src={post.frontmatter.featuredImage.publicURL}
-                class="img-responsive"
+                className="img-responsive"
+                alt={post.frontmatter.title}
               ></img>
             </div>
             <div className="col-md-9">
               <div dangerouslySetInnerHTML={{ __html: post.html }} />
               <p>
-                <strong>
-                  Event Date : {post.frontmatter.eventdate}
-                  {post.frontmatter.eventenddate
-                    ? " - " + post.frontmatter.eventenddate
-                    : ""}
-                </strong>
+                <strong>Event Date</strong> : {post.frontmatter.eventdate}
+                {post.frontmatter.eventenddate
+                  ? " - " + post.frontmatter.eventenddate
+                  : ""}
               </p>
               <p>
-                <b>
-                  {post.frontmatter.eventtime
-                    ? "Event Time : " + post.frontmatter.eventtime
-                    : ""}
-                </b>
+                <strong>Event Time </strong> :{" "}
+                {post.frontmatter.eventtime ? post.frontmatter.eventtime : ""}
+              </p>
+              <p>
+                <br />
+                {post.frontmatter.calendarLink ? (
+                  <a
+                    href={post.frontmatter.calendarLink}
+                    target="_blank"
+                    rel="nofollow"
+                    className="addtoCalendar "
+                  >
+                    <i className="fa fa-calendar"></i> Add to Calendar
+                  </a>
+                ) : (
+                  ""
+                )}
+                <br />
+
+                {post.frontmatter.watchLive &&
+                post.frontmatter.watchLive != "None" ? (
+                  <a
+                    href={post.frontmatter.watchLive}
+                    target="_blank"
+                    rel="nofollow"
+                    className="addtoCalendar "
+                  >
+                    <i className="fa fa-play"></i> Watch Live
+                  </a>
+                ) : (
+                  ""
+                )}
+                <br />
               </p>
             </div>
 
@@ -129,7 +148,10 @@ export const pageQuery = graphql`
         title
         eventdate(formatString: "MMMM DD, YYYY")
         eventtime
+        description
         eventenddate(formatString: "MMMM DD, YYYY")
+        calendarLink
+        watchLive
         featuredImage {
           relativeDirectory
           publicURL

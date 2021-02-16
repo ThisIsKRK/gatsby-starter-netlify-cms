@@ -6,7 +6,9 @@ import MeetingSpacesContent from "../components/meetingspacecontent"
 import HeaderBanner from "../components/headerbanner"
 import MeetingLocationSwitch from "../components/meetinglocationswitch"
 import ListingCard from "../components/Card/listingcard"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
+import SEOHeader from "../components/seo-header"
+import SocialImage from "../img/socialimage/meeting-rooms.jpg"
 
 const MeetingSpaces = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
@@ -115,8 +117,7 @@ const MeetingSpaces = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a className={"CheckBox " + LessFiveFilter} onClick={LessFiveCheck}>
               &lt; 5 Seats{" "}
@@ -152,7 +153,7 @@ const MeetingSpaces = props => {
               className={"CheckBox " + CoffeeTeaFilter}
               onClick={CoffeeTeaCheck}
             >
-              Free Tea/Cofee{" "}
+              Free Tea/Coffee{" "}
               <i className="fa fa-times-circle" aria-hidden="true"></i>
             </a>
           </li>
@@ -163,58 +164,63 @@ const MeetingSpaces = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>
-          Meeting spaces on Hourly, Daily & Monthly Rental - GoFloaters
-        </title>
-        <meta
-          property="og:title"
-          content="Meeting spaces on Hourly, Daily & Monthly Rental - GoFloaters"
-        />
-        <meta
-          name="description"
-          content="Meeting spaces, conference rooms, training rooms, event spaces at great prices are available at GoFloaters. Get exactly what you need when you book with us!"
-        ></meta>
-
-        <meta
-          name="og:description"
-          content="Meeting spaces, conference rooms, training rooms, event spaces at great prices are available at GoFloaters. Get exactly what you need when you book with us!"
-        ></meta>
-      </Helmet>
+      <SEOHeader
+        title="Book Conference Rooms & Meeting Rooms in Chennai at GoFloaters"
+        description="Book Meeting Rooms In Chennai With GoFloaters. Conduct your meetings professionally with the well-equipped Conference rooms in Chennai."
+        socialURL="https://assets.gofloaters.com/socialimage/meeting-rooms.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="meeting-space">
-          {" "}
-          <h1>Meeting Spaces</h1>
-        </HeaderBanner>{" "}
-        <div className="container">
-          <MeetingSpacesContent />
-        </div>
-        <div className="SpaceGray">
+        {/*<HeaderBanner headerclass="meeting-space"></HeaderBanner>*/}
+        <div>
           <div className="container">
             <div className="row">
-              <div className="col-md-3"></div>
-              <div className="col-md-6">
+              <div className="col-md-12">
+                <h1 className="listingpageTitle">Meeting Spaces</h1>
+                <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                  Meeting Spaces by the hour | Fully-equipped spaces | Pocket
+                  Friendly
+                </h2>
                 <div className="padding-20"></div>
-                <SearchForm spacetype="officeSpace"></SearchForm>
+                <SearchForm spacetype="meetingSpace"></SearchForm>
+                <br></br>
                 <div className="padding-20"></div>
               </div>
               <div className="col-md-3"></div>
-
               <div className="col-md-12">
-                <br></br> <br></br>
-                <MeetingLocationSwitch city="Bengaluru" />
+                <MeetingLocationSwitch city="Chennai" />
               </div>
             </div>
-            <br />
+            <div className="filterbar" style={{ marginTop: 15 }}>
+              <ul className="SearchListingFilter scrollmenu">
+                <li>
+                  <Link to="/coworking-spaces-in-chennai/">
+                    Coworking Spaces
+                  </Link>
+                </li>
+              
+                <li>
+                  <Link to="/meeting-rooms-in-chennai/" className="active">
+                    Meeting Spaces
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/office-spaces-for-rent-in-chennai/">
+                    Office Spaces
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <div>
               <OfficeFilter></OfficeFilter>
             </div>
           </div>
         </div>
+
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Meeting Spaces available for you
+            {spaceSize} Meeting Spaces in Chennai available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
@@ -237,8 +243,10 @@ const MeetingSpaces = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
                     Slug={"/meeting-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
                   ></ListingCard>
                 )
               }
@@ -267,12 +275,102 @@ const MeetingSpaces = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
                     Slug={"/meeting-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
                   ></ListingCard>
                 )
               }
             })}
+          </div>
+          <div className="col-md-12">
+            <h4 style={{ fontWeight: "bold" }}>
+              What kind of meeting spaces can I get on GoFloaters?
+            </h4>
+            <p>
+              GoFloaters has meeting spaces of all sizes and for all kinds of
+              meetings. Whether you are looking to just have a team discussion
+              or looking for a room for a presentation or a training session we
+              have you covered. You can also get spaces to conduct your
+              interviews, onboarding of your new employees or conduct workshops
+              at GoFloaters meeting spaces. All of the spaces come equipped with
+              the amenities that help you get going the moment you enter.&nbsp;
+            </p>
+
+            <br />
+            <ul>
+              <li>
+                <strong>Flexibility</strong> : No long term contracts that block
+                you{" "}
+              </li>
+              <li>
+                <strong>Cost Effective</strong> : You pay one simple and
+                affordable rent for the space and all the amenities{" "}
+              </li>
+              <li>
+                <strong>Pay-per-use</strong> : This is something unique to
+                GoFloaters where we have made the choicest of spaces available
+                on daily and hourly rentals.&nbsp;
+              </li>
+              <li>
+                <strong>Location choice</strong> : With thousands of options
+                available you can get a work space where you need it{" "}
+              </li>
+              <li>
+                <strong>Community</strong> : Coworking spaces are the breeding
+                ground for strong communities of entrepreneurs and freelancers{" "}
+              </li>
+            </ul>
+            <br />
+            <h4 style={{ fontWeight: "bold" }}>
+              Why should I use the GoFloaters app to book?
+            </h4>
+            <p>
+              GoFloaters has been in the space of helping individuals and teams
+              find flexible and affordable workspaces for over 3 years now.
+              GoFloaters was started with a vision to help anyone get an office
+              space when they want, where they want and within their budget. We
+              set out to build office spaces for a distributed world where
+              individuals and teams should be able to work near home.&nbsp;
+            </p>
+            <br />
+            <p>
+              Following are the advantages of booking coworking spaces and
+              meeting spaces on the GoFloaters app:
+            </p>
+            <ul>
+              <li>
+                <strong>Work Near Home </strong>: In most of the cities that we
+                serve you can get a space within 5 kms of your home or wherever
+                you are{" "}
+              </li>
+              <li>
+                <strong>Pay-per-use</strong> : You can book coworking spaces on
+                a daily basis and meeting spaces on an hourly basis and pay only
+                for the time you have used it.{" "}
+              </li>
+              <li>
+                <strong>No contracts </strong>: You don&rsquo;t have to sign any
+                kind of contracts with us.&nbsp;
+              </li>
+              <li>
+                <strong>Cost effective</strong> : We have negotiated heavily
+                with our space partners to bring you savings of at least 20% if
+                not more on the day pass rates and the meeting room rents.{" "}
+              </li>
+              <li>
+                <strong>Instant Bookings</strong> : No need to call anyone or
+                email anyone to check space availability. You can book coworking
+                spaces instantaneously. Meeting spaces just need 30 mins of time
+                for confirmation.&nbsp;&nbsp;
+              </li>
+              <li>
+                <strong>Community Perks</strong> : GoFloaters has partnered with
+                over 65+ companies to bring you over Rs 1 Crore of benefits to
+                you.{" "}
+              </li>
+            </ul>
           </div>
         </div>
       </Layout>
@@ -283,10 +381,7 @@ export default MeetingSpaces
 export const query = graphql`
   query MeetingSpace {
     allListings(
-      filter: {
-        subType: { eq: "Meeting Space" }
-        spaceCity: { eq: "Bengaluru" }
-      }
+      filter: { subType: { eq: "Meeting Space" }, spaceCity: { eq: "Chennai" } }
     ) {
       totalCount
       edges {
@@ -298,6 +393,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -310,6 +406,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

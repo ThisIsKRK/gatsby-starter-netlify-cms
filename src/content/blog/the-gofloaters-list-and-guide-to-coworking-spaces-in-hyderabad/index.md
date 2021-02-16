@@ -6,7 +6,7 @@ description: The city of biryani and most recently breweries has one foot in the
 featuredImage: "./vamsi-konduri-GZ11eIJy7ZU-unsplash-1.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Guides & Hacks
 tags:
  - Coworking
  - Listicle

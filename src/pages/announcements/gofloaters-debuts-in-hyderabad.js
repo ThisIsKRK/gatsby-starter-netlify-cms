@@ -4,12 +4,17 @@ import { Helmet } from "react-helmet"
 import awslogo from "../../img/partner/aws-logo.png"
 import HeaderBanner from "../../components/headerbanner.js"
 import { Link } from "gatsby"
+import SEOHeader from "../../components/seo-header"
+import SocialImage from "../../img/socialimage/homepage.jpg"
 const announcementone = () => {
   return (
     <div>
-      <Helmet>
-        <title>GOFLOATERS DEBUTS IN HYDERABAD</title>
-      </Helmet>
+      <SEOHeader
+        title="GOFLOATERS DEBUTS IN HYDERABAD"
+        description="GoFloaters, a new-age work platform that helps hundreds of early-stage startups, freelancers, sales and enterprise teams to find plug-and-play workspaces across Chennai, Bengaluru and Coimbatore is launching its operations in Hyderabad."
+        socialURL="https://assets.gofloaters.com/socialimage/coworking-spaces-in-bengaluru.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
         <HeaderBanner>
           <h1>GOFLOATERS DEBUTS IN HYDERABAD</h1>
@@ -31,9 +36,7 @@ const announcementone = () => {
                 GoFloaters, a new-age work platform that helps hundreds of
                 early-stage startups, freelancers, sales and enterprise teams to
                 find plug-and-play workspaces across Chennai, Bengaluru and
-                Coimbatore is launching its operations in Hyderabad. Making it
-                the fourth location to address the upward demand for shared
-                on-demand workspaces in Hyderabad.{" "}
+                Coimbatore is launching its operations in Hyderabad.{" "}
               </p>
               <p>
                 <strong>Some interviews on this story: </strong>

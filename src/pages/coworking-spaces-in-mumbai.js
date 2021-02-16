@@ -2,18 +2,38 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
 import SearchForm from "../components/search/search"
-import WorkCafeContent from "../components/workcafecontent"
+import OfficeSpacesContent from "../components/officespacecontent"
 import HeaderBanner from "../components/headerbanner"
-import WorkSpaceLocationSwitch from "../components/workspaceslocationswitch"
-import ListingCard from "../components/Card/listingcard"
-import { graphql } from "gatsby"
+import OfficeSpaceLocationSwitch from "../components/coworkingspacelocationswitch"
+import DailyListingCard from "../components/Card/dailylistingcard"
+import SEOHeader from "../components/seo-header"
 
-const MumbaiWorkCafe = props => {
+import { graphql, Link } from "gatsby"
+
+const MumbaiCoworkingSpace = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])
+  const [privateCabinFilter, setprivateCabinFilter] = useState("false")
+  const [openDeskFilter, setopenDeskFilter] = useState("false")
   const [MetroNearByFilter, setMetroNearByFilter] = useState("false")
-  const [OpenSixFilter, setOpenSixFilter] = useState("false")
-  const [MostPopularFilter, setMostPopularFilter] = useState("false")
+  const [DailyPassFilter, setDailyPassFilter] = useState("false")
+  const [TwentyFourFilter, setTwentyFourFilter] = useState("false")
+  function privateCabinCheck() {
+    if (privateCabinFilter === "true") {
+      setprivateCabinFilter("false")
+    } else {
+      setprivateCabinFilter("true")
+      setspaceFilter("Private Cabin")
+    }
+  }
+  function openDeskCheck() {
+    if (openDeskFilter === "true") {
+      setopenDeskFilter("false")
+    } else {
+      setopenDeskFilter("true")
+      setspaceFilter("Open Desk")
+    }
+  }
   function MetroNearByCheck() {
     if (MetroNearByFilter === "true") {
       setMetroNearByFilter("false")
@@ -23,40 +43,60 @@ const MumbaiWorkCafe = props => {
     }
   }
 
-  function OpenSixCheck() {
-    if (OpenSixFilter === "true") {
-      setOpenSixFilter("false")
+  function DailyPassCheck() {
+    if (DailyPassFilter === "true") {
+      setDailyPassFilter("false")
     } else {
-      setOpenSixFilter("true")
-      setspaceFilter("Open 6PM")
+      setDailyPassFilter("true")
+      setspaceFilter("Daily Pass")
     }
   }
-  function MostPopularCheck() {
-    if (MostPopularFilter === "true") {
-      setMostPopularFilter("false")
+  function TwentyFourCheck() {
+    if (TwentyFourFilter === "true") {
+      setTwentyFourFilter("false")
     } else {
-      setMostPopularFilter("true")
-      setspaceFilter("Most Popular")
+      setTwentyFourFilter("true")
+      setspaceFilter("Twenty Four Hours")
     }
   }
-  var metroquery,
-    opensixquery,
-    mostpopularquery = " "
-
+  var officequery,
+    metroquery,
+    opendeskquery,
+    privatecabinquery,
+    dailypassquery,
+    twentyfourquery = " "
+  if (openDeskFilter === "true") {
+    opendeskquery = "Open Desk"
+  } else {
+    opendeskquery = " "
+  }
+  if (privateCabinFilter === "true") {
+    privatecabinquery = "Private Cabin"
+  } else {
+    privatecabinquery = " "
+  }
+  if (DailyPassFilter === "true") {
+    dailypassquery = "Daily Pass"
+  } else {
+    dailypassquery = " "
+  }
   if (MetroNearByFilter === "true") {
     metroquery = "Metro Nearby"
   } else {
     metroquery = " "
   }
-  if (OpenSixFilter === "true") {
-    opensixquery = "Open 6PM"
+  if (TwentyFourFilter === "true") {
+    twentyfourquery = "Twenty Four Hours"
   } else {
-    opensixquery = " "
+    twentyfourquery = " "
   }
-  if (MostPopularFilter === "true") {
-    mostpopularquery = "Most Popular"
-  } else {
-    mostpopularquery = " "
+  if (
+    privateCabinFilter === "false" &&
+    DailyPassFilter === "false" &&
+    MetroNearByFilter === "false" &&
+    TwentyFourFilter === "false"
+  ) {
+    officequery = true
   }
 
   const OfficeFilter = () => {
@@ -65,8 +105,7 @@ const MumbaiWorkCafe = props => {
     })
     return (
       <div className="officefiltercontainer">
-        <b>Filter:</b>
-        <ul className="OfficeFilter">
+        <ul className="OfficeFilter scrollmenu">
           <li>
             <a
               className={"CheckBox " + MetroNearByFilter}
@@ -77,18 +116,25 @@ const MumbaiWorkCafe = props => {
             </a>
           </li>
           <li>
-            <a className={"CheckBox " + OpenSixFilter} onClick={OpenSixCheck}>
-              Open &gt; 6PM{" "}
+            <a
+              className={"CheckBox " + privateCabinFilter}
+              onClick={privateCabinCheck}
+            >
+              Private Cabin{" "}
               <i className="fa fa-times-circle" aria-hidden="true"></i>
             </a>
           </li>
           <li>
+            <a className={"CheckBox " + openDeskFilter} onClick={openDeskCheck}>
+              Desk <i className="fa fa-times-circle" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
             <a
-              className={"CheckBox " + MostPopularFilter}
-              onClick={MostPopularCheck}
+              className={"CheckBox " + TwentyFourFilter}
+              onClick={TwentyFourCheck}
             >
-              Most Popular{" "}
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
+              24x7 <i className="fa fa-times-circle" aria-hidden="true"></i>
             </a>
           </li>
         </ul>
@@ -98,67 +144,72 @@ const MumbaiWorkCafe = props => {
   const lists = props.data.allListings.edges
   return (
     <div>
-      <Helmet>
-        <title>Work Cafes | Coworking Spaces in Mumbai - GoFloaters</title>
-        <meta
-          property="og:title"
-          content="Work Cafes | Coworking Spaces in Mumbai - GoFloaters"
-        />
-        <meta
-          name="description"
-          content="Coworking cafés at GoFloaters offer a calm and productive environment to get work done. High speed Wi-Fi, plug points, and excellent seating is guaranteed!"
-        ></meta>
-
-        <meta
-          name="og:description"
-          content="Coworking cafés at GoFloaters offer a calm and productive environment to get work done. High speed Wi-Fi, plug points, and excellent seating is guaranteed!"
-        ></meta>
-        <meta
-          name="keywords"
-          content="gofloaters ahmedabad, Book Private Office, Shared office, Coworking Space"
-        />
-      </Helmet>
+      <SEOHeader
+          title="Best coworking spaces in Mumbai | Office for rent in Mumbai | Gofloaters"
+          description="Book furnished coworking spaces in Mumbai for a day instantly. Great amenities and spacious coworking spaces available in Mumbai for you to choose from."
+        socialURL="https://assets.gofloaters.com/socialimage/coworking-spaces-in-mumbai.jpg"
+        pinterest="true"
+      ></SEOHeader>
       <Layout>
-        <HeaderBanner headerclass="work-cafe">
-          {" "}
-          <h1>Coworking Spaces in Mumbai</h1>
-        </HeaderBanner>
+        {/*<HeaderBanner headerclass="office-space"></HeaderBanner>*/}
         <div className="container">
-          <WorkCafeContent />
-        </div>
-        <div className="SpaceGray">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-3"></div>
-              <div className="col-md-6">
-                <div className="padding-20"></div>
-                <SearchForm spacetype="officeSpace"></SearchForm>
-                <div className="padding-20"></div>
-              </div>
-              <div className="col-md-3"></div>
-
-              <div className="col-md-12">
-                <br></br> <br></br>
-                <WorkSpaceLocationSwitch city="Mumbai" />
-              </div>
+          <div className="row">
+            <div className="col-md-12">
+              <h1 className="listingpageTitle">Coworking Spaces in Mumbai</h1>
+              <h2 style={{ fontSize: "1.2em", lineHeight: "1.2" }}>
+                Coworking Spaces for every size |
+                All inclusive pricing
+              </h2>
+              <div className="padding-20"></div>
+              <p style={{ fontSize: "13px" }}>
+                Your search for best coworking space in Mumbai has a destination
+                at GoFloaters. The range of a hot desk in Mumbai is from Rs 200
+                / day to Rs 700 / day. Some of the popular localities are
+                <a href="https://gofloaters.com/search?city=Dwarka,%20New+Delhi,%20Delhi&lat=28.5733056&lng=77.0100758&spaceType=dailyofficeSpace">Andheri</a>, <a href="https://gofloaters.com/searchresult?city=Andheri%20East,%20Mumbai,%20%20Maharashtra&lat=19.1178548&lng=72.8631304&spaceType=dailyofficeSpace">Andheri East</a>,{" "}
+                   <a href="https://gofloaters.com/search/?city=Borivali,%20Mumbai,%20Maharashtra&lat=19.2317945&lng=72.8369492&spaceType=dailyofficeSpace">Borivali</a>, <a href="https://gofloaters.com/search/?city=Navi%20Mumbai,%20Maharashtra,%20%20India&lat=19.0330488&lng=73.0296625&spaceType=meetingSpace">Navi Mumbai</a>, <a href="https://gofloaters.com/searchresult?city=Thane,%20Maharashtra,%20%20India&lat=19.2183307&lng=72.9780897&spaceType=dailyofficeSpace">Thane</a> and <a href="https://gofloaters.com/search/?city=Lower%20Parel,%20Mumbai,%20%20Maharashtra&lat=18.9982461&lng=72.82696460000001&spaceType=dailyofficeSpace">Lower Parel</a>.
+              </p>
+              <SearchForm spacetype="dailyofficeSpace"></SearchForm>
+              <br></br>
+              <div className="padding-20"></div>
             </div>
-            <br />
-            <div>
-              <OfficeFilter></OfficeFilter>
+            <div className="col-md-3"></div>
+            <div className="col-md-12">
+              <OfficeSpaceLocationSwitch city="Mumbai" />
             </div>
+          </div>
+          <div className="filterbar" style={{ marginTop: 15 }}>
+            <ul className="SearchListingFilter scrollmenu">
+              <li>
+                <Link to="/coworking-spaces-in-mumbai/" className="active">
+                  Coworking Spaces
+                </Link>
+              </li>
+             
+              <li>
+                <Link to="/meeting-rooms-in-mumbai/">Meeting Spaces</Link>
+              </li>
+              <li>
+                <Link to="/office-spaces-for-rent-in-mumbai/">
+                  Office Spaces
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <OfficeFilter></OfficeFilter>
           </div>
         </div>
         <div className="container">
           <p>
             <br></br>
-            {spaceSize} Work Cafes available for you
+            {spaceSize} Coworking Spaces in Mumbai available for you
           </p>
           <div className="row">
             {lists.map((list, i) => {
               const listData = list.node
-              if (spaceFilter === "All") {
+              if (spaceFilter === "All" && listData.dayPassAvailable === true) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -174,18 +225,22 @@ const MumbaiWorkCafe = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
               if (
-                listData.Facility.search(opensixquery) > 1 &&
-                listData.Facility.search(mostpopularquery) > 1 &&
-                listData.Facility.search(metroquery) > 1
+                listData.Facility.search(opendeskquery) > 1 &&
+                listData.Facility.search(privatecabinquery) > 1 &&
+                listData.dayPassAvailable === true &&
+                listData.Facility.search(metroquery) > 1 &&
+                listData.Facility.search(twentyfourquery) > 1
               ) {
                 return (
-                  <ListingCard
+                  <DailyListingCard
                     key={listData.spaceId}
                     spacetype={listData.spaceType}
                     listingImg={listData.spaceImage}
@@ -201,23 +256,189 @@ const MumbaiWorkCafe = props => {
                     spaceId={listData.spaceId}
                     officeSpaceType={listData.officeSpaceType}
                     spaceDisplayName={listData.spaceDisplayName}
+                    OriginalName={listData.OriginalName}
                     Facility={listData.Facility}
-                    Slug={listData.slug}
-                  ></ListingCard>
+                    Slug={"/coworking-space/" + listData.slug}
+                    hasCovidSafeBadge={listData.hasCovidSafeBadge}
+                  ></DailyListingCard>
                 )
               }
             })}
+          </div>
+          <div className="col-md-12">
+            <h4 style={{ fontWeight: "bold" }}>Coworking Space in Mumbai </h4>
+
+            <p>
+              Looking for coworking spaces in Mumbai? Book the best coworking
+              space in Mumbai for teams of all sizes with all amenities from hot
+              desks to private cabins.
+              <br></br>
+              <br></br>
+              Mumbai, the country’s renowned financial centre, is the largest
+              city of India. Mumbai is also the richest city of India and has
+              the highest GDP. Mumbai is also ranked among top 10 commercial
+              centres of the world.
+              <br></br>
+              <br></br>
+              Being the commercial capital of the country, Mumbai is one of the
+              most preferred destinations for both the Indian and International
+              companies. It houses important financial institutions such as the
+              Reserve Bank of India, the Bombay Stock Exchange, and the
+              corporate headquarters of many companies. The city is rapidly
+              establishing a convenient work culture owing to its strong
+              economic background. More and more businesses are doing away with
+              the traditional ways of working.
+              <br></br>
+              <br></br>
+              Coworking spaces offer individuals and companies the flexibility
+              of access to work spaces that have all the amenities of a
+              traditional office and sometimes more on a simple rental model.
+              The biggest advantage of coworking spaces is the networking
+              opportunities. Coworking spaces on GoFloaters platform are
+              available on day basis rentals where you just pay-per-use as per
+              your need. You don’t sign any contracts or lock-in your money on
+              security deposits.
+              <br></br>
+              <br></br>
+              Some popular brands of coworking spaces in Mumbai are Awfis,
+              Innov8, Ikeva, Regus, 91Springboard and WeWork.
+              <br></br>
+            </p>
+            <br></br>
+            <h4 style={{ fontWeight: "bold" }}>
+              Top Office Space Locations in Mumbai
+            </h4>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Navi Mumbai</h5>
+            <p>
+              Navi Mumbai is one of the prime locations for coworking spaces in
+              Mumbai. The city is divided into two parts, North Navi Mumbai and
+              South Navi Mumbai. It houses a wide range of major educational
+              institutions, MNCs like Reliance, Accenture, Siemens, L&amp;T,
+              recreational facilities Central Park, Golf Course, Wonder Park
+              etc. This destination is the new preference for shared office
+              spaces in Mumbai. The basic amenities include parking, spacious
+              floors, electricity back up, proximity to the railway station and
+              airport among others.&nbsp;
+            </p>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>
+              Andheri and neighbouring areas
+            </h5>
+            <p>
+              Andheri is the heart of Mumbai. A luxurious locality with renowned
+              national and international offices, along with prime residential
+              societies. It is one of the growing coworking space destinations
+              in Mumbai for many commercial, financial and media houses. The key
+              reasons for the area&rsquo;s growth are its proximity to the
+              airport and availability of all amenities including an efficient
+              transportation system.&nbsp;
+            </p>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Nariman Point</h5>
+            <p>
+              Nariman point is known as the home to all the famous banks,
+              financial institutions, and many top business houses. From huge
+              car parking space to well-maintained buildings, Nariman Point is
+              one of the renowned commercial hubs in India.
+            </p>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Thane</h5>
+            <p>
+              New buildings, presence of all the important amenities and the
+              house for all types of office spaces for IT &amp; ITES companies.
+              One of the attractive specialties of the place is availability of
+              inexpensive office spaces. Not only this, you can get larger floor
+              areas for less cost when compared to other areas.
+            </p>
+            <br />
+            <h5 style={{ fontWeight: "bold" }}>Worli</h5>
+            <p>
+              Worli is one of Mumbai's affluent areas in South Mumbai, offering
+              a charm of both the new and old. The place attracts a lot of
+              commercial development annually by big players ensuring 24-hour
+              power backup, spacious office spaces, air conditioning, car
+              parking and other basic facilities. With this, proximity to the
+              nearest railway station and airport makes this destination the
+              most ideal out of all.
+            </p>
+            <br />
+            <br />
+            <h4 style={{ fontWeight: "bold" }}>
+              Why Choose GoFloaters to book your office space in Mumbai
+            </h4>
+            <p>
+              GoFloaters has been in the space of helping individuals and teams
+              find flexible and affordable workspaces for over 3 years now.
+              GoFloaters was started with a vision to help anyone get an office
+              space when they want, where they want and within their budget. We
+              set out to build office spaces for a distributed world where
+              individuals and teams should be able to work near home.
+            </p>
+            <br />
+            <p>
+              Following are the advantages of booking coworking spaces and
+              meeting spaces on the GoFloaters app:
+            </p>
+            <ul>
+              <li>
+                <p>
+                  <strong>Work Near Home :</strong> In most of the cities that
+                  we serve you can get a space within 5 kms of your home or
+                  wherever you are
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Pay-per-use : </strong>You can book coworking spaces
+                  on a daily basis and meeting spaces on an hourly basis and pay
+                  only for the time you have used it.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>No contracts :</strong> You don&rsquo;t have to sign
+                  any kind of contracts with us.&nbsp;
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Cost effective :</strong> We have negotiated heavily
+                  with our space partners to bring you savings of at least 20%
+                  if not more on the day pass rates and the meeting room rents.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Instant Bookings : </strong>No need to call anyone or
+                  email anyone to check space availability. You can book
+                  coworking spaces instantaneously. Meeting spaces just need 30
+                  mins of time for confirmation.&nbsp;&nbsp;
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Community Perks :</strong> GoFloaters has partnered
+                  with over 65+ companies to bring you over Rs 1 Crore of
+                  benefits to you.
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
       </Layout>
     </div>
   )
 }
-export default MumbaiWorkCafe
+export default MumbaiCoworkingSpace
 export const query = graphql`
-  query MumbaiWorkCafe {
+  query MumbaiCoworkingSpace {
     allListings(
-      filter: { subType: { eq: "Work Cafe" }, spaceCity: { eq: "Mumbai" } }
+      filter: {
+        subType: { eq: "Office Space" }
+        spaceCity: { eq: "Mumbai" }
+        dayPassAvailable: { eq: true }
+      }
     ) {
       totalCount
       edges {
@@ -229,6 +450,7 @@ export const query = graphql`
           purposesList
           spaceAddress
           spaceGFName
+          OriginalName
           spaceCity
           spaceId
           spaceImage
@@ -241,6 +463,7 @@ export const query = graphql`
           spaceDisplayName
           Facility
           slug
+          hasCovidSafeBadge
         }
       }
     }

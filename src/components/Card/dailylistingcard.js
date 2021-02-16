@@ -1,10 +1,20 @@
-import React from "react"
+import React, { useState } from "react"
 import "../Card/listingCard.scss"
-import locationIcon from "./locationicon.png"
+import VizSensor from "react-visibility-sensor"
 import { Link } from "gatsby"
-
+import PreLoader from "./preloader.png"
 const DailyListingCard = props => {
-  const url = `https://app.gofloaters.com/#/home/explore/spacedetail/${props.spaceId}`
+  const [imgViz, setimgViz] = useState(false)
+  const [imgVizdisplay, setimgVizdisplay] = useState(false)
+  const url = `https://app.gofloaters.com/#/home/explore/bookingrequest/${props.spaceId}`
+  var divStyleLoad = {
+    height: "200px",
+    backgroundImage: "url(" + PreLoader + ")",
+    backgroundSize: "cover",
+    WebkitTransition: "all", // note the capital 'W' here
+    msTransition: "all", // 'ms' is the only lowercase vendor prefix
+    borderRadius: "15px",
+  }
   var divStyle = {
     height: "200px",
     backgroundImage: "url(" + props.listingImg + ")",
@@ -38,10 +48,17 @@ const DailyListingCard = props => {
     )
   }
 
+  const MonthlyPrice = () => {
+    return (
+      <span>
+        ₹ <b>{props.priceMonth}</b> per month<br></br>
+      </span>
+    )
+  }
   const DailyPrice = () => {
     return (
       <span>
-        Daily: ₹ {props.priceDay}
+        ₹ <b>{props.priceDay}</b> per day
         <br></br>
       </span>
     )
@@ -75,16 +92,41 @@ const DailyListingCard = props => {
   const ceil10 = (value, exp) => decimalAdjust("ceil", value, exp)
   return (
     <div className={"col-md-4 listingCardPadding " + str}>
-      <Link to={props.Slug}>
-        <div className="listingCard">
+      <Link to={props.Slug + "/"}> <span className="clickable"></span></Link>
+        <div
+          className="listingCard"
+          title={props.gftitle + " - " + props.OriginalName}
+        >
           <div className="listingimages">
-            <div style={divStyle}></div>
+            <VizSensor partialVisibility 
+              onChange={isVisible => {
+                setimgViz(isVisible)
+                if(!imgVizdisplay)
+                {
+                  setimgVizdisplay(isVisible)
+                }        
+              }}
+            >
+             <div style={imgVizdisplay ? divStyle : divStyleLoad }></div>
+            </VizSensor>
           </div>
           <div className="listingDetail">
             <div className="row aligner">
               <div className="col-9">
-                {props.spacetype != "Cafe" ? <h1>{props.gftitle} </h1> : ""}
-                {props.spacetype === "Cafe" ? <h1>{props.title} </h1> : ""}
+                {props.spacetype != "Cafe" ? (
+                  <h2 title={props.gftitle + " - " + props.OriginalName}>
+                    {props.gftitle} - {props.OriginalName}{" "}
+                  </h2>
+                ) : (
+                  ""
+                )}
+                {props.spacetype === "Cafe" ? (
+                  <h2 title={props.gftitle - props.OriginalName}>
+                    {props.title}{" "}
+                  </h2>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="col-3 text-right">
                 {props.Rating ? (
@@ -95,20 +137,36 @@ const DailyListingCard = props => {
                   ""
                 )}
               </div>
-              <div className="col-12">
+              <div className="col-12 spaceDisplayName">
                 {props.spacetype != "Cafe" ? (
                   <p>{props.spaceDisplayName}</p>
                 ) : (
                   ""
                 )}
-              </div>
-
-              <div className="col-12">
                 <p className="spaceaddress">
-                  <img src={locationIcon} width="30"></img>
+                  <img
+                    src="https://assets.gofloaters.com/locationicon.png"
+                    width="30"
+                  ></img>
                   {props.spaceAddress}
                 </p>
               </div>
+
+              <div className="col-6" style={{ minHeight: "45px" }}>
+                {props.hasCovidSafeBadge ? (
+                  <Link className="verifiedSpaceNew" to="/covid-safety-pledge/">
+                    <img
+                      src="https://assets.gofloaters.com/hearttick.svg"
+                      className="verfiedBadge"
+                      title="Verified Spaces"
+                    ></img>
+                    <p>Verified Safe</p>
+                  </Link>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="col-6"></div>
             </div>
             <hr />
             <div className="row aligner minheight">
@@ -127,17 +185,14 @@ const DailyListingCard = props => {
                 </p>
               </div>
               <div className="col-6 text-right">
-                <Link to={props.Slug} className="viewButton">
+                <Link to={props.Slug + "/"} className="viewButton">
                   View
                 </Link>
-                {/*<a className="viewButton" href={url} target="_blank">
-                  View
-                </a>*/}
               </div>
             </div>
           </div>
         </div>
-      </Link>
+      
     </div>
   )
 }

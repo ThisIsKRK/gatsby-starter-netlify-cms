@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./2-banner.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Coworking
+category: Remote Work
 tags:
  - Coworking
  - Shared Office

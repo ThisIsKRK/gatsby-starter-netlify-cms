@@ -1,20 +1,23 @@
 import React from "react"
-import PocketFriendly from "../img/listing/pocket-friendly.png"
-import WeHaveEverthing from "../img/listing/we-have-everything-you-need.png"
-import VarietyOfSpace from "../img/listing/variety-of-spaces.png"
 const TrainingSpaceContent = () => {
   return (
     <div className="row">
       <div className="col-md-4 text-center">
-        <img src={VarietyOfSpace} alt="Variety of Spaces"></img>
+        <img
+          src="https://assets.gofloaters.com/listing/variety-of-spaces.png"
+          alt="Variety of Spaces"
+        ></img>
         <h4>Variety of Spaces</h4>
       </div>
       <div className="col-md-4 text-center">
-        <img src={PocketFriendly}></img>
+        <img src="https://assets.gofloaters.com/listing/pocket-friendly.png"></img>
         <h4>Pocket friendly</h4>
       </div>
       <div className="col-md-4 text-center">
-        <img src={WeHaveEverthing} alt="We have everything you need"></img>
+        <img
+          src="https://assets.gofloaters.com/listing/we-have-everything-you-need.png"
+          alt="We have everything you need"
+        ></img>
         <h4>We have everything you need</h4>
       </div>
       <div className="col-md-12 text-center">

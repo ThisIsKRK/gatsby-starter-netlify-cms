@@ -7,7 +7,7 @@ featuredpost: false
 featuredImage: "./remote-working.jpg"
 author: Shyam Nagarajan
 authorURL: https://www.linkedin.com/in/sundarns/
-category: Remote Work
+category: Startups & Companies
 tags:
  - RemoteWorking
  - Productivity

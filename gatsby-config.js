@@ -7,6 +7,7 @@
 module.exports = {
   siteMetadata: {
     title: `GoFloaters`,
+
     author: {
       name: `GoFloaters`,
       summary: `GoFloaters is a platform that helps you find workspaces that can be booked instantly.`,
@@ -18,8 +19,15 @@ module.exports = {
     },
   },
   plugins: [
+    "gatsby-plugin-smoothscroll",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        sitemapSize: 5000,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -48,6 +56,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
               maxWidth: 900,
             },
           },
@@ -57,6 +68,36 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
+          {
+            resolve: `gatsby-remark-image-attributes`,
+            options: {
+              styleAttributes: [
+                `display`,
+                `position`,
+                `border`,
+                "width",
+                "height",
+                "margin-left",
+                "margin-right",
+                "margin-top",
+                "margin-bottom",
+                "float",
+              ],
+              dataAttributes: true,
+            },
+          },
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: "Table of Contents",
+              tight: false,
+              ordered: false,
+              fromHeading: 1,
+              toHeading: 6,
+              className: "table-of-contents",
+            },
+          },
+          `gatsby-remark-autolink-headers`,
         ],
       },
     },
