@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import "../Card/listingCard.scss"
+import "../Card/listingcard.scss"
 import VizSensor from "react-visibility-sensor"
 import { Link } from "gatsby"
 import PreLoader from "./preloader.png"

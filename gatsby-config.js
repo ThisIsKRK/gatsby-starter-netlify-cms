@@ -107,7 +107,7 @@ module.exports = {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
         id: "GTM-58JZWQT",
-        includeInDevelopment: false,
+        includeInDevelopment: true,
         defaultDataLayer: function () {
           return {
             pageType: window.pageType,
@@ -130,6 +130,12 @@ module.exports = {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
         siteUrl: `https://gofloaters.com`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: '/external-script.js',
       },
     },
   ],

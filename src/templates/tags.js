@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import HeaderBanner from "../components/headerbanner"
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
 // Components
 import { Link, graphql } from "gatsby"

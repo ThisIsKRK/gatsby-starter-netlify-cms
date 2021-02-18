@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import SEOHeader from "../components/seo-header"
 import { kebabCase } from "lodash"
 class BlogPostTemplate extends React.Component {

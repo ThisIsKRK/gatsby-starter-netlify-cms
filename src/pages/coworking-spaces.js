@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
-import { Helmet } from "react-helmet"
 import SearchForm from "../components/search/search"
-import OfficeSpacesContent from "../components/officespacecontent"
-import HeaderBanner from "../components/headerbanner"
 import OfficeSpaceLocationSwitch from "../components/coworkingspacelocationswitch"
 import DailyListingCard from "../components/Card/dailylistingcard"
 import { graphql, Link } from "gatsby"
 import SEOHeader from "../components/seo-header"
-import SocialImage from "../img/socialimage/office-spaces.jpg"
 const CoworkingSpace = props => {
   const [spaceFilter, setspaceFilter] = useState("All")
   const [spaceSize, setspaceSize] = useState([])

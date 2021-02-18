@@ -767,6 +767,15 @@ class Spaces extends React.Component {
                 <br></br> <br></br>
               </div>
             </div>
+            <div className="row">
+              <div className="col-md-12">
+              <br></br>
+                  <h4>Space Overview</h4>
+                  <p className="spaceOverviewtext" dangerouslySetInnerHTML={{ __html: post.spaceOverview }}>
+                  </p>
+                <br></br> <br></br>
+              </div>
+            </div>
           </div>
         </Layout>
         <div
@@ -781,15 +790,6 @@ class Spaces extends React.Component {
             <EnquiryForm spaceId={post.spaceId} />
           </div>
         </div>
-        <div className="row">
-              <div className="col-md-12">
-              <br></br>
-                  <h4>Space Overview</h4>
-                  <p className="spaceOverviewtext" dangerouslySetInnerHTML={{ __html: post.spaceOverview }}>
-                  </p>
-                <br></br> <br></br>
-              </div>
-            </div>
       </div>
     )
   }

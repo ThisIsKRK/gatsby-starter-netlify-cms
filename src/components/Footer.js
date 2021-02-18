@@ -1,9 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import logo from "../img/logo.png"
 
 import PrivacyBar from "../components/privacyBar"
 const Footer = () => {
+  const [floatingAction, setfloatingAction] = useState(false)
+  const floatingActionChange = () => {
+    if (floatingAction === true) {
+      setfloatingAction(false)
+    } else {
+      setfloatingAction(true)
+    }
+  }
   return (
     <footer>
       <div className="container">
@@ -364,6 +372,29 @@ const Footer = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div
+        className={"floatingAction " + floatingAction}
+        onClick={floatingActionChange}
+      >
+        <i className="fa fa-comments"></i>
+      </div>
+      <div className={"floatingActionShow " + floatingAction}>
+        <ol>
+          <li>
+            <a
+              href="https://api.whatsapp.com/send?phone=919384810047"
+              target="_blank"
+            >
+              <i className="fa fa-whatsapp"></i>
+            </a>
+          </li>
+          <li>
+            <a className="showChat" id="zsiq_float">
+              <i className="fa fa-commenting-o"></i>
+            </a>
+          </li>
+        </ol>
       </div>
       <div className="copyright">
         <p>&copy; 2020 GoFloaters</p>

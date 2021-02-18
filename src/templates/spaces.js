@@ -780,7 +780,6 @@ class Spaces extends React.Component {
               <br></br>
                   <h4>Space Overview</h4>
                   <p className="spaceOverviewtext" dangerouslySetInnerHTML={{ __html: post.spaceOverview }}>
-                 
                   </p>
                 <br></br> <br></br>
               </div>

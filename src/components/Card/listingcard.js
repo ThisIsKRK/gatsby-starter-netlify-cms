@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import "../Card/listingCard.scss"
+import "../Card/listingcard.scss"
 import VizSensor from "react-visibility-sensor"
 import { Link } from "gatsby"
 import PreLoader from "./preloader.png"
@@ -91,7 +91,7 @@ const ListingCard = props => {
   const ceil10 = (value, exp) => decimalAdjust("ceil", value, exp)
   return (
     <div className={"col-md-4 listingCardPadding " + str}>
-       <Link to={props.Slug + "/"}> <span class="clickable"></span></Link>
+       <Link to={props.Slug + "/"}> <span className="clickable"></span></Link>
         <div className="listingCard">
         <VizSensor partialVisibility 
               onChange={isVisible => {

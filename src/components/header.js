@@ -25,6 +25,7 @@ const Header = () => {
         <meta name="robots" content="index,follow" />
         <meta name="robots" content="all" />
         <meta name="copyright" content="https://www.gofloaters.com/" />
+     
       </Helmet>
       <TopBar></TopBar>
 

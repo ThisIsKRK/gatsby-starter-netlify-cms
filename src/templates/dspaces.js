@@ -2,15 +2,19 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Helmet } from "react-helmet"
-import HeartTick from "../img/hearttick.svg"
 import "../styles/spacedetail.scss"
 import SEOHeader from "../components/seo-header"
 import SimpleMap from "../components/simplemap"
 class Spaces extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {loadPhoto: false};
+  }
   render() {
     const post = this.props.data.listings
     //const center = { lat: post.location[0], lng: post.location[1] }
     var activeClass = ""
+  
     const Photos = post.photos.map((photo, index) => (
       <div
         key={index}
@@ -204,7 +208,7 @@ class Spaces extends React.Component {
                       className="carousel-control-prev-icon"
                       aria-hidden="true"
                     ></span>
-                    <span className="sr-only">Previous</span>
+                    <span className="sr-only" onClick={()=>{ this.state({loadPhoto:true})}}>Previous</span>
                   </a>
                   <a
                     className="carousel-control-next"
@@ -216,7 +220,7 @@ class Spaces extends React.Component {
                       className="carousel-control-next-icon"
                       aria-hidden="true"
                     ></span>
-                    <span className="sr-only">Next</span>
+                    <span className="sr-only" onClick={()=>{ this.state({loadPhoto:true})}}>Next</span>
                   </a>
                 </div>
                 {post.subType.toString() === "Office Space" ? (
